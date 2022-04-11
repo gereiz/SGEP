@@ -78,7 +78,7 @@
             <div class="d-flex justify-content-center align-items-center">
               <div class="ui-w-60">
                 <div class="w-100 position-relative" style="padding-bottom: 54%">
-                  <img class="login_logo" src="{{asset('assets/img/logo_blue.png')}}" alt="Indiana">
+                  <img class="login_logo" src="{{asset('assets/img/logo.png')}}" alt="Indiana">
                 </div>
               </div>
             </div>
