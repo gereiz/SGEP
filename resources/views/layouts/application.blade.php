@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en" class="default-style">
-<head>
+<head> 
     <title> Integração </title>
 
     <meta charset="utf-8">
@@ -48,12 +48,23 @@
     <!-- Core scripts -->
     <script src="{{asset('assets/vendor/js/pace.js')}}"></script>
     <script src="{{asset('assets/vendor/js/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/js/layout-helpers.js')}}"></script>
     
 
     <!-- Libs -->
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}">
 
+   
+  
+  
+
+
+  
+
+
 </head>
+
+
 <body>
     <div class="page-loader"><div class="bg-primary"></div></div>
 
@@ -63,6 +74,7 @@
       <script src="{{asset('assets/vendor/libs/popper/popper.js')}}"></script>
       <script src="{{asset('assets/vendor/js/bootstrap.js')}}"></script>
       <script src="{{asset('assets/vendor/js/sidenav.js')}}"></script>
+
    
        <!-- Libs -->
        <script src="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
@@ -70,9 +82,14 @@
        <script src="{{asset('assets/vendor/libs/toastr/toastr.js')}}"></script>
    
        <!-- Demo -->
- 
-
-      <!-- Plugins Datatables-->
+       <script src="{{ asset('assets/js/demo.js') }}"></script>
+       <script src="{{ asset('assets/js/app.js') }}"></script>
+     
+     
+     
+     
+     
+       <!-- Plugins Datatables-->
       <!--<script src="{{asset('assets/vendor/libs/datatables/plugins/dataTables.buttons.min.js') }}"></script>
       <script src="{{asset('assets/vendor/libs/datatables/plugins/buttons.bootstrap.min.js') }}"></script>
       <script src="{{asset('assets/vendor/libs/datatables/plugins/jszip.min.js') }}"></script>

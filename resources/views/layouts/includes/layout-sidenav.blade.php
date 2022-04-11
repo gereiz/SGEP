@@ -8,10 +8,9 @@
     <!-- Brand demo (see assets/css/demo/demo.css) -->
     <div class="app-brand head_navbar">
         <span class="app-brand-logo demo">
-            <img class="navbar_logo" src="{{asset('assets/img/logo_white_full.png')}}" alt="Logo">
         </span>
             <div class="menu_navbar">
-            <a href="#" class="demo-brand-name sidenav-text font-weight-normal ml-2 texto_sidenav">Integração</a>
+            <a href="#" class="demo-brand-name sidenav-text font-weight-normal ml-2 texto_sidenav">SGEP</a>
             <a href="javascript:void(0)" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
                 <i class="ion ion-md-menu align-middle btn_menu"></i>
             </a>
@@ -24,42 +23,42 @@
     <!-- Links -->
     <ul class="sidenav-inner{{ empty($layout_sidenav_horizontal) ? ' py-1' : '' }}">
 
-        <!-- Dashboards -->
+        <!-- Pessoas -->
         <li class="sidenav-item{{ strpos($routeName, 'dashboards.') === 0 ? ' active open' : '' }}">
-            <a href="{{route('home')}}" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-speedometer"></i><div>Painel</div></a>
-
-            <!--<ul class="sidenav-menu">
+            <a href="{{route('home')}}" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-person-add"></i><div>Pessoas</div></a>
+            
+            <ul class="sidenav-menu">
                 <li class="sidenav-item{{ $routeName == 'dashboards.dashboard-1' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Dashboard 1</div></a>
+                    <a href="#" class="sidenav-link"><div>Cadastro de Usuários</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'dashboards.dashboard-2' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Dashboard 2</div></a>
+                    <a href="#" class="sidenav-link"><div>Cadastro de Clientes</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'dashboards.dashboard-3' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Dashboard 3</div></a>
+                    <a href="#" class="sidenav-link"><div>#</div></a>
                 </li>
-            </ul> -->
+            </ul>
         </li>
 
-        <!-- Layouts -->
-        <!--<li class="sidenav-item{{ strpos($routeName, 'layout-examples.') === 0 ? ' active open' : '' }}">
-            <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-ios-albums"></i><div>Layouts</div></a>
+        <!-- Painéis -->
+        <li class="sidenav-item{{ strpos($routeName, 'layout-examples.') === 0 ? ' active open' : '' }}">
+            <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-photos"></i><div>Painéis</div></a>
 
             <ul class="sidenav-menu">
                 <li class="sidenav-item{{ $routeName == 'layout-examples.options' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Layout options</div></a>
+                    <a href="#" class="sidenav-link"><div>Cadastro de Painéis</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'layout-examples.helpers' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Layout helpers</div></a>
+                    <a href="#" class="sidenav-link"><div>Relação de Painéis</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'layout-examples.layout-1' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Layout 1</div></a>
+                    <a href="#" class="sidenav-link"><div>Relação de Painéis disponíveis</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'layout-examples.layout-1-flex' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Layout 1 (Flex)</div></a>
+                    <a href="#" class="sidenav-link"><div>Relação de Painéis Reservados</div></a>
                 </li>
             </ul>
-        </li>-->
+        </li>
 
         <!--<li class="sidenav-divider mb-1"></li>
         <li class="sidenav-header small font-weight-semibold">ELEMENTS</li>
