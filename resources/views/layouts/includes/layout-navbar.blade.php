@@ -162,7 +162,9 @@
                     <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
                         <img src="{{asset('assets/img/avatar/avatar.png')}}" alt class="d-block ui-w-30 rounded-circle">
                         <span class="px-1 mr-lg-2 ml-2 ml-lg-0">
-                            <p>Usuário</p>
+                            @foreach ($user as $usu)
+                                {{$usu->name}}
+                            @endforeach
                         </span>
                     </span>
                 </a>
@@ -174,7 +176,7 @@
                     <form method="POST" name="logout" action="{{ route('logout') }}">
                         @csrf
                         <a href="javascript:document.logout.submit()" class="dropdown-item"><i class="ion ion-ios-log-out text-danger"></i> &nbsp; Sair</a>
-                  </form>
+                    </form>
                     
                 </div>
             </div>

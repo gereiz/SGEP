@@ -2,7 +2,7 @@
 
 <html lang="en" class="default-style">
 <head> 
-    <title> Integração </title>
+    <title> SGEP - Sistema de Gestão de Espaços Publicitários </title>
 
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
@@ -31,7 +31,7 @@
 
   
   <!--pessoal-->   
-  <link rel="stylesheet" href="{{asset('assets/css/navbar.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/sidenav.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/home.css')}}">   
 
 
@@ -54,14 +54,6 @@
     <!-- Libs -->
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}">
 
-   
-  
-  
-
-
-  
-
-
 </head>
 
 
@@ -83,7 +75,7 @@
    
        <!-- Demo -->
        <script src="{{ asset('assets/js/demo.js') }}"></script>
-       <script src="{{ asset('assets/js/app.js') }}"></script>
+
      
      
      

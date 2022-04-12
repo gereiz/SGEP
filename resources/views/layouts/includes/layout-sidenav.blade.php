@@ -90,25 +90,25 @@
             </ul>
         </li>-->
 
-        <!-- Forms -->
-       <!-- <li class="sidenav-item{{ strpos($routeName, 'forms.') === 0 ? ' active open' : '' }}">
-            <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-switch"></i><div>Forms</div></a>
+        <!-- Relatórios -->
+       <li class="sidenav-item{{ strpos($routeName, 'forms.') === 0 ? ' active open' : '' }}">
+            <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-document"></i><div>Relatórios</div></a>
 
             <ul class="sidenav-menu">
                 <li class="sidenav-item{{ $routeName == 'forms.layouts' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Layouts and elements</div></a>
+                    <a href="#" class="sidenav-link"><div>Relatório de Clientes</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'forms.controls' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Controls</div></a>
+                    <a href="#" class="sidenav-link"><div>Relatório de Todos Painéis</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'forms.custom-controls' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Custom controls</div></a>
+                    <a href="#" class="sidenav-link"><div>Relatório de Painéis Disponíveis</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'forms.input-groups' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Input groups</div></a>
+                    <a href="#" class="sidenav-link"><div>Relatório de Painéis Reservados</div></a>
                 </li>
             </ul>
-        </li>-->
+        </li>
 
         <!--  Tables -->
         <!--<li class="sidenav-item{{ strpos($routeName, 'tables.') === 0 ? ' active open' : '' }}">
