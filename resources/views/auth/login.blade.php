@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}" class="default-style">
 
 <head>
-  <title>Integração ZIT Protheus</title>
+  <title>SGEP - Sistema de Gestão de Espaços Publicitários</title>
 
   <meta charset="utf-8"> 
   <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
