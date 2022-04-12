@@ -84,10 +84,10 @@
             </div>
             <!-- / Logo -->
 
-            <h4 class="text-center text-lighter font-weight-normal mt-5 mb-0">Entre com seu usuário</h4>
+            <h4 class="text-center text-lighter font-weight-normal text_login">Entre com seu usuário</h4>
 
             <!-- Form -->
-            <form method="POST" action="{{ route('login') }}" aria-label="Login" class="my-5">
+            <form method="POST" action="{{ route('login') }}" aria-label="Login" class="my-5 login_form">
             @csrf            
               <div class="form-group">
                 <label class="form-label">Usuário</label>
