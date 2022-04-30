@@ -141,7 +141,7 @@ return [
     | your application but you are free to change this when necessary.
     |
     */
-
+ 
     'path' => '/',
 
     /*
@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', null),
+    'domain' => env('.sgepequipe.com', null),
 
     /*
     |--------------------------------------------------------------------------
