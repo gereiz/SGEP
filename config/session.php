@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'domain' => env('.sgepequipe.com'),
+    'domain' => env('SESSION_DOMAIN', null),
 
     /*
     |--------------------------------------------------------------------------
