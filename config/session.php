@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'domain' => env('.sgepequipe.com', null),
+    'domain' => env('.sgepequipe.com'),
 
     /*
     |--------------------------------------------------------------------------
