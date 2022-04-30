@@ -46,7 +46,7 @@
 
             <ul class="sidenav-menu">
                 <li class="sidenav-item{{ $routeName == 'layout-examples.options' ? ' active' : '' }}">
-                    <a href="http://localhost/cadastroPaineis/public/addOutdoorForm" class="sidenav-link"><div>Cadastro de Painéis</div></a>
+                    <a href="https://paineis.sgepequipe.com/home" class="sidenav-link"><div>Cadastro de Painéis</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'layout-examples.helpers' ? ' active' : '' }}">
                     <a href="#" class="sidenav-link"><div>Relação de Painéis</div></a>
