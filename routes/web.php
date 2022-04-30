@@ -29,9 +29,8 @@ Route::get('/tutorial', ['as' => 'tutorial', 'uses' => 'HomeController@tutorial'
 Route::prefix('pessoas')->group(function () {
 
 route::get('/cadCliente', ['as' => 'cad.cliente', 'uses' => 'pessoas\ClienteController@index']);
-
 route::post('/cadCliente', ['as' => 'cadastra.cliente', 'uses' => 'pessoas\ClienteController@cadastraCliente']);
-route::get('/cadCliente', ['as' => 'cadastra.cliente', 'uses' => 'pessoas\ClienteController@cadastraCliente']);
+
 
 
 });
