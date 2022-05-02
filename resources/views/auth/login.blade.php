@@ -4,7 +4,7 @@
 <head>
   <title>SGEP - Sistema de Gestão de Espaços Publicitários</title>
 
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}"> 
   <meta charset="utf-8"> 
   <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
   <meta name="description" content="">
@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="assets/css/custom_login.css">
 
   <script src="assets/vendor/js/material-ripple.js"></script>
-  <script src="assets/vendor/js/layout-helpers.js"></script>
+  <script src="assets/vendor/js/layout-helpers.js"></script> 
 
 
   <!-- Core scripts -->
