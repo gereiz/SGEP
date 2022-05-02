@@ -88,7 +88,7 @@
 
             <!-- Form -->
             <form method="POST" action="{{ route('login') }}" aria-label="Login" class="my-5 login_form">
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">           
+            @csrf             
               <div class="form-group">
                 <label class="form-label">Usuário</label>
                 <input type="text" class="form-control" name="email" VALUE="{{ old('email') }}">
