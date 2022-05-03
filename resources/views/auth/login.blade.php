@@ -4,7 +4,6 @@
 <head>
   <title>SGEP - Sistema de Gestão de Espaços Publicitários</title>
 
-  <meta name="csrf-token" content="{{ csrf_token() }}"> 
   <meta charset="utf-8"> 
   <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
   <meta name="description" content="">
@@ -89,7 +88,7 @@
 
             <!-- Form -->
             <form method="POST" action="{{ route('login') }}" aria-label="Login" class="my-5 login_form">
-            @csrf             
+            @csrf        
               <div class="form-group">
                 <label class="form-label">Usuário</label>
                 <input type="text" class="form-control" name="email" VALUE="{{ old('email') }}">
