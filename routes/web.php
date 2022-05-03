@@ -34,6 +34,3 @@ route::post('/cadCliente', ['as' => 'cadastra.cliente', 'uses' => 'pessoas\Clien
 
 
 });
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

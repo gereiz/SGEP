@@ -1,73 +1,140 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}" class="default-style">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<head>
+  <title>SGEP - Sistema de Gestão de Espaços Publicitários</title>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+  <meta charset="utf-8"> 
+  <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+  <!-- Icon fonts -->
+  <link rel="stylesheet" href="assets/vendor/fonts/fontawesome.css">
+  <link rel="stylesheet" href="assets/vendor/fonts/ionicons.css"> 
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+  <!-- Core stylesheets -->
+  <link rel="stylesheet" href="assets/vendor/css/rtl/bootstrap.css"> <!-- class="theme-settings-bootstrap-css" --> 
+  <link rel="stylesheet" href="assets/vendor/css/rtl/appwork.css"> <!-- class="theme-settings-appwork-css" -->
+  <link rel="stylesheet" href="assets/vendor/css/rtl/theme-air.css"> <!-- class="theme-settings-theme-css" -->
+  <link rel="stylesheet" href="assets/vendor/css/rtl/colors.css"> <!-- class="theme-settings-colors-css" -->
+  <link rel="stylesheet" href="assets/vendor/css/rtl/uikit.css">
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+  <link rel="stylesheet" href="assets/vendor/libs/toastr/toastr.css">
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/custom_login.css">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+  <script src="assets/vendor/js/material-ripple.js"></script>
+  <script src="assets/vendor/js/layout-helpers.js"></script>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+  <!-- Core scripts -->
+  <script src="assets/vendor/js/pace.js"></script>
+  <script src="assets/vendor/js/jquery.min.js"></script>
 
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+  <!-- Libs -->
+  <link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css">
+  <!-- Page -->
+  <link rel="stylesheet" href="assets/vendor/css/pages/authentication.css">
+</head>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<body>
+  <div class="page-loader">
+    <div class="bg-primary"></div>
+  </div>
+
+  <!-- Content -->
+
+  <div class="authentication-wrapper authentication-3">
+    <div class="authentication-inner">
+
+      <!-- Side container -->
+      <!-- Do not display the container on extra small, small and medium screens -->
+      <div class="d-none d-lg-flex col-lg-8 align-items-center ui-bg-cover ui-bg-overlay-container p-5" style="background-image: url('assets/img/bg/32.jpg');">
+        <div class="ui-bg-overlay bg-dark opacity-50"></div>
+
+        <!-- Text -->
+        <div class="w-100 text-white px-5">
+          <h3 class="display-2 font-weight-bolder mb-2">Sistema de Gerenciamento de Espaços Publicitários</h3>
+          <div class="text-large font-weight-light">
+           Nome Provisório
+          </div>
         </div>
+        <!-- /.Text -->
+      </div>
+      <!-- / Side container -->
+
+      <!-- Form container -->
+      <div class="d-flex col-lg-4 align-items-center bg-white p-5">
+        <!-- Inner container -->
+        <!-- Have to add `.d-flex` to control width via `.col-*` classes -->
+        <div class="d-flex col-sm-7 col-md-5 col-lg-12 px-0 px-xl-4 mx-auto">
+          <div class="w-100">
+
+            <!-- Logo -->
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="ui-w-60">
+                <div class="w-100 position-relative" style="padding-bottom: 54%">
+                  <img class="login_logo" src="{{asset('assets/img/logo.png')}}" alt="Indiana">
+                </div>
+              </div>
+            </div>
+            <!-- / Logo -->
+
+            <h4 class="text-center text-lighter font-weight-normal text_login">Entre com seu usuário</h4>
+
+            <!-- Form -->
+            <form method="POST" action="{{ route('login') }}" aria-label="Login" class="my-5 login_form">
+            @csrf            
+              <div class="form-group">
+                <label class="form-label">Usuário</label>
+                <input type="text" class="form-control" name="email" VALUE="{{ old('email') }}">
+              </div>
+              <div class="form-group">
+                <label class="form-label d-flex justify-content-between align-items-end">
+                  <div>Senha</div>
+                </label>
+                <input type="password" class="form-control" name="password">
+              </div>
+              <div class="d-flex justify-content-between align-items-center m-0">
+                <button type="submit" class="btn btn-primary">Entrar</button>
+              </div>
+            </form>
+            <!-- / Form -->
+
+          </div>
+        </div>
+      </div>
+      <!-- / Form container -->
+
     </div>
-</div>
-@endsection
+  </div>
+
+  <!-- / Content -->
+
+    <!-- Core scripts -->
+    <script src="assets/vendor/libs/popper/popper.js"></script>
+    <script src="assets/vendor/js/bootstrap.js"></script>
+    <script src="assets/vendor/js/sidenav.js"></script>
+
+    <!-- Libs -->
+    <script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="assets/vendor/libs/toastr/toastr.js"></script>
+
+    <!-- Demo -->
+    <script src="assets/js/app.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            @include('layouts.partials.notifications')
+        });
+    </script>  
+
+
+</body>
+
+</html>
