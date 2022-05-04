@@ -102,6 +102,7 @@
               <div class="d-flex justify-content-between align-items-center m-0">
                 <button type="submit" class="btn btn-primary">Entrar</button>
               </div>
+              <!--<input type="hidden" name="_token" value="{{ csrf_token() }}">-->
             </form>
             <!-- / Form -->
 
