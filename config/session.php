@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'database'),
+    'driver' => env('SESSION_DRIVER', 'file'),
 
     /*
     |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ return [
 
     'lifetime' => env('SESSION_LIFETIME', 120),
 
-    'expire_on_close' => true,
+    'expire_on_close' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ return [
     |
     */
 
-    'encrypt' => true,
+    'encrypt' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -141,7 +141,7 @@ return [
     | your application but you are free to change this when necessary.
     |
     */
- 
+
     'path' => '/',
 
     /*
