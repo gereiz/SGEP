@@ -60,6 +60,22 @@
             </ul>
         </li>
 
+        <li class="sidenav-item{{ strpos($routeName, 'layout-examples.') === 0 ? ' active open' : '' }}">
+            <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-photos"></i><div>Endereços</div></a>
+
+            <ul class="sidenav-menu">
+                <li class="sidenav-item{{ $routeName == 'layout-examples.options' ? ' active' : '' }}">
+                    <a href="{{ route('cad.cidades') }}" class="sidenav-link"><div>Cadastro de Cidades</div></a>
+                </li>
+                <li class="sidenav-item{{ $routeName == 'layout-examples.helpers' ? ' active' : '' }}">
+                    <a href="{{ route('cadastra.regiao') }}" class="sidenav-link"><div>Cadastro de Regiões</div></a>
+                </li>
+                <li class="sidenav-item{{ $routeName == 'layout-examples.layout-1' ? ' active' : '' }}">
+                <a href="{{ route('cadastra.bairro') }}" class="sidenav-link"><div>Cadastro de Bairros</div></a>
+                </li>
+            </ul>
+        </li>
+
         <!--<li class="sidenav-divider mb-1"></li>
         <li class="sidenav-header small font-weight-semibold">ELEMENTS</li>
 

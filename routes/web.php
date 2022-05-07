@@ -32,6 +32,18 @@ Route::prefix('pessoas')->group(function () {
 route::get('/cadCliente', ['as' => 'cad.cliente', 'uses' => 'pessoas\ClienteController@index']);
 route::post('/cadCliente', ['as' => 'cadastra.cliente', 'uses' => 'pessoas\ClienteController@cadastraCliente']);
 
+});
 
+Route::prefix('enderecos')->group(function () {
 
+route::get('/gridCidades', ['as' => 'cad.cidades', 'uses' => 'enderecos\CidadeController@index']);
+route::post('/cadCidade', ['as' => 'cadastra.cidade', 'uses' => 'enderecos\CidadeController@cadastraCidade']);
+route::post('/delCidade/{id}', ['as' => 'deleta.cidade', 'uses' => 'enderecos\CidadeController@delete']);
+
+route::get('/cadRegiao', ['as' => 'cad.regioes', 'uses' => 'enderecos\RegiaoController@index']);
+route::post('/cadRegiao', ['as' => 'cadastra.regiao', 'uses' => 'enderecos\RegiaoController@cadastraRegiao']);
+
+route::get('/cadBairro', ['as' => 'cad.bairros', 'uses' => 'enderecos\BairroController@index']);
+route::post('/cadBairro', ['as' => 'cadastra.bairro', 'uses' => 'enderecos\BairroController@cadastraBairro']);
+    
 });
