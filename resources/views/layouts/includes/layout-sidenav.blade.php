@@ -34,9 +34,6 @@
                 <li class="sidenav-item{{ $routeName == 'cadastra.cliente' ? ' active' : '' }}">
                     <a href="{{ route('cadastra.cliente') }}" class="sidenav-link"><div>Cadastro de Clientes</div></a>
                 </li>
-                <li class="sidenav-item{{ $routeName == 'dashboards.dashboard-3' ? ' active' : '' }}">
-                    <a href="{{ route('tutorial') }}" class="sidenav-link"><div>Tutorial</div></a>
-                </li>
             </ul>
         </li>
 
