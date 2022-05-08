@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+});    
 
 Auth::routes();
 
@@ -46,4 +46,11 @@ route::post('/cadRegiao', ['as' => 'cadastra.regiao', 'uses' => 'enderecos\Regia
 route::get('/cadBairro', ['as' => 'cad.bairros', 'uses' => 'enderecos\BairroController@index']);
 route::post('/cadBairro', ['as' => 'cadastra.bairro', 'uses' => 'enderecos\BairroController@cadastraBairro']);
     
+});
+
+Route::prefix('Outdoors')->group(function(){
+
+route::get('/addOutdoorForm', ['as' => 'add_form_outdoor', 'uses' => 'Outdoors\OutdoorController@addForm']);
+
+
 });

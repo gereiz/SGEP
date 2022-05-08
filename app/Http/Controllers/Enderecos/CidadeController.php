@@ -20,7 +20,7 @@ class CidadeController extends Controller
     }
 
     public function dataForm() {
-
+  
         $user = User::all();
         $ufs = UF::all();
         

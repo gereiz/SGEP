@@ -1,7 +1,7 @@
 @extends('layouts.layout-2')
 
 @section('content')
-    <h4 class="font-weight-bold py-3 mb-4">
+    <h4 class="font-weight-bold py-3 mb-4"> 
         Cadastro de Cidades
     </h4>
 
