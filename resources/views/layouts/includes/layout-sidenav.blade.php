@@ -46,10 +46,10 @@
 
             <ul class="sidenav-menu">
                 <li class="sidenav-item{{ $routeName == 'layout-examples.options' ? ' active' : '' }}">
-                    <a href="https://paineis.sgepequipe.com/home" class="sidenav-link"><div>Cadastro de Painéis</div></a>
+                    <a href="{{route('add_form_outdoor')}}" class="sidenav-link"><div>Cadastro de Painéis</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'layout-examples.helpers' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Relação de Painéis</div></a>
+                    <a href="{{route('outdoor_grid')}}" class="sidenav-link"><div>Relação de Painéis</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'layout-examples.layout-1' ? ' active' : '' }}">
                     <a href="#" class="sidenav-link"><div>Relação de Painéis disponíveis</div></a>

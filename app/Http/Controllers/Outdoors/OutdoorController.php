@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Outdoors;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Outdoor;
-use Auth;
 use DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -100,7 +100,7 @@ class OutdoorController extends Controller
         return response()->json(['success' => true, 'message' => 'Registro Cadastrado com Sucesso!']);
     }
 
-    public function delete($id)
+    public function deleteOutdoor($id)
     {
         try 
         {
@@ -147,6 +147,4 @@ class OutdoorController extends Controller
 
         
     }
-
-
 }
