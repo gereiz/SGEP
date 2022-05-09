@@ -10,14 +10,28 @@
 
     <div class="card">
         <div class="row">
-            <div class="card-body col-md-4">
+            <div class="card-body col-md-2">
                 <label class="form-label">Identificação</label>
                 <input type="text" class="form-control" id="identificacao">
             </div>
 
-            <div class="card-body col-md-8">
-                <label class="form-label">Localização</label>
-                <input type="text" class="form-control" id="localizacao">
+            <div class="card-body col-md-3">
+                <label class="form-label">Bairro</label>
+                <select name="bairro_id" id="bairro_id" class="form-control">
+                    @foreach($bairros as $b)
+                        <option value="{{$b->id}}"> {{$b->nome}} - {{$b->regiao->cidade->nome}} </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="card-body col-md-6">
+                <label class="form-label">Logradouro</label>
+                <input type="text" class="form-control" id="logradouro">
+            </div>
+
+            <div class="card-body col-md-1">
+                <label class="form-label">Número</label>
+                <input type="number" class="form-control" id="numero">
             </div>
         </div>
 
@@ -55,17 +69,19 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md-4">
+                <img src="{{ isset($painel) ? asset('storage/'.$painel->image_url) : '' }}" alt="" style="width:50%;">
+            </div>
             <div class="card-body col-md-4">
                 <label class="form-label">Imagem</label>
                 <input type="file" id="imageDialog" name="image" class="form-control">
             </div>
-
-            <div class="card-body col-md-8">
-                <button id="btn-add-edit"  class="btn btn-primary float-right" style="margin-top: 40px;">
-                    <i class="fa fa-btn fa-envelope"></i>
-                    Salvar
-                </button>
-            </div>
+        </div>
+        <div class="card-body col-md-8">
+            <button id="btn-add-edit"  class="btn btn-primary float-left" style="margin-top: 40px;">
+                <i class="fa fa-btn fa-envelope"></i>
+                Salvar
+            </button>
         </div>
     </div>
 
@@ -100,7 +116,9 @@
         
         $('#btn-add-edit').on('click', function(){
             identificacao = $('#identificacao').val();
-            localizacao = $('#localizacao').val();
+            bairro_id = $('#bairro_id').val();
+            logradouro = $('#logradouro').val();
+            numero = $('#numero').val();
             posicao = $('#posicao').val();
             dimensao = $('#dimensao').val();
             dimensao_lona = $('#dimensao_lona').val();
@@ -113,9 +131,17 @@
             {
                 return alert('Informe a Identificação');
             }
-            if(localizacao == '')
+            if(logradouro == '')
             {
-                return alert('Informe a Localizção');
+                return alert('Informe o Logradouro');
+            }
+            if(bairro_id == '')
+            {
+                return alert('Informe o Bairro');
+            }
+            if(numero == '')
+            {
+                return alert('Informe o Número');
             }
             if(posicao == '')
             {
@@ -165,7 +191,9 @@
                 data:{
                     id:id,
                     identificacao:identificacao,
-                    localizacao:localizacao,
+                    bairro_id:bairro_id,
+                    logradouro:logradouro,
+                    numero:numero,
                     posicao:posicao,
                     dimensao: dimensao,
                     dimensao_lona: dimensao_lona,
@@ -177,7 +205,7 @@
             success: function(resposta){
                 if (resposta.success){
                     alert(resposta.message, true);
-                    window.location.href = "{{url('outdoorsGrid')}}";
+                    window.location.href = "{{url('Outdoors/outdoorsGrid')}}";
                 }else{
                     alert(JSON.stringify(resposta));
                 }
@@ -191,7 +219,9 @@
         
         @if(isset($painel))
             $('#identificacao').val('{{$painel->identificacao}}');
-            $('#localizacao').val('{{$painel->localizacao}}');
+            $('#bairro_id').val('{{$painel->bairro_id}}');
+            $('#logradouro').val('{{$painel->logradouro}}');
+            $('#numero').val('{{$painel->numero}}');
             $('#posicao').val('{{$painel->posicao}}');
             $('#dimensao').val('{{$painel->dimensao}}');
             $('#dimensao_lona').val('{{$painel->dimensao_lona}}');

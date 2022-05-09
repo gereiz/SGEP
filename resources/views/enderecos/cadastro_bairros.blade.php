@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="form-label">Região</label>
-                                <select name="regiao_id" id="" class="form-control">
+                                <select name="regiao_id" id="regiao_id" class="form-control">
                                     @foreach($regioes as $regiao)
                                         <option value="{{$regiao->id}}"> {{$regiao->nome}} - {{$regiao->cidade->nome}} - {{$regiao->cidade->uf->sigla}} </option>
                                     @endforeach

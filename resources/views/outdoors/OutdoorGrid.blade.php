@@ -14,10 +14,10 @@
                     
                 </div>
                 <div class="row">
-                    <img src="{{asset('storage/'.$p->image_url)}}" alt="" style="width:15%;">
+                    <img src="{{ asset('storage/'.$p->image_url)}}" alt="" style="width:15%;">
                     <div class="col-md-12 text-right">
-                        <a role="button" href="{{url('viewFormOutdoor')}}/{{$p->id}}" type="button" class="btn btn-secondary edit">Visualizar</a>
-                        <a role="button" href="{{url('editFormOutdoor')}}/{{$p->id}}" type="button" class="btn btn-primary edit">Editar</a>
+                        <a role="button" href="{{url('Outdoors/viewFormOutdoor')}}/{{$p->id}}" type="button" class="btn btn-secondary edit">Visualizar</a>
+                        <a role="button" href="{{url('Outdoors/editFormOutdoor')}}/{{$p->id}}" type="button" class="btn btn-primary edit">Editar</a>
                         <button type="button" value="{{$p->id}}" class="btn btn-danger delete">Excluir</button>
                     </div>
                 </div>

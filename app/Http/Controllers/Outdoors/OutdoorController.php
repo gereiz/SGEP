@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Outdoors;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Outdoor;
+use App\Models\Bairro;
 use DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,14 +29,19 @@ class OutdoorController extends Controller
 
     public function addForm()
     {
-        return view('outdoors.OutdoorForm');
+        $bairros = Bairro::all();
+        return view('outdoors.OutdoorForm', [
+            'bairros' => $bairros
+        ]);
     }
 
     public function editForm($id)
     {
+        $bairros = Bairro::all();
         $painel = Outdoor::find($id);
         return view('outdoors.OutdoorForm',[
-            'painel' => $painel
+            'painel' => $painel,
+            'bairros' => $bairros
         ]);
     }
 
@@ -60,8 +66,11 @@ class OutdoorController extends Controller
             $painel = new Outdoor();
             if(Outdoor::find($request->id))
                 $painel = Outdoor::find($request->id);
+
             $painel->identificacao = $request->identificacao; 
-            $painel->localizacao = $request->localizacao;
+            $painel->bairro_id = $request->bairro_id;
+            $painel->logradouro = $request->logradouro;
+            $painel->numero = $request->numero;
             $painel->posicao = $request->posicao;
             $painel->dimensao = $request->dimensao;
             $painel->dimensao_lona = $request->dimensao_lona;
@@ -122,7 +131,9 @@ class OutdoorController extends Controller
 
         $customMessages = [
             'identificacao.required' => 'A Identificação deve ser informada',
-            'localizacao.required' => 'A Localização deve ser informada',
+            'bairro_id.required' => 'O Bairro deve ser informado',
+            'logradouro.required' => 'O Logradouro deve ser informado',
+            'numero.required' => 'O Número deve ser informado',
             'posicao.required' => 'A Posição deve ser informada',
             'dimensao.required' => 'A Dimensão deve ser informada',
             'dimensao_lona.required' => 'A Dimensão da Lona deve ser informada',
@@ -135,7 +146,9 @@ class OutdoorController extends Controller
 
         $this->validate($request, [
             'identificacao' => 'required|string',
-            'localizacao' => 'required|string',
+            'bairro_id' => 'required|integer',
+            'logradouro' => 'required|string',
+            'numero' => 'required|integer',
             'posicao' => 'required|string',
             'dimensao' => 'required|string',
             'dimensao_lona' => 'required|string',
