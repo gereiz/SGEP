@@ -13,7 +13,7 @@ class AlterClientesTable1 extends Migration
      */
     public function up()
     {
-        Schema::table('Clientes', function($table) {
+        Schema::table('clientes', function($table) {
             $table->string('responsavel')->after('nome_fantasia');
             $table->string('tel_responsavel')->after('responsavel');
             $table->string('email_responsavel')->after('tel_responsavel');
