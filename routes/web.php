@@ -38,13 +38,21 @@ Route::prefix('enderecos')->group(function () {
 
 route::get('/gridCidades', ['as' => 'cad.cidades', 'uses' => 'enderecos\CidadeController@index']);
 route::post('/cadCidade', ['as' => 'cadastra.cidade', 'uses' => 'enderecos\CidadeController@cadastraCidade']);
+route::get('/cidadeForm', ['as' => 'form.cidade', 'uses' => 'enderecos\CidadeController@dataForm']);
+route::get('/editCidadeForm/{id}', ['as' => 'editForm.cidade', 'uses' => 'enderecos\CidadeController@editDataForm']);
 route::post('/delCidade/{id}', ['as' => 'deleta.cidade', 'uses' => 'enderecos\CidadeController@delete']);
 
-route::get('/cadRegiao', ['as' => 'cad.regioes', 'uses' => 'enderecos\RegiaoController@index']);
+route::get('/gridRegioes', ['as' => 'cad.regioes', 'uses' => 'enderecos\RegiaoController@index']);
 route::post('/cadRegiao', ['as' => 'cadastra.regiao', 'uses' => 'enderecos\RegiaoController@cadastraRegiao']);
+route::get('/regiaoForm', ['as' => 'form.regiao', 'uses' => 'enderecos\RegiaoController@dataForm']);
+route::get('/editRegiaoForm/{id}', ['as' => 'editForm.regiao', 'uses' => 'enderecos\RegiaoController@editDataForm']);
+route::post('/delRegiao/{id}', ['as' => 'deleta.regiao', 'uses' => 'enderecos\RegiaoController@delete']);
 
-route::get('/cadBairro', ['as' => 'cad.bairros', 'uses' => 'enderecos\BairroController@index']);
+route::get('/gridBairros', ['as' => 'cad.bairros', 'uses' => 'enderecos\BairroController@index']);
 route::post('/cadBairro', ['as' => 'cadastra.bairro', 'uses' => 'enderecos\BairroController@cadastraBairro']);
+route::get('/bairroForm', ['as' => 'form.bairro', 'uses' => 'enderecos\BairroController@dataForm']);
+route::get('/editBairroForm/{id}', ['as' => 'editForm.bairro', 'uses' => 'enderecos\BairroController@editDataForm']);
+route::post('/delBairro/{id}', ['as' => 'deleta.bairro', 'uses' => 'enderecos\BairroController@delete']);
     
 });
 

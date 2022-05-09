@@ -5,12 +5,12 @@
 <div class="col-md-12 row">
     <div class="col-md-9">
         <h4 class="font-weight-bold py-3 mb-4">
-            Lista de Cidades
+            Lista de Bairros
         </h4>
     </div>
 
     <div class="col-md-3">
-        <a href="{{url('enderecos/cidadeForm')}}" style="text-decoration: none"> 
+        <a href="{{url('enderecos/bairroForm')}}" style="text-decoration: none"> 
             <button id="btn-add-edit"  class="btn btn-success float-right" >
                     <i class="fa fa-btn fa-plus"></i>
                     Novo Registro
@@ -19,7 +19,7 @@
     </div>
 </div>
 
-@foreach($cidades as $c)
+@foreach($bairros as $b)
     <header>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </header>
@@ -27,16 +27,13 @@
         <div class="card mt-2">
             <div class="card-body">
                 <div class="row">
-                    <h5 class="card-title">{{$c->nome}}</h5>
+                    <h5 class="card-title">{{$b->nome}} - Cidade: {{$b->regiao->cidade->nome}}</h5>
                 </div>
                 <div class="row">
                     <div class="col-md-12 text-right">
-                        <a role="button" href="{{url('enderecos/editCidadeForm')}}/{{$c->id}}" type="button" class="btn btn-primary edit">Editar</a>
-                        <button type="button" value="{{$c->id}}" class="btn btn-danger delete">Excluir</button>
+                        <a role="button" href="{{url('enderecos/editBairroForm')}}/{{$b->id}}" type="button" class="btn btn-primary edit">Editar</a>
+                        <button type="button" value="{{$b->id}}" class="btn btn-danger delete">Excluir</button>
                     </div>
-                </div>
-                <div class="row"> 
-                    <p class="card-text">{{$c->uf->sigla}}</p>
                 </div>
             </div>
         </div>
@@ -45,7 +42,7 @@
 <br>
 
 <div class="col-md-12">
-{{$cidades->links()}}
+{{$bairros->links()}}
 </div>
 
 
@@ -62,7 +59,7 @@
                 }
             });
 
-            url =  "{{ route('deleta.cidade', ":id") }}"
+            url =  "{{ route('deleta.bairro', ":id") }}"
             url = url.replace(':id', e.target.value)
             $.ajax({
                 method: "POST",
@@ -71,7 +68,7 @@
                 success: function(resposta){
                     if (resposta.success){
                         alert(JSON.stringify(resposta));
-                        window.location.href = "{{url('enderecos/gridCidades')}}";
+                        window.location.href = "{{url('enderecos/gridBairros')}}";
                     }else{
                         alert(JSON.stringify(resposta));
                     }

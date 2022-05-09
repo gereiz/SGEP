@@ -1,9 +1,15 @@
 @extends('layouts.layout-2')
 
 @section('content')
-    <h4 class="font-weight-bold py-3 mb-4">
-        Cadastro de Bairros
-    </h4>
+    @if(isset($bairro))
+        <h4 class="font-weight-bold py-3 mb-4"> 
+            Edição de Bairro
+        </h4>
+    @else 
+        <h4 class="font-weight-bold py-3 mb-4"> 
+            Cadastro de Bairro
+        </h4>
+    @endif
 
 
     <!-- Dados da Empresa -->
@@ -16,6 +22,12 @@
                 <div class="card-body" id="dados_empresa">
                     <form action="{{route('cadastra.bairro')}}" method="POST">
                         @csrf
+                        <div class="form-row">
+                            <div class="form-group col-md-1">
+                                <label class="form-label">ID</label>
+                                <input type="text" name="id" id="id" class="form-control" readonly>
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="form-label">Nome</label>
@@ -43,7 +55,11 @@
 <script>
     $(document).ready(function() {
 
-  
+        @if(isset($bairro))
+            $('#id').val('{{$bairro->id}}')
+            $('#nome_bairro').val('{{$bairro->nome}}')
+            $('#regiao_id').val('{{$bairro->regiao_id}}')
+        @endif
 });
 </script>
 

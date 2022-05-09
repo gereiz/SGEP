@@ -65,10 +65,10 @@
                     <a href="{{ route('cad.cidades') }}" class="sidenav-link"><div>Cadastro de Cidades</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'layout-examples.helpers' ? ' active' : '' }}">
-                    <a href="{{ route('cadastra.regiao') }}" class="sidenav-link"><div>Cadastro de Regiões</div></a>
+                    <a href="{{ route('cad.regioes') }}" class="sidenav-link"><div>Cadastro de Regiões</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'layout-examples.layout-1' ? ' active' : '' }}">
-                <a href="{{ route('cadastra.bairro') }}" class="sidenav-link"><div>Cadastro de Bairros</div></a>
+                <a href="{{ route('cad.bairros') }}" class="sidenav-link"><div>Cadastro de Bairros</div></a>
                 </li>
             </ul>
         </li>

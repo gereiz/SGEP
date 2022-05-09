@@ -1,11 +1,16 @@
 @extends('layouts.layout-2')
 
 @section('content')
-    <h4 class="font-weight-bold py-3 mb-4">
-        Cadastro de Regiões
-    </h4>
+    @if(isset($regiao))
+        <h4 class="font-weight-bold py-3 mb-4"> 
+            Edição de Região
+        </h4>
+    @else 
+        <h4 class="font-weight-bold py-3 mb-4"> 
+            Cadastro de Região
+        </h4>
+    @endif
 
- 
     <!-- Dados da Empresa -->
     <div class="card mb-4">
         <h6 class="card-header with-elements collapsed" data-toggle="collapse" href="#dados_empresa" aria-expanded="true" aria-controls="dados_empresa">
@@ -16,6 +21,12 @@
                 <div class="card-body" id="dados_empresa">
                     <form action="{{route('cadastra.regiao')}}" method="POST">
                         @csrf
+                        <div class="form-row">
+                            <div class="form-group col-md-1">
+                                <label class="form-label">ID</label>
+                                <input type="text" name="id" id="id" class="form-control" readonly>
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="form-label">Nome</label>
@@ -31,7 +42,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" name="btn-cadastrar" id="btn-cadastrar" class="btn btn-primary">Cadastrar</button>
+                        <button type="submit" name="btn-cadastrar" id="btn-cadastrar" class="btn btn-primary">Salvar</button>
                     </form>
                 </div>
             </div>
@@ -43,6 +54,11 @@
 <script>
     $(document).ready(function() {
 
+    @if(isset($regiao))
+        $('#id').val('{{$regiao->id}}')
+        $('#nome_regiao').val('{{$regiao->nome}}')
+        $('#cidade_id').val('{{$regiao->cidade_id}}')
+    @endif
   
 });
 </script>

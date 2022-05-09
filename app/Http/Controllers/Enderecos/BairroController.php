@@ -7,11 +7,22 @@ use Illuminate\Http\Request;
 use App\Models\Bairro;
 use App\Models\Regiao;
 use App\Models\User;
+use App\Models\Outdoor;
+use DB;
 
 class BairroController extends Controller
 {
     public function index() {
 
+        $user = User::all();
+        $bairros = Bairro::paginate(7);
+        
+        return view('enderecos.bairros_grid', ['user' => $user, 'bairros' => $bairros]);
+
+    }
+
+    public function dataForm() {
+  
         $user = User::all();
         $regioes = Regiao::all();
         
@@ -19,19 +30,58 @@ class BairroController extends Controller
 
     }
 
+    public function editDataForm($id) {
+
+        $user = User::all();
+        $regioes = Regiao::all();
+        $bairro = Bairro::find($id);
+        
+        return view('enderecos.cadastro_bairros', ['user' => $user, 'regioes' => $regioes, 'bairro' => $bairro]);
+
+    }
+    
+
     public function cadastraBairro(Request $request) {
 
         $dados = $request->all();
 
-        $regiao  = new Bairro;
+        $bairro  = new Bairro;
+        if(Bairro::find($request->id))
+        {
+            $bairro = Bairro::find($request->id);
+        }
 
-        $regiao->nome = $request->nome_bairro;
-        $regiao->regiao_id = $request->regiao_id;
+        $bairro->nome = $request->nome_bairro;
+        $bairro->regiao_id = $request->regiao_id;
 
-        $regiao->save();
+        $bairro->save();
+
+        if(Bairro::find($request->id))
+            return redirect()->route('cad.bairros')->with('success', 'Bairro editado com sucesso!');
 
         return back()->with('success', 'Bairro cadastrado com sucesso!');
 
+    }
+
+    public function delete($id)
+    {
+        /*if(count(Outdoor::where('bairro_id',$id)->get()) > 0)
+        {
+            return response()->json(['success' => false, 'message' => 'Bairro já está sendo usado em algum painel!']);
+        }*/
+
+        try 
+        {
+            DB::beginTransaction();
+            Bairro::find($id)->delete();
+        }
+        catch (Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+
+        }
+        DB::commit();
+        return response()->json(['success' => true, 'message' => 'Registro Deletado com sucesso!']);
 
     }
 

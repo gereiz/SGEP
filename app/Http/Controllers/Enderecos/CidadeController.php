@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Cidade;
 use App\Models\UF;
 use App\Models\Bairro;
+use App\Models\Regiao;
 use App\Models\User;
 use DB;
 
@@ -28,27 +29,43 @@ class CidadeController extends Controller
 
     }
 
+    public function editDataForm($id) {
+
+        $user = User::all();
+        $ufs = UF::all();
+        $cidade = Cidade::find($id);
+        
+        return view('enderecos.cadastro_cidades', ['user' => $user, 'ufs' => $ufs, 'cidade' => $cidade]);
+
+    }
+
     public function cadastraCidade(Request $request) {
 
         $dados = $request->all();
 
-        $cliente  = new Cidade;
+        $cidade  = new Cidade;
+        if(Cidade::find($request->id))
+        {
+            $cidade = Cidade::find($request->id);
+        }
 
-        $cliente->nome = $request->nome_cidade;
-        $cliente->uf_id = $request->estado_id;
+        $cidade->nome = $request->nome_cidade;
+        $cidade->uf_id = $request->estado_id;
 
-        $cliente->save();
+        $cidade->save();
+
+        if(Cidade::find($request->id))
+            return redirect()->route('cad.cidades')->with('success', 'Cidade editada com sucesso!');
 
         return back()->with('success', 'Cidade cadastrada com sucesso!');
-
 
     }
 
     public function delete($id)
     {
-        if(Bairro::where('cidade_id',$id))
+        if(count(Regiao::where('cidade_id',$id)->get()) > 0)
         {
-            return response()->json(['success' => false, 'message' => 'Cidade já está sendo usada em algum bairro!']);
+            return response()->json(['success' => false, 'message' => 'Cidade já está sendo usada em alguma região!']);
         }
 
         try 
