@@ -43,7 +43,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" name="btn-cadastrar" id="btn-cadastrar" class="btn btn-primary">Cadastrar</button>
+                        <button type="submit" name="btn-cadastrar" id="btn-cadastrar" class="btn btn-primary">Salvar</button>
                     </form>
                 </div>
             </div>
