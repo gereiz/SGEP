@@ -27,6 +27,20 @@
                             </div>
                         </div>
                         <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label class="form-label">Contato/Responsável</label>
+                                <input type="text" name="responsavel" id="responsavel" class="form-control" placeholder="Nome do Contato">
+                            </div>
+                            <div class="form-group col-2">
+                                <label class="form-label">Telefone do Responsável</label>
+                                <input type="text" name="tel_responsavel" id="tel_responsavel" class="form-control" placeholder="(XX) XXXX-XXXX">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label class="form-label">E-mail do Responsável</label>
+                                <input type="text" name="email_responsavel" id="email_responsavel" class="form-control">
+                            </div>
+                        </div> 
+                        <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label class="form-label">Endereço</label>
                                 <input type="text" name="endereco" id="endereco" class="form-control" placeholder="Rua ABCD... ">

@@ -19,12 +19,15 @@ class ClienteController extends Controller
 
     public function cadastraCliente(Request $request) {
 
-        $dados = $request->all();
+       // $dados = $request->all();
 
         $cliente  = new Cliente;
 
         $cliente->razao_social = $request->razao;
         $cliente->nome_fantasia = $request->n_fantasia;
+        $cliente->responsavel = $request->responsavel;
+        $cliente->tel_responsavel = $request->tel_responsavel;
+        $cliente->email_responsavel = $request->email_responsavel;
         $cliente->endereco = $request->endereco;
         $cliente->num = $request->numero;
         $cliente->bairro = $request->bairro;
