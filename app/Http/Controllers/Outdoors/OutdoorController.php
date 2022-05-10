@@ -41,7 +41,7 @@ class OutdoorController extends Controller
 
     public function editForm($id)
     {
-
+        $user = auth()->user()->name;
         $bairros = Bairro::all();
         $painel = Outdoor::find($id);
         return view('outdoors.OutdoorForm',[
@@ -52,6 +52,7 @@ class OutdoorController extends Controller
 
     public function viewForm($id)
     { 
+        $user = auth()->user()->name;
         $painel = Outdoor::find($id);
         //dd($painel->image_url);
         //dd(json_encode($painel->image_url));
