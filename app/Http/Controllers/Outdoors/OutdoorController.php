@@ -46,7 +46,8 @@ class OutdoorController extends Controller
         $painel = Outdoor::find($id);
         return view('outdoors.OutdoorForm',[
             'painel' => $painel,
-            'bairros' => $bairros
+            'bairros' => $bairros,
+            'user' => $user
         ]);
     }
 
@@ -58,6 +59,7 @@ class OutdoorController extends Controller
         //dd(json_encode($painel->image_url));
         return view('outdoors.OutdoorViewForm',[
             'painel' => $painel,
+            'user' => $user
         ]);
     }
 
