@@ -49,14 +49,18 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+            url =  "{{ route('delete_outdoor', ":id") }}"
+            url = url.replace(':id', e.target.value)
+
             $.ajax({
                 method: "POST",
-                url: '/deleteOutdoor/' + e.target.value, 
+                url: url, 
                 data:{},
                 success: function(resposta){
                     if (resposta.success){
                         alert(resposta.message, true);
-                        window.location.href = '/outdoorsGrid';
+                        window.location.href = "{{url('Outdoors/outdoorsGrid')}}";
                     }else{
                         alert(JSON.stringify(resposta));
                     }
