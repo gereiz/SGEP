@@ -61,7 +61,7 @@
         <div class="w-100 text-white px-5">
           <h3 class="display-2 font-weight-bolder mb-2">Sistema de Gerenciamento de Espaços Publicitários</h3>
           <div class="text-large font-weight-light">
-           Nome Provisório
+            
           </div>
         </div>
         <!-- /.Text -->
