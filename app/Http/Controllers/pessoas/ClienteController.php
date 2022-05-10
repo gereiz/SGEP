@@ -34,13 +34,15 @@ class ClienteController extends Controller
 
         $cliente->razao_social = $request->razao;
         $cliente->nome_fantasia = $request->n_fantasia;
+        $cliente->cpf_cnpj = $request->cpf_cnpj;
+        $cliente->nro_insc = $request->nro_insc;
         $cliente->responsavel = $request->responsavel;
         $cliente->tel_responsavel = $request->tel_responsavel;
         $cliente->email_responsavel = $request->email_responsavel;
         $cliente->endereco = $request->endereco;
         $cliente->num = $request->numero;
-        $cliente->bairro = $request->bairro;
-        $cliente->cidade = $request->cidade;
+        $cliente->bairro = $request->bairro_id;
+        $cliente->cidade = $request->cidade_id;
         $cliente->uf = $request->uf;
         $cliente->cep = $request->cep;
         $cliente->email = $request->email;

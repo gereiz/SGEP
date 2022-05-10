@@ -28,6 +28,16 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
+                                <label class="form-label">CNPJ / CPF</label>
+                                <input type="text" name="cpf_cnpj" id="cpf_cnpj" class="form-control" placeholder="CNPJ / CPF" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="form-label">Inscrição Estadual</label>
+                                <input type="text" name="nro_insc" id="nro_insc" class="form-control" placeholder="Nº da Inscrição Estadual">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
                                 <label class="form-label">Contato/Responsável</label>
                                 <input type="text" name="responsavel" id="responsavel" class="form-control" placeholder="Nome do Contato">
                             </div>
