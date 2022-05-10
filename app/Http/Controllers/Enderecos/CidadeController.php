@@ -15,14 +15,14 @@ class CidadeController extends Controller
 {
     public function index() {
 
-        $user = User::all();
+       $user = auth()->user()->name;
         $cidades = Cidade::paginate(7);
         return view('enderecos.cidades_grid', ['user' => $user,'cidades' => $cidades]);
     }
 
     public function dataForm() {
   
-        $user = User::all();
+       $user = auth()->user()->name;
         $ufs = UF::all();
         
         return view('enderecos.cadastro_cidades', ['user' => $user, 'ufs' => $ufs]);
@@ -31,7 +31,7 @@ class CidadeController extends Controller
 
     public function editDataForm($id) {
 
-        $user = User::all();
+       $user = auth()->user()->name;
         $ufs = UF::all();
         $cidade = Cidade::find($id);
         

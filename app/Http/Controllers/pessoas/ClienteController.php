@@ -5,15 +5,24 @@ namespace App\Http\Controllers\pessoas;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
-use App\Models\User;
+use App\Models\UF;
+use App\Models\Cidade;
+use App\Models\Bairro;
 
 class ClienteController extends Controller
 {
     public function index() {
 
-        $user = User::all();
+        $user = auth()->user()->name;
+        $uf = UF::all();
+        $bairros = Bairro::all();
+        $cidades = Cidade::all();
 
-        return view('pessoas.cadastro_clientes', ['user' => $user]);
+        return view('pessoas.cadastro_clientes', ['user' => $user,
+                                                  'bairros' => $bairros,
+                                                  'cidade' => $cidades,
+                                                  'uf' => $uf
+                                                 ]);
 
     }
 

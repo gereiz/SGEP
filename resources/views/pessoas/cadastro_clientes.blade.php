@@ -53,12 +53,21 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label class="form-label">Bairro</label>
-                                <input type="text" name="bairro" id="bairro" class="form-control">
+                                <label class="form-label">Bairro</label> 
+                                <select name="bairro_id" id="bairro_id" class="form-control">
+                                    @foreach($bairros as $b)
+                                        <option value="{{$b->id}}"> {{$b->nome}} </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="form-label">Cidade</label>
-                                <input type="text" name="cidade" id="cidade" class="form-control">
+                                <select name="cidade_id" id="cidade_id" class="form-control">
+                                    @foreach($cidade as $c)
+                                        <option value="{{$c->id}}"> {{$c->nome}} </option>
+                                    @endforeach
+                                </select>
+                            </div>
                             </div>
                         </div>
                         <div class="form-row">
@@ -66,7 +75,9 @@
                                 <label class="form-label">UF</label>
                                 <select class="custom-select" name="uf" id="uf">
                                     <option value="">Selecione o Estado</option>
-                                    <option value="MG">MG</option>
+                                    @foreach($uf as $u)
+                                        <option value="{{$u->id}}"> {{$u->nome}} </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-2">

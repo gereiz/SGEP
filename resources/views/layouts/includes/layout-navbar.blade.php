@@ -162,7 +162,7 @@
                     <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
                         <img src="{{asset('assets/img/avatar/avatar.png')}}" alt class="d-block ui-w-30 rounded-circle">
                         <span class="px-1 mr-lg-2 ml-2 ml-lg-0">
-                            Usuário
+                           {{$user}}
                         </span>
                     </span>
                 </a>

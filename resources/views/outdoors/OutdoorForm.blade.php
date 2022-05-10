@@ -16,7 +16,7 @@
             </div>
 
             <div class="card-body col-md-3">
-                <label class="form-label">Bairro</label>
+                <label class="form-label">Bairro</label> 
                 <select name="bairro_id" id="bairro_id" class="form-control">
                     @foreach($bairros as $b)
                         <option value="{{$b->id}}"> {{$b->nome}} - {{$b->regiao->cidade->nome}} </option>

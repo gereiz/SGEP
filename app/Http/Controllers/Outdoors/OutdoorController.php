@@ -19,24 +19,29 @@ class OutdoorController extends Controller
 
     public function index()
     {
+        $user = auth()->user()->name;
         $paineis = Outdoor::paginate(5);
 
         return view('outdoors.OutdoorGrid',[
-            'paineis' => $paineis
+            'paineis' => $paineis,
+            'user' => $user
         ]);
 
     }
 
     public function addForm()
     {
+        $user = auth()->user()->name;
         $bairros = Bairro::all();
         return view('outdoors.OutdoorForm', [
-            'bairros' => $bairros
+            'bairros' => $bairros,
+            'user' => $user
         ]);
     }
 
     public function editForm($id)
     {
+
         $bairros = Bairro::all();
         $painel = Outdoor::find($id);
         return view('outdoors.OutdoorForm',[

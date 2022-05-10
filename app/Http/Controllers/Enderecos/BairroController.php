@@ -14,7 +14,7 @@ class BairroController extends Controller
 {
     public function index() {
 
-        $user = User::all();
+       $user = auth()->user()->name;
         $bairros = Bairro::paginate(7);
         
         return view('enderecos.bairros_grid', ['user' => $user, 'bairros' => $bairros]);
@@ -23,7 +23,7 @@ class BairroController extends Controller
 
     public function dataForm() {
   
-        $user = User::all();
+       $user = auth()->user()->name;
         $regioes = Regiao::all();
         
         return view('enderecos.cadastro_bairros', ['user' => $user, 'regioes' => $regioes]);
@@ -32,7 +32,7 @@ class BairroController extends Controller
 
     public function editDataForm($id) {
 
-        $user = User::all();
+       $user = auth()->user()->name;
         $regioes = Regiao::all();
         $bairro = Bairro::find($id);
         

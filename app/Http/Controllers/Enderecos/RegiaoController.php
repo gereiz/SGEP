@@ -14,7 +14,7 @@ class RegiaoController extends Controller
 {
     public function index() {
 
-        $user = User::all();
+       $user = auth()->user()->name;
         $regioes = Regiao::paginate(7);
         
         return view('enderecos.regioes_grid', ['user' => $user, 'regioes' => $regioes]);
@@ -23,7 +23,7 @@ class RegiaoController extends Controller
 
     public function dataForm() {
   
-        $user = User::all();
+       $user = auth()->user()->name;
         $cidades = Cidade::all();
         
         return view('enderecos.cadastro_regioes', ['user' => $user, 'cidades' => $cidades]);
@@ -32,7 +32,7 @@ class RegiaoController extends Controller
 
     public function editDataForm($id) {
 
-        $user = User::all();
+       $user = auth()->user()->name;
         $cidades = Cidade::all();
         $regiao = Regiao::find($id);
         
