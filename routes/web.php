@@ -68,3 +68,24 @@ route::get('/editFormOutdoor/{id}', ['as' => 'edit_outdoor', 'uses' => 'Outdoors
 route::get('/viewFormOutdoor/{id}', ['as' => 'view_outdoor', 'uses' => 'Outdoors\OutdoorController@viewForm']);
 
 });
+
+Route::prefix('Reservas')->group(function () {
+
+route::get('/gridBisemanas', ['as' => 'cad.bisemanas', 'uses' => 'Reservas\BisemanaController@index']);
+route::post('/cadBisemana', ['as' => 'cadastra.bisemana', 'uses' => 'Reservas\BisemanaController@cadastraBisemana']);
+route::get('/BisemanaForm', ['as' => 'form.bisemana', 'uses' => 'Reservas\BisemanaController@dataForm']);
+route::post('/delBisemana/{id}', ['as' => 'deleta.bisemana', 'uses' => 'Reservas\BisemanaController@delete']);
+
+route::get('/gridReservas', ['as' => 'cad.reservas', 'uses' => 'Reservas\ReservaController@index']);
+route::post('/cadReserva', ['as' => 'cadastra.reserva', 'uses' => 'Reservas\ReservaController@cadastraReserva']);
+route::get('/ReservaForm', ['as' => 'form.reserva', 'uses' => 'Reservas\ReservaController@dataForm']);
+route::post('/delReserva/{id}', ['as' => 'deleta.reserva', 'uses' => 'Reservas\ReservaController@delete']);
+    
+});
+
+Route::prefix('Mail')->group(function () {
+
+route::get('/mailForm', ['as' => 'envio.email', 'uses' => 'mailController@index']);
+route::post('/sendMail', ['as' => 'email', 'uses' => 'MailController@sendMail']);
+    
+});
