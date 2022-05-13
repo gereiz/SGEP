@@ -89,7 +89,7 @@ route::post('/delReserva/{id}', ['as' => 'deleta.reserva', 'uses' => 'Reservas\R
 
 Route::prefix('Mail')->group(function () {
 
-route::get('/mailForm', ['as' => 'envio.email', 'uses' => 'mailController@index']);
+route::get('/mailForm', ['as' => 'envio.email', 'uses' => 'MailController@index']);
 route::post('/sendMail', ['as' => 'email', 'uses' => 'MailController@sendMail']);
     
 });
