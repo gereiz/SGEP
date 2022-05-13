@@ -56,7 +56,7 @@
                             </div>
                             <div class="form-group col-2">
                                 <label class="form-label">Número</label>
-                                <input type="text" name="numero" id="numero" class="form-control" placeholder="0000" value="{{$cliente->numero}}"  disabled>
+                                <input type="text" name="numero" id="numero" class="form-control" placeholder="0000" value="{{$cliente->num}}"  disabled>
                             </div>
                         </div>    
 
@@ -133,6 +133,11 @@
 <script>
     $(document).ready(function() {
 
+        @if (isset($cliente))
+            $('#uf').val('{{$cliente->uf}}');
+            $('#cidade').val('{{$cliente->cidade}}');
+            $('#tipo').val('{{$cliente->tipo}}');
+        @endif
   
 });
 </script>
