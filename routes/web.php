@@ -32,6 +32,10 @@ Route::prefix('pessoas')->group(function () {
 route::get('/cadCliente', ['as' => 'cad.cliente', 'uses' => 'pessoas\ClienteController@index']);
 route::post('/cadCliente', ['as' => 'cadastra.cliente', 'uses' => 'pessoas\ClienteController@cadastraCliente']);
 
+route::get('/listaClientes', ['as' => 'lista.clientes', 'uses' => 'pessoas\ClienteController@listaClientes']);
+route::get('/editCliente/{id}', ['as' => 'edit_cliente', 'uses' => 'pessoas\ClienteController@editCliente']);
+route::get('/viewCliente/{id}', ['as' => 'view_clientes', 'uses' => 'pessoas\ClienteController@viewClientes']);
+
 });
 
 Route::prefix('enderecos')->group(function () {
@@ -54,7 +58,7 @@ route::get('/bairroForm', ['as' => 'form.bairro', 'uses' => 'Enderecos\BairroCon
 route::get('/editBairroForm/{id}', ['as' => 'editForm.bairro', 'uses' => 'Enderecos\BairroController@editDataForm']);
 route::post('/delBairro/{id}', ['as' => 'deleta.bairro', 'uses' => 'Enderecos\BairroController@delete']);
     
-});
+}); 
 
 Route::prefix('Outdoors')->group(function(){
 

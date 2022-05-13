@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Outdoors;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
 use App\Models\Outdoor;
 use App\Models\Bairro;

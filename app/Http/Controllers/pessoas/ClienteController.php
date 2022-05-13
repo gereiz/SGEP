@@ -58,4 +58,56 @@ class ClienteController extends Controller
 
     }
 
+    public function listaClientes() {
+
+        $user = auth()->user()->name;
+        $clientes = Cliente::all();
+
+        return view('pessoas.lista_clientes', ['user' => $user,
+                                               'clientes' => $clientes  
+    
+                                              ]);
+
+    }
+
+
+    public function viewClientes($id)
+    { 
+        $user = auth()->user()->name;
+        $bairros = Bairro::all();
+        $cidade = Cidade::all();
+        $cliente = Cliente::find($id);
+        $uf = UF::all();
+
+        //dd($cliente->ativo);
+        return view('pessoas.view_clientes',[
+            'cliente' => $cliente,
+            'user' => $user,
+            'bairros' => $bairros,
+            'cidade' => $cidade,
+            'uf' => $uf,
+
+        ]);
+    }
+
+    public function editCliente($id)
+    { 
+        $user = auth()->user()->name;
+        $bairros = Bairro::all();
+        $cidade = Cidade::all();
+        $cliente = Cliente::find($id);
+        $uf = UF::all();
+
+        //dd($cliente->num);
+        return view('pessoas.edit_clientes',[
+            'cliente' => $cliente,
+            'user' => $user,
+            'bairros' => $bairros,
+            'cidade' => $cidade,
+            'uf' => $uf,
+
+        ]);
+    }
+
+
 }
