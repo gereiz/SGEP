@@ -61,7 +61,7 @@ class ClienteController extends Controller
     public function listaClientes() {
 
         $user = auth()->user()->name;
-        $clientes = Cliente::all();
+        $clientes = Cliente::where('ativo', 1)->get();
 
         return view('pessoas.lista_clientes', ['user' => $user,
                                                'clientes' => $clientes  
@@ -95,8 +95,9 @@ class ClienteController extends Controller
         $user = auth()->user()->name;
         $bairros = Bairro::all();
         $cidade = Cidade::all();
-        $cliente = Cliente::find($id);
         $uf = UF::all();
+        $cliente = Cliente::find($id);
+        
 
         //dd($cliente->num);
         return view('pessoas.edit_clientes',[
@@ -107,6 +108,19 @@ class ClienteController extends Controller
             'uf' => $uf,
 
         ]);
+    }
+
+    public function delete($id) 
+    {
+        $cliente = Cliente::find($id);
+
+        $cliente->ativo = 0;  
+
+        $cliente->save();
+
+        return response()->json(['success' => true, 'message' => 'Registro Deletado com Sucesso!']);
+
+
     }
 
 

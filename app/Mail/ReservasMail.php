@@ -13,7 +13,7 @@ class ReservasMail extends Mailable
     public $mailData;
 
     /**
-     * Create a new message instance.
+     * Create a new message instance. 
      *
      * @return void
      */

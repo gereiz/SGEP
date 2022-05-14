@@ -132,10 +132,10 @@
     <!-- / Dados da Empresa -->
 <script>
     $(document).ready(function() {
-
         @if (isset($cliente))
             $('#uf').val('{{$cliente->uf}}');
-            $('#cidade').val('{{$cliente->cidade}}');
+            $('#cidade_id').val('{{$cliente->cidade}}');
+            $('#bairro_id').val('{{$cliente->bairro}}');
             $('#tipo').val('{{$cliente->tipo}}');
         @endif
   

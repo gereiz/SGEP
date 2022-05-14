@@ -119,7 +119,7 @@ class OutdoorController extends Controller
 
     public function deleteOutdoor($id)
     {
-        try 
+        try  
         {
             DB::beginTransaction();
             Outdoor::find($id)->delete();

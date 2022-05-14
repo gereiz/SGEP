@@ -46,7 +46,7 @@
                 }
             });
 
-            url =  "{{ route('delete_outdoor', ":id") }}"
+            url =  "{{ route('delete_cliente', ":id") }}"
             url = url.replace(':id', e.target.value)
 
             $.ajax({
@@ -56,7 +56,7 @@
                 success: function(resposta){
                     if (resposta.success){
                         alert(resposta.message, true);
-                        window.location.href = "{{url('Outdoors/outdoorsGrid')}}";
+                        window.location.href = "{{url('pessoas/listaClientes')}}";
                     }else{
                         alert(JSON.stringify(resposta));
                     }
