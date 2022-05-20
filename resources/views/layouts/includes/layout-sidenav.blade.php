@@ -45,14 +45,14 @@
             <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-photos"></i><div>Painéis</div></a>
 
             <ul class="sidenav-menu">
-                <li class="sidenav-item{{ $routeName == 'layout-examples.options' ? ' active' : '' }}">
+                <li class="sidenav-item{{ $routeName == 'add_form_outdoor' ? ' active' : '' }}">
                     <a href="{{route('add_form_outdoor')}}" class="sidenav-link"><div>Cadastro de Painéis</div></a>
                 </li>
-                <li class="sidenav-item{{ $routeName == 'layout-examples.helpers' ? ' active' : '' }}">
+                <li class="sidenav-item{{ $routeName == 'outdoor_grid' ? ' active' : '' }}">
                     <a href="{{route('outdoor_grid')}}" class="sidenav-link"><div>Relação de Painéis</div></a>
                 </li>
-                <li class="sidenav-item{{ $routeName == 'layout-examples.layout-1' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Relação de Painéis disponíveis</div></a>
+                <li class="sidenav-item{{ $routeName == 'view_outdoor_disp' ? ' active' : '' }}">
+                    <a href="{{ route('view_outdoor_disp')}}" class="sidenav-link"><div>Relação de Painéis disponíveis</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'layout-examples.layout-1-flex' ? ' active' : '' }}">
                     <a href="#" class="sidenav-link"><div>Relação de Painéis Reservados</div></a>

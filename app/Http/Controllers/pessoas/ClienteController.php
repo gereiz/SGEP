@@ -97,9 +97,9 @@ class ClienteController extends Controller
         $cidade = Cidade::all();
         $uf = UF::all();
         $cliente = Cliente::find($id);
-        
 
-        //dd($cliente->num);
+
+       //dd($cliente->num);
         return view('pessoas.edit_clientes',[
             'cliente' => $cliente,
             'user' => $user,
@@ -109,6 +109,19 @@ class ClienteController extends Controller
 
         ]);
     }
+
+    public function editAction(Request $request, $id)
+    {
+        $cliente = Cliente::find($id);
+
+        $cliente->razao_social = $request->razao;
+
+        $cliente->save();
+
+        return redirect('pessoas.lista_clientes')->with('success', 'Cliente editado com sucesso!');
+
+    }
+
 
     public function delete($id) 
     {

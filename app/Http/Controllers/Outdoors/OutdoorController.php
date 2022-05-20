@@ -16,7 +16,6 @@ class OutdoorController extends Controller
         $this->middleware('auth');
     }
 
-
     public function index()
     {
         $user = auth()->user()->name;
@@ -168,4 +167,17 @@ class OutdoorController extends Controller
 
         
     }
+
+    public function viewDisponiveis()
+    {
+
+        $user = auth()->user()->name;
+        $paineis = Outdoor::paginate(1);
+
+
+       return view('outdoors.Outdoor_disponivel',[
+        'paineis' => $paineis,
+        'user' => $user]); 
+    }
+
 }

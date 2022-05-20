@@ -1,0 +1,13 @@
+.card_painel{
+    height: auto;
+}
+
+.grid_paineis{
+    display: flex;
+    margin-bottom: 2%;
+}
+
+.grid_painel_img {
+    width: 105%;   
+}
+

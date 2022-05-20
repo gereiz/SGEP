@@ -34,10 +34,14 @@ route::post('/cadCliente', ['as' => 'cadastra.cliente', 'uses' => 'pessoas\Clien
 
 route::get('/listaClientes', ['as' => 'lista.clientes', 'uses' => 'pessoas\ClienteController@listaClientes']);
 route::get('/editCliente/{id}', ['as' => 'edit_cliente', 'uses' => 'pessoas\ClienteController@editCliente']);
+route::post('/editCliente/{id}', ['as' => 'editar_cliente', 'uses' => 'pessoas\ClienteController@editAction']);
 route::get('/viewCliente/{id}', ['as' => 'view_clientes', 'uses' => 'pessoas\ClienteController@viewClientes']);
 route::post('/deleteCliente/{id}', ['as' => 'delete_cliente', 'uses' => 'pessoas\ClienteController@delete']);
 
 });
+
+
+/*CIDADE REGIÕES E BAIRROS*/
 
 Route::prefix('enderecos')->group(function () {
 
@@ -59,7 +63,10 @@ route::get('/bairroForm', ['as' => 'form.bairro', 'uses' => 'Enderecos\BairroCon
 route::get('/editBairroForm/{id}', ['as' => 'editForm.bairro', 'uses' => 'Enderecos\BairroController@editDataForm']);
 route::post('/delBairro/{id}', ['as' => 'deleta.bairro', 'uses' => 'Enderecos\BairroController@delete']);
     
-}); 
+});
+
+
+/*OUTDOORS*/
 
 Route::prefix('Outdoors')->group(function(){
 
@@ -72,7 +79,12 @@ route::post('/deleteOutdoor/{id}', ['as' => 'delete_outdoor', 'uses' => 'Outdoor
 route::get('/editFormOutdoor/{id}', ['as' => 'edit_outdoor', 'uses' => 'Outdoors\OutdoorController@editForm']);
 route::get('/viewFormOutdoor/{id}', ['as' => 'view_outdoor', 'uses' => 'Outdoors\OutdoorController@viewForm']);
 
+route::get('/OutdoorsDisponiveis', ['as' =>'view_outdoor_disp', 'uses' => 'Outdoors\OutdoorController@viewDisponiveis']);
+
 });
+
+
+/*BI-SEMANANAS*/
 
 Route::prefix('Reservas')->group(function () {
 
@@ -87,6 +99,9 @@ route::get('/ReservaForm', ['as' => 'form.reserva', 'uses' => 'Reservas\ReservaC
 route::post('/delReserva/{id}', ['as' => 'deleta.reserva', 'uses' => 'Reservas\ReservaController@delete']);
     
 });
+
+
+/*EMAIL*/
 
 Route::prefix('Mail')->group(function () {
 
