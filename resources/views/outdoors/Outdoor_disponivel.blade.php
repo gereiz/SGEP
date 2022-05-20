@@ -3,14 +3,14 @@
 <link rel="stylesheet" href="{{asset('assets/css/paineis.css')}}">  
 
 @section('content')
+<header>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+</header>
 
-@foreach($paineis as $p)
-    <header>
-        <meta name="csrf-token" content="{{ csrf_token() }}" />
-    </header>
 <div class="col-md-12 grid_paineis">
-    <div class="col-md-6">
-        <div class="card mt-12 card_painel">
+@foreach($paineis as $p)
+    <div class="col-md-6 card_painel">
+        <div class="card mt-12">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
@@ -28,20 +28,19 @@
                 <div class="row">
                    
                     <div class="col-md-12 text-right">
-                        <a role="button" href="#" type="button" class="btn btn-secondary">Visualizar</a>
                         <a role="button" href="#" type="button" class="btn btn-success">Reservar</a>
                     </div>
                 </div>
                 <div class="row">
                     <p class="card-text">{{$p->localizacao}}</p>
-                    
- 
                 </div>
             </div>
         </div>
     </div>
-@endforeach
-</div>
+@endforeach    
+</div>    
+
+
 <br>
 
 <div class="col-md-12">
