@@ -54,6 +54,9 @@
                 <li class="sidenav-item{{ $routeName == 'view_outdoor_disp' ? ' active' : '' }}">
                     <a href="{{ route('view_outdoor_disp')}}" class="sidenav-link"><div>Relação de Painéis disponíveis</div></a>
                 </li>
+                <li class="sidenav-item{{ $routeName == 'view_outdoor_disp' ? ' active' : '' }}">
+                    <a href="{{ route('view_outdoor_disp_filter')}}" class="sidenav-link"><div>Relação de Painéis Filtro</div></a>
+                </li>
                 <li class="sidenav-item{{ $routeName == 'layout-examples.layout-1-flex' ? ' active' : '' }}">
                     <a href="#" class="sidenav-link"><div>Relação de Painéis Reservados</div></a>
                 </li>

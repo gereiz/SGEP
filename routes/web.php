@@ -80,6 +80,8 @@ route::get('/editFormOutdoor/{id}', ['as' => 'edit_outdoor', 'uses' => 'Outdoors
 route::get('/viewFormOutdoor/{id}', ['as' => 'view_outdoor', 'uses' => 'Outdoors\OutdoorController@viewForm']);
 
 route::get('/OutdoorsDisponiveis', ['as' =>'view_outdoor_disp', 'uses' => 'Outdoors\OutdoorController@viewDisponiveis']);
+route::get('/OutdoorsDisponiveisFilter', ['as' =>'view_outdoor_disp_filter', 'uses' => 'Outdoors\OutdoorController@viewforFilters']);
+route::post('/OutdoorsFilter', ['as' =>'view_outdoor_filter', 'uses' => 'Outdoors\OutdoorController@viewWithFilters']);
 
 });
 

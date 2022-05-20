@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Outdoor;
 use App\Models\Bairro;
+use App\Models\Bisemana;
 use DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -169,6 +170,31 @@ class OutdoorController extends Controller
     }
 
     public function viewDisponiveis()
+    {
+
+        $user = auth()->user()->name;
+        $paineis = Outdoor::paginate(1);
+
+
+       return view('outdoors.Outdoor_disponivel',[
+        'paineis' => $paineis,
+        'user' => $user]); 
+    }
+
+    public function viewforFilters(Request $request)
+    {
+
+        $user = auth()->user()->name;
+        $bisemanas = Bisemana::all();
+        
+
+
+       return view('outdoors.Outdoor_filtros',[
+        'user' => $user,
+        'bisemanas' => $bisemanas ]); 
+    }
+
+    public function viewWithFilters(Request $request)
     {
 
         $user = auth()->user()->name;
