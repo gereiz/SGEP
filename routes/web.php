@@ -74,7 +74,7 @@ route::get('/addOutdoor', ['as' => 'add_form_outdoor', 'uses' => 'Outdoors\Outdo
 route::post('/insertOutdoor', ['as' => 'insert_outdoor', 'uses' => 'Outdoors\OutdoorController@store']);
 
 route::get('/outdoorsGrid', ['as' => 'outdoor_grid', 'uses' => 'Outdoors\OutdoorController@index']);
-route::post('/deleteOutdoor/{id}', ['as' => 'delete_outdoor', 'uses' => 'Outdoors\OutdoorController@deleteOutdoor']);
+route::get('/deleteOutdoor/{id}', ['as' => 'delete_outdoor', 'uses' => 'Outdoors\OutdoorController@deleteOutdoor']);
 
 route::get('/editFormOutdoor/{id}', ['as' => 'edit_outdoor', 'uses' => 'Outdoors\OutdoorController@editForm']);
 route::get('/viewFormOutdoor/{id}', ['as' => 'view_outdoor', 'uses' => 'Outdoors\OutdoorController@viewForm']);

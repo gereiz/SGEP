@@ -1,6 +1,6 @@
 @extends('layouts.layout-2')
 
-<link rel="stylesheet" href="{{asset('assets/css/paineis.css')}}"> 
+<link rel="stylesheet" href="{{asset('assets/css/paineis.css')}}">  
 
 @section('content')
 

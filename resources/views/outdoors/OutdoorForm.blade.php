@@ -31,7 +31,7 @@
 
             <div class="card-body col-md-1">
                 <label class="form-label">Número</label>
-                <input type="number" class="form-control" id="numero">
+                <input type="number" class="form-control" id="numero"> 
             </div>
         </div>
 

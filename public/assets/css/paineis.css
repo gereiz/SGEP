@@ -1,10 +1,11 @@
-.card_painel{
+.card_painel {
     height: auto;
+    margin-bottom: 2%;
 }
-
-.grid_paineis{
+.grid_paineis {
     display: flex;
     margin-bottom: 2%;
+    flex-wrap: wrap;
 }
 
 .grid_painel_img {

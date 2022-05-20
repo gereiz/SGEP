@@ -20,7 +20,7 @@ class OutdoorController extends Controller
     public function index()
     {
         $user = auth()->user()->name;
-        $paineis = Outdoor::paginate(5);
+        $paineis = Outdoor::paginate(8);
 
         return view('outdoors.OutdoorGrid',[
             'paineis' => $paineis,
@@ -119,7 +119,13 @@ class OutdoorController extends Controller
 
     public function deleteOutdoor($id)
     {
-        try  
+        $painel = Outdoor::find($id);
+
+        $painel->delete();
+
+        return view('outdoors.OutdoorGrid')->with('success', 'Registro excluído com sucesso!');
+
+        /*try  
         {
             DB::beginTransaction();
             Outdoor::find($id)->delete();
@@ -131,6 +137,7 @@ class OutdoorController extends Controller
         }
         DB::commit();
         return response()->json(['success' => true, 'message' => 'Registro Deletado com Sucesso!']);
+        */
 
     }
 
@@ -173,7 +180,7 @@ class OutdoorController extends Controller
     {
 
         $user = auth()->user()->name;
-        $paineis = Outdoor::paginate(1);
+        $paineis = Outdoor::paginate(8);
 
 
        return view('outdoors.Outdoor_disponivel',[
