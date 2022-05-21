@@ -7,8 +7,8 @@
 <header>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 </header>
-<div class="card mb-4">
-    <div class="row no-gutters">
+<div class="card">
+    <div class="row">
         <div class="col-md-12 col-lg-12 col-xl-12">
             <div class="card-body" id="dados_empresa">
                 <div class="row">
@@ -22,9 +22,9 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label class="form-label">Status</label>
-                    <select name="reservado" id="reservado" class="form-control">
-                        <option value=0> Reservado </option>
-                        <option value=1> Disponível </option>
+                    <select name="status" id="status" class="form-control">
+                        <option value=0>Disponível</option>
+                        <option value=1>Reservado</option>
                     </select>
                 </div>
                     <button name="filtrar" id="filtrar" class="btn btn-primary" style="margin-top:17px; margin-bottom:17px;">Filtrar</button>

@@ -20,7 +20,7 @@ class OutdoorController extends Controller
     public function index()
     {
         $user = auth()->user()->name;
-        $paineis = Outdoor::paginate(8);
+        $paineis = Outdoor::paginate(5);
 
         return view('outdoors.OutdoorGrid',[
             'paineis' => $paineis,
@@ -119,13 +119,7 @@ class OutdoorController extends Controller
 
     public function deleteOutdoor($id)
     {
-        $painel = Outdoor::find($id);
-
-        $painel->delete();
-
-        return view('outdoors.OutdoorGrid')->with('success', 'Registro excluído com sucesso!');
-
-        /*try  
+        try  
         {
             DB::beginTransaction();
             Outdoor::find($id)->delete();
@@ -137,7 +131,6 @@ class OutdoorController extends Controller
         }
         DB::commit();
         return response()->json(['success' => true, 'message' => 'Registro Deletado com Sucesso!']);
-        */
 
     }
 
@@ -180,7 +173,7 @@ class OutdoorController extends Controller
     {
 
         $user = auth()->user()->name;
-        $paineis = Outdoor::paginate(8);
+        $paineis = Outdoor::paginate(1);
 
 
        return view('outdoors.Outdoor_disponivel',[
@@ -205,11 +198,16 @@ class OutdoorController extends Controller
     {
 
         $user = auth()->user()->name;
-        $paineis = Outdoor::paginate(1);
+        $reservado = $request->status;
+        $bisemana = $request->bisemana;
 
+        if($reservado == 1)
+            $paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdor_id'));
+        else
+            $paineis = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdor_id'));
 
-       return view('outdoors.Outdoor_disponivel',[
-        'paineis' => $paineis,
+       return view('outdoors.Outdoor_filtrado',[
+        'paineis' => $paineis->paginate(5),
         'user' => $user]); 
     }
 
