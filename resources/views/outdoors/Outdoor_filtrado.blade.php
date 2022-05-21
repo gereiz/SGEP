@@ -2,6 +2,7 @@
 <div class="col-md-12 grid_paineis">
     @foreach($paineis as $p)
         <header>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
             <meta name="csrf-token" content="{{ csrf_token() }}" />
         </header>
         <div class="col-md-6 card_painel">
@@ -17,7 +18,7 @@
                             <p><b>Coordenadas:</b> <a href="https://maps.google.com/?q={{$p->latitude}},{{$p->longitude}}" target="_blank">Ver localização no mapa</a> </p>
                         </div>
                         <div class="col-md-6 d-flex flex-row-reverse">
-                            <img class="rounded float-left grid_painel_img" src="{{ asset('storage/'.$p->image_url)}}" alt="" style="width:250px; height:180px;">
+                            <img class="rounded float-left grid_painel_img" src="{{ asset('storage/'.$p->image_url)}}" alt="" style="width:30%; height:20%;">
                         </div>
                     </div>
                     <div class="row">

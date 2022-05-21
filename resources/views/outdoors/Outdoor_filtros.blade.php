@@ -27,9 +27,13 @@
                         <option value=1>Reservado</option>
                     </select>
                 </div>
-                    <button name="filtrar" id="filtrar" class="btn btn-primary" style="margin-top:17px; margin-bottom:17px;">Filtrar</button>
+                <div class="form-group col-md-1">
+                    <button name="filtrar" id="filtrar" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Filtrar</button>
                 </div>
-                    <div id="outdoors">
+                <div class="form-group col-md-1">
+                    <button name="pdf" id="pdf" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Relatório</button> 
+                </div>
+                <div id="outdoors"></div>
                 <div>
             </div>
         </div>
@@ -43,8 +47,9 @@
 <script>
     $(document).ready(function () 
     {
-        $('#filtrar').on('click',function()
+        $('.request').on('click',function(e)
         {
+            tipo = e.target.id;
             bisemana = $('#bisemana_id').val();
             status = $('#status').val();
             $.ajaxSetup({
@@ -60,10 +65,20 @@
                 url: url, 
                 data:{
                     bisemana: bisemana,
-                    status: status
+                    status: status,
+                    tipo: tipo
                 },
                 success: function(resposta){
-                    $('#outdoors').html(resposta);
+                    if(tipo === "filtrar") {
+                        $('#outdoors').html(resposta);  
+                    }
+                    else {
+                        var blob = new Blob([resposta]);
+                        var link = document.createElement('a');
+                        link.href = window.URL.createObjectURL(blob);
+                        link.download = "Sample.pdf";
+                        link.click();
+                    }
                 }
             });
 

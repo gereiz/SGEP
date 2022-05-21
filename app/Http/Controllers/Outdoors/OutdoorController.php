@@ -9,6 +9,7 @@ use App\Models\Bairro;
 use App\Models\Bisemana;
 use DB;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OutdoorController extends Controller
 {
@@ -200,11 +201,25 @@ class OutdoorController extends Controller
         $user = auth()->user()->name;
         $reservado = $request->status;
         $bisemana = $request->bisemana;
+        $tipo = $request->tipo;
 
         if($reservado == 1)
             $paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdor_id'));
         else
             $paineis = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdor_id'));
+
+        $data = [
+            'paineis' => $paineis->paginate(5),
+            'user' => $user
+        ];
+
+        $pdf = PDF::loadView('outdoors.Outdoor_filtrado',$data)->save('myfile.pdf');
+
+        
+        if($tipo === "pdf")
+        {
+            return $pdf->stream();
+        }
 
        return view('outdoors.Outdoor_filtrado',[
         'paineis' => $paineis->paginate(5),
