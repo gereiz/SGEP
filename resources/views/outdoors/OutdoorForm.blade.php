@@ -31,12 +31,17 @@
 
             <div class="card-body col-md-1">
                 <label class="form-label">Número</label>
-                <input type="number" class="form-control" id="numero"> 
+                <input type="text" class="form-control" id="numero"> 
             </div>
         </div>
 
         <div class="row">
-            <div class="card-body col-md-4">
+            <div class="card-body col-md-2">
+                <label class="form-label">CADAN</label>
+                <input type="text" class="form-control" id="cadan">
+            </div>
+
+            <div class="card-body col-md-2">
                 <label class="form-label">Posição</label>
                 <input type="text" class="form-control" id="posicao">
             </div>
@@ -120,6 +125,7 @@
             logradouro = $('#logradouro').val();
             numero = $('#numero').val();
             posicao = $('#posicao').val();
+            cadan = $('#cadan').val();
             dimensao = $('#dimensao').val();
             dimensao_lona = $('#dimensao_lona').val();
             ponto_referencia = $('#referencia').val();
@@ -146,6 +152,10 @@
             if(posicao == '')
             {
                 return alert('Informe a Posição');
+            }
+            if(cadan == '')
+            {
+                return alert('Informe o Nº do CADAN');
             }
             if(dimensao == '')
             {
@@ -195,6 +205,7 @@
                     logradouro:logradouro,
                     numero:numero,
                     posicao:posicao,
+                    cadan:cadan,
                     dimensao: dimensao,
                     dimensao_lona: dimensao_lona,
                     ponto_referencia: ponto_referencia,

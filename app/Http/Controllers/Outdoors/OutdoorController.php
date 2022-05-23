@@ -81,11 +81,14 @@ class OutdoorController extends Controller
             $painel->logradouro = $request->logradouro;
             $painel->numero = $request->numero;
             $painel->posicao = $request->posicao;
+            $painel->cadan = $request->cadan;
             $painel->dimensao = $request->dimensao;
             $painel->dimensao_lona = $request->dimensao_lona;
             $painel->ponto_referencia = $request->ponto_referencia;
             $painel->latitude = $request->latitude;
             $painel->longitude = $request->longitude;
+
+            //dd($request->cadan);
 
             $painel->save(); 
 
