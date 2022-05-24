@@ -21,7 +21,7 @@ class OutdoorController extends Controller
     public function index()
     {
         $user = auth()->user()->name;
-        $paineis = Outdoor::paginate(5);
+        $paineis = Outdoor::paginate(8);
 
         return view('outdoors.OutdoorGrid',[
             'paineis' => $paineis,
@@ -145,7 +145,7 @@ class OutdoorController extends Controller
             'identificacao.required' => 'A Identificação deve ser informada',
             'bairro_id.required' => 'O Bairro deve ser informado',
             'logradouro.required' => 'O Logradouro deve ser informado',
-            'numero.required' => 'O Número deve ser informado',
+            //'numero.required' => 'O Número deve ser informado',
             'posicao.required' => 'A Posição deve ser informada',
             'dimensao.required' => 'A Dimensão deve ser informada',
             'dimensao_lona.required' => 'A Dimensão da Lona deve ser informada',
@@ -160,7 +160,7 @@ class OutdoorController extends Controller
             'identificacao' => 'required|string',
             'bairro_id' => 'required|integer',
             'logradouro' => 'required|string',
-            'numero' => 'required|integer',
+           // 'numero' => 'required|integer',
             'posicao' => 'required|string',
             'dimensao' => 'required|string',
             'dimensao_lona' => 'required|string',

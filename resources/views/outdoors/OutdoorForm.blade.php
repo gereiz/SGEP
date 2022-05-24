@@ -145,10 +145,10 @@
             {
                 return alert('Informe o Bairro');
             }
-            if(numero == '')
+            /*if(numero == '')
             {
                 return alert('Informe o Número');
-            }
+            }*/
             if(posicao == '')
             {
                 return alert('Informe a Posição');
