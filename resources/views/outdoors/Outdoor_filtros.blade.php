@@ -47,6 +47,7 @@
 <script>
     $(document).ready(function () 
     {
+        
         $('.request').on('click',function(e)
         {
             tipo = e.target.id;
@@ -74,10 +75,11 @@
                     }
                     else {
                         var blob = new Blob([resposta]);
+                        console.log(resposta);
                         var link = document.createElement('a');
                         link.href = window.URL.createObjectURL(blob);
                         link.download = "Sample.pdf";
-                        link.click();
+                        //link.click();
                     }
                 }
             });

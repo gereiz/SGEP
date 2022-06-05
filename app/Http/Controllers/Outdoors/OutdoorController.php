@@ -205,22 +205,28 @@ class OutdoorController extends Controller
         $reservado = $request->status;
         $bisemana = $request->bisemana;
         $tipo = $request->tipo;
+        $periodo = Bisemana::find($bisemana);
 
-        if($reservado == 1)
+        if($reservado == 1){
+            $status = 'Reservados';
             $paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdor_id'));
-        else
+        }    
+        else{
+            $status = 'Disponíveis';
             $paineis = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdor_id'));
+        }            
 
         $data = [
-            'paineis' => $paineis->paginate(5),
-            'user' => $user
+            'paineis' => $paineis->get(),
+            'user' => $user,
+            'status' => $status,
+            'data' => $periodo->inicio.' a '.$periodo->fim,
         ];
-
-        $pdf = PDF::loadView('outdoors.Outdoor_filtrado',$data)->save('myfile.pdf');
 
         
         if($tipo === "pdf")
         {
+            $pdf = PDF::loadView('outdoors.Outdoor_relatorio2',$data)->save('myfile.pdf');
             return $pdf->stream();
         }
 
