@@ -16,8 +16,8 @@
                     <div class="col-md-6">
                         <h5 class="card-title">Identificação: {{$p->identificacao}}</h5>
                         <br>
-                        <p><b>Endereço:</b>  {{$p->logradouro}} nº{{$p->numero}}, <b>Bairro:</b>  {{$p->logradouro}} nº{{$p->numero}} </p>
-                        <p><b>Endereço:</b>  {{$p->logradouro}} nº{{$p->numero}} </p>
+                        <p><b>Endereço:</b>  {{$p->logradouro}} nº{{$p->numero}},</p> 
+                        <p><b>Bairro:</b>  {{$p->bairro->nome}}</p> 
                         <br>
                         <p><b>Coordenadas:</b> <a href="https://maps.google.com/?q={{$p->latitude}},{{$p->longitude}}" target="_blank">Ver localização no mapa</a> </p>
                     </div>

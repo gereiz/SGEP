@@ -61,7 +61,7 @@
         
         @if(isset($painel))
             $('#identificacao').val('{{$painel->identificacao}}');
-            $('#localizacao').val('{{$painel->localizacao}}');
+            $('#localizacao').val('{{$painel->logradouro}}'+' - '+'{{$painel->numero}}');
             $('#posicao').val('{{$painel->posicao}}');
             $('#dimensao').val('{{$painel->dimensao}}');
             $('#dimensao_lona').val('{{$painel->dimensao_lona}}');

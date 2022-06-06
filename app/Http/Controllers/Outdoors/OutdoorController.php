@@ -22,10 +22,12 @@ class OutdoorController extends Controller
     {
         $user = auth()->user()->name;
         $paineis = Outdoor::paginate(8);
+        $bairro = Bairro::all();
 
         return view('outdoors.OutdoorGrid',[
             'paineis' => $paineis,
-            'user' => $user
+            'user' => $user,
+            'baiiro' => $bairro
         ]);
 
     }
@@ -152,7 +154,7 @@ class OutdoorController extends Controller
             'ponto_referencia.required' => 'O Ponto de referência deve ser informado',
             'latitude.required' => 'A Latitude deve ser informada',
             'longitude.required' => 'A Longitude deve ser informada',
-            'image.required' => 'A Imagem deve ser informada',
+            //'image.required' => 'A Imagem deve ser informada',
         ];
 
 
@@ -167,7 +169,7 @@ class OutdoorController extends Controller
             'ponto_referencia' => 'required|string',
             'latitude' => 'required|string',
             'longitude' => 'required|string',
-            'image'  => 'required|string',
+            //'image'  => 'required|string',
         ], $customMessages);
 
         

@@ -79,7 +79,7 @@
             </div>
             <div class="card-body col-md-4">
                 <label class="form-label">Imagem</label>
-                <input type="file" id="imageDialog" name="image" class="form-control">
+                <input type="file" id="imageDialog" name="imageDialog" class="form-control" value="{{old('imageDialog')}}">
             </div>
         </div>
         <div class="card-body col-md-8">
@@ -178,9 +178,9 @@
                 return alert('Informe a Longitude');
             }
             if(base64String == '')
-            {
+            /*{
                 return alert('Selecione uma Imagem');
-            }
+            }*/
             @if(isset($painel))
             {
                 id = '{{$painel->id}}'
@@ -234,6 +234,7 @@
             $('#logradouro').val('{{$painel->logradouro}}');
             $('#numero').val('{{$painel->numero}}');
             $('#posicao').val('{{$painel->posicao}}');
+            $('#cadan').val('{{$painel->cadan}}');
             $('#dimensao').val('{{$painel->dimensao}}');
             $('#dimensao_lona').val('{{$painel->dimensao_lona}}');
             $('#referencia').val('{{$painel->ponto_referencia}}');
