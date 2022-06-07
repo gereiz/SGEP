@@ -21,7 +21,7 @@ class OutdoorController extends Controller
     public function index()
     {
         $user = auth()->user()->name;
-        $paineis = Outdoor::paginate(8);
+        $paineis = Outdoor::orderBy('identificacao', 'asc')->paginate(8);
         $bairro = Bairro::all();
 
         return view('outdoors.OutdoorGrid',[
@@ -159,7 +159,7 @@ class OutdoorController extends Controller
 
 
         $this->validate($request, [
-            'identificacao' => 'required|string',
+            'identificacao' => 'required|integer',
             'bairro_id' => 'required|integer',
             'logradouro' => 'required|string',
            // 'numero' => 'required|integer',
