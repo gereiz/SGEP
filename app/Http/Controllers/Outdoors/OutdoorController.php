@@ -106,7 +106,7 @@ class OutdoorController extends Controller
             if($request->image != null)
             {
                 $folder = $painel->id."/";
-                $safeName = $painel->id.'.'.'png';
+                $safeName = $painel->id.'.'.$request->image->extension();
                 $destinationPath = Storage::disk('outdoorImages')->path('');
     
                 if (!is_dir($destinationPath. $folder)) {
@@ -114,7 +114,7 @@ class OutdoorController extends Controller
                     mkdir($destinationPath. $folder);
                 }
     
-                $request->image->move($destinationPath.$folder, $painel->id.'.png');
+                $request->image->move($destinationPath.$folder, $painel->id.'.'.$request->image->extension());
     
                 $painel->image_url = 'outdoorImages/'.$folder.$safeName;
             }
