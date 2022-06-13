@@ -143,11 +143,11 @@ class OutdoorController extends Controller
         }
         catch (Exception $e) {
             DB::rollBack();
-            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+            return back()->with('error', $e->getMessage());
 
         }
         DB::commit();
-        return response()->json(['success' => true, 'message' => 'Registro Deletado com Sucesso!']);
+        return back()->with('success', 'Registro Deletado com sucesso!');
 
     }
 
