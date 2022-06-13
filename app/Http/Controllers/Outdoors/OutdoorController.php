@@ -68,6 +68,7 @@ class OutdoorController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $this->validaForm($request);
         
         try {
@@ -86,41 +87,51 @@ class OutdoorController extends Controller
             $painel->cadan = $request->cadan;
             $painel->dimensao = $request->dimensao;
             $painel->dimensao_lona = $request->dimensao_lona;
-            $painel->ponto_referencia = $request->ponto_referencia;
-            $painel->latitude = $request->latitude;
-            $painel->longitude = $request->longitude;
+            $painel->ponto_referencia = $request->referencia;
+            $painel->latitude = $request->lat;
+            $painel->longitude = $request->long;
 
             //dd($request->cadan);
 
             $painel->save(); 
 
-            $file = base64_decode($request->image);
-            $folder = $painel->id."/";
-            $safeName = $painel->id.'.'.'png';
-            $destinationPath = Storage::disk('outdoorImages')->path('');
-
-            if (!is_dir($destinationPath. $folder)) {
-                // dir doesn't exist, make it
-                mkdir($destinationPath. $folder);
+            if($request->id != 0 && $painel->image_url == null)
+            {
+                $request->validate([
+                    'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]);
             }
 
-            file_put_contents($destinationPath.$folder.$safeName, $file);
 
-            $painel->image_url = 'outdoorImages/'.$folder.$safeName;
+            if($request->image != null)
+            {
+                $folder = $painel->id."/";
+                $safeName = $painel->id.'.'.'png';
+                $destinationPath = Storage::disk('outdoorImages')->path('');
+    
+                if (!is_dir($destinationPath. $folder)) {
+                    // dir doesn't exist, make it
+                    mkdir($destinationPath. $folder);
+                }
+    
+                $request->image->move($destinationPath.$folder, $painel->id.'.png');
+    
+                $painel->image_url = 'outdoorImages/'.$folder.$safeName;
+            }
 
             $painel->save();
 
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+            return back()->with('error', $e->getMessage());
 
         }
 
         DB::commit();
         if($request->id != 0)
-            return response()->json(['success' => true, 'message' => 'Registro Editado com Sucesso!']);
+            return back()->with('success', 'Registro Editado com sucesso!');
 
-        return response()->json(['success' => true, 'message' => 'Registro Cadastrado com Sucesso!']);
+        return back()->with('success', 'Registro cadastrado com sucesso!');
     }
 
     public function deleteOutdoor($id)
@@ -166,10 +177,9 @@ class OutdoorController extends Controller
             'posicao' => 'required|string',
             'dimensao' => 'required|string',
             'dimensao_lona' => 'required|string',
-            'ponto_referencia' => 'required|string',
-            'latitude' => 'required|string',
-            'longitude' => 'required|string',
-            //'image'  => 'required|string',
+            'referencia' => 'required|string',
+            'lat' => 'required|string',
+            'long' => 'required|string',
         ], $customMessages);
 
         

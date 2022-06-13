@@ -65,6 +65,7 @@
             $('#posicao').val('{{$painel->posicao}}');
             $('#dimensao').val('{{$painel->dimensao}}');
             $('#dimensao_lona').val('{{$painel->dimensao_lona}}');
+            $('#cadan').val('{{$painel->cadan}}');
             $('#referencia').val('{{$painel->ponto_referencia}}');
             $("#mapsLink").attr("href", "https://maps.google.com/?q=" + '{{$painel->latitude}}' + ',' + '{{$painel->longitude}}');
            // $("#imageShow").attr("src", "/storage/{{$painel->image_url}}");

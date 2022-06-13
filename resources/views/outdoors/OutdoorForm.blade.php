@@ -7,89 +7,95 @@
     <h4 class="font-weight-bold py-3 mb-4">
         <span class="text-muted font-weight-strong">@if(isset($painel)) Editar Painel @else Cadastrar Novo Painel @endif</span> 
     </h4>
+    <form action="{{route('insert_outdoor')}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="card">
+            <div class="row">
+                <div class="card-body col-md-1">
+                    <label class="form-label">Cod.</label>
+                    <input type="text" class="form-control" id="id" name="id" readonly>
+                </div>
+                
+                <div class="card-body col-md-2">
+                    <label class="form-label">Identificação</label>
+                    <input type="text" class="form-control" id="identificacao" name="identificacao">
+                </div>
 
-    <div class="card">
-        <div class="row">
-            <div class="card-body col-md-2">
-                <label class="form-label">Identificação</label>
-                <input type="text" class="form-control" id="identificacao">
+                <div class="card-body col-md-3">
+                    <label class="form-label">Bairro</label> 
+                    <select name="bairro_id" id="bairro_id" class="form-control">
+                        @foreach($bairros as $b)
+                            <option value="{{$b->id}}"> {{$b->nome}} - {{$b->regiao->cidade->nome}} </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="card-body col-md-5">
+                    <label class="form-label">Logradouro</label>
+                    <input type="text" class="form-control" id="logradouro" name="logradouro">
+                </div>
+
+                <div class="card-body col-md-1">
+                    <label class="form-label">Número</label>
+                    <input type="text" class="form-control" id="numero" name="numero"> 
+                </div>
             </div>
 
-            <div class="card-body col-md-3">
-                <label class="form-label">Bairro</label> 
-                <select name="bairro_id" id="bairro_id" class="form-control">
-                    @foreach($bairros as $b)
-                        <option value="{{$b->id}}"> {{$b->nome}} - {{$b->regiao->cidade->nome}} </option>
-                    @endforeach
-                </select>
+            <div class="row">
+                <div class="card-body col-md-2">
+                    <label class="form-label">CADAN</label>
+                    <input type="text" class="form-control" id="cadan" name="cadan">
+                </div>
+
+                <div class="card-body col-md-2">
+                    <label class="form-label">Posição</label>
+                    <input type="text" class="form-control" id="posicao" name="posicao">
+                </div>
+
+                <div class="card-body col-md-4">
+                    <label class="form-label">Dimensão</label>
+                    <input type="text" class="form-control" id="dimensao" name="dimensao">
+                </div>
+
+                <div class="card-body col-md-4">
+                    <label class="form-label">Dimensão da Lona</label>
+                    <input type="text" class="form-control" id="dimensao_lona" name="dimensao_lona">
+                </div>
             </div>
 
-            <div class="card-body col-md-6">
-                <label class="form-label">Logradouro</label>
-                <input type="text" class="form-control" id="logradouro">
-            </div>
+            <div class="row">
+                <div class="card-body col-md-4">
+                    <label class="form-label">Ponto de Referência</label>
+                    <input type="text" class="form-control" id="referencia" name="referencia">
+                </div>
 
-            <div class="card-body col-md-1">
-                <label class="form-label">Número</label>
-                <input type="text" class="form-control" id="numero"> 
+                <div class="card-body col-md-4">
+                    <label class="form-label">Latitude</label>
+                    <input type="text" class="form-control" id="lat" name="lat">
+                </div>
+
+                <div class="card-body col-md-4">
+                    <label class="form-label">Longitude</label>
+                    <input type="text" class="form-control" id="long" name="long">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{ isset($painel) ? asset('storage/'.$painel->image_url) : '' }}" alt="" style="width:50%;">
+                </div>
+                <div class="card-body col-md-4">
+                    <label class="form-label">Imagem</label>
+                    <input type="file" id="imageDialog" name="image" class="form-control">
+                </div>
+            </div>
+            <div class="card-body col-md-7">
+                <button id="btn-add-edit"  type="submit" class="btn btn-primary float-left" style="margin-top: 40px;">
+                    <i class="fa fa-btn fa-envelope"></i>
+                    Salvar
+                </button>
             </div>
         </div>
-
-        <div class="row">
-            <div class="card-body col-md-2">
-                <label class="form-label">CADAN</label>
-                <input type="text" class="form-control" id="cadan">
-            </div>
-
-            <div class="card-body col-md-2">
-                <label class="form-label">Posição</label>
-                <input type="text" class="form-control" id="posicao">
-            </div>
-
-            <div class="card-body col-md-4">
-                <label class="form-label">Dimensão</label>
-                <input type="text" class="form-control" id="dimensao">
-            </div>
-
-            <div class="card-body col-md-4">
-                <label class="form-label">Dimensão da Lona</label>
-                <input type="text" class="form-control" id="dimensao_lona">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="card-body col-md-4">
-                <label class="form-label">Ponto de Referência</label>
-                <input type="text" class="form-control" id="referencia">
-            </div>
-
-            <div class="card-body col-md-4">
-                <label class="form-label">Latitude</label>
-                <input type="text" class="form-control" id="lat">
-            </div>
-
-            <div class="card-body col-md-4">
-                <label class="form-label">Longitude</label>
-                <input type="text" class="form-control" id="long">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <img src="{{ isset($painel) ? asset('storage/'.$painel->image_url) : '' }}" alt="" style="width:50%;">
-            </div>
-            <div class="card-body col-md-4">
-                <label class="form-label">Imagem</label>
-                <input type="file" id="imageDialog" name="imageDialog" class="form-control" value="{{old('imageDialog')}}">
-            </div>
-        </div>
-        <div class="card-body col-md-8">
-            <button id="btn-add-edit"  class="btn btn-primary float-left" style="margin-top: 40px;">
-                <i class="fa fa-btn fa-envelope"></i>
-                Salvar
-            </button>
-        </div>
-    </div>
-
+    </form>
 
     <script>
     $(document).ready(function () 
@@ -119,7 +125,7 @@
             imageUploaded();
         })
         
-        $('#btn-add-edit').on('click', function(){
+        /*$('#btn-add-edit').on('click', function(){
             identificacao = $('#identificacao').val();
             bairro_id = $('#bairro_id').val();
             logradouro = $('#logradouro').val();
@@ -145,10 +151,10 @@
             {
                 return alert('Informe o Bairro');
             }
-            /*if(numero == '')
+            if(numero == '')
             {
                 return alert('Informe o Número');
-            }*/
+            }
             if(posicao == '')
             {
                 return alert('Informe a Posição');
@@ -180,7 +186,7 @@
             if(base64String == '')
             /*{
                 return alert('Selecione uma Imagem');
-            }*/
+            }
             @if(isset($painel))
             {
                 id = '{{$painel->id}}'
@@ -226,13 +232,15 @@
                 alert(JSON.stringify(error));
             }
             });
-        });
+        });*/
         
         @if(isset($painel))
+            $('#id').val('{{$painel->id}}');
             $('#identificacao').val('{{$painel->identificacao}}');
             $('#bairro_id').val('{{$painel->bairro_id}}');
             $('#logradouro').val('{{$painel->logradouro}}');
             $('#numero').val('{{$painel->numero}}');
+            $('#cadan').val('{{$painel->cadan}}');
             $('#posicao').val('{{$painel->posicao}}');
             $('#cadan').val('{{$painel->cadan}}');
             $('#dimensao').val('{{$painel->dimensao}}');
