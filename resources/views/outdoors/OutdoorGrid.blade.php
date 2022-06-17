@@ -28,7 +28,7 @@
                 <div class="row">
                    
                     <div class="col-md-12 text-right">
-                        <a role="button" href="#" type="button" class="btn btn-success">Reservar</a>
+                        <button role="button" type="button" class="btn btn-success" data-toggle="modal" data-target="#modals-slide{{$p->id}}">Reservar</button>
                         <a role="button" href="{{url('Outdoors/viewFormOutdoor')}}/{{$p->id}}" type="button" class="btn btn-info">Visualizar</a>
                         <a role="button" href="{{url('Outdoors/editFormOutdoor')}}/{{$p->id}}"  type="button" class="btn btn-warning">Editar</a>
                         <a role="button" onclick=" return confirm('Tem certeza que deseja excluir este registro?')" href="{{url('Outdoors/deleteOutdoor')}}/{{$p->id}}" type="button" class="btn btn-danger">Excluir</a>
@@ -40,9 +40,58 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal template -->
+    <div class="modal modal-slide fade" id="modals-slide{{$p->id}}">
+        <div class="modal-dialog">
+            <form class="modal-content" action="{{route('res.outdoor')}}" method="POST">
+                @csrf
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label">Outdoor</label>
+                            <input class="form-control" type="hidden" name="outdoor" id="outdoor" value="{{$p->id}}">
+                            <input class="form-control" type="text" name="outdoor" id="outdoor" value="Identificação: {{$p->identificacao}}" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label">Cliente</label>
+                            <select class="custom-select" id="cliente" name="cliente">
+                                <option>Selecione o Cliente</option>
+                                @foreach ($clientes as $cliente)
+                                <option value="{{$cliente->id}}">{{$cliente->nome_fantasia}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label">Bi-Semana</label>
+                            <select class="custom-select" id="bisemana" name="bisemana">
+                                <option>Selecione o Período da Reserva</option>
+                                @foreach ($bisemanas as $bisemana)
+                                <option value="{{$bisemana->id}}">{{date('d/m/Y', strtotime($bisemana->inicio))}} - {{date('d/m/Y', strtotime($bisemana->fim))}}</option>
+                                @endforeach
+    
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label">Observações</label>
+                            <textarea class="form-control" placeholder="Observações" id="observacoes" name="observacoes"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Reservar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
 @endforeach    
 </div>    
-
 
 <br>
 
@@ -50,6 +99,9 @@
     {{$paineis->links() }}
 
 </div>
+
+
+
 
 
 <script>

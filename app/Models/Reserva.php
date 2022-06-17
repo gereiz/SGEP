@@ -10,8 +10,12 @@ use App\Models\Bisemana;
 use App\Models\Cliente;
 use App\Models\Outdoor;
 
+
+
 class Reserva extends Model
 {
+
+    public $timestamps = false;
     protected $table = 'reservas';
 
     public function cliente()
@@ -29,3 +33,4 @@ class Reserva extends Model
         return $this->belongsTo(Bisemana::class, 'bisemana_id', 'id');
     }
 }
+

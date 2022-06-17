@@ -26,10 +26,13 @@
                     </div>
                 </div>
                 <div class="row">
-                   
-                    <div class="col-md-12 text-right">
-                        <a role="button" href="#" type="button" class="btn btn-success">Reservar</a>
-                    </div>
+                    <form action="{{route('reserva.outdoor')}}">
+                        <input type="hidden" name="outId" value="{{$p->id}}">
+
+                        <div class="col-md-12 text-right">
+                            <button  type="submit" class="btn btn-success">Reservar</button>
+                        </div>
+                  </form>
                 </div>
                 <div class="row">
                     <p class="card-text">{{$p->localizacao}}</p>

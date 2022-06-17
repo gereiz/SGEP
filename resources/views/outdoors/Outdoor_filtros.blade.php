@@ -16,15 +16,15 @@
                     <label class="form-label">Bisemana</label>
                     <select name="bisemana_id" id="bisemana_id" class="form-control">
                         @foreach($bisemanas as $b)
-                            <option value="{{$b->id}}"> {{$b->inicio}} até {{$b->fim}}</option>
+                            <option value="{{$b->id}}"> {{date('d/m/Y', strtotime($b->inicio))}} até {{date('d/m/Y', strtotime($b->fim))}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label class="form-label">Status</label>
                     <select name="status" id="status" class="form-control">
-                        <option value=0>Disponível</option>
-                        <option value=1>Reservado</option>
+                        <option value="0">Disponível</option>
+                        <option value="1">Reservado</option>
                     </select>
                 </div>
                 <div class="form-group col-md-1">

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Outdoor;
 use App\Models\Bairro;
 use App\Models\Bisemana;
+use App\Models\Reserva;
+use App\Models\Cliente;
 use DB;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -23,11 +25,16 @@ class OutdoorController extends Controller
         $user = auth()->user()->name;
         $paineis = Outdoor::orderBy('identificacao', 'asc')->paginate(8);
         $bairro = Bairro::all();
+        $bisemanas = Bisemana::all();
+        $clientes = Cliente::all();
+
 
         return view('outdoors.OutdoorGrid',[
             'paineis' => $paineis,
             'user' => $user,
-            'baiiro' => $bairro
+            'baiiro' => $bairro,
+            'bisemanas' => $bisemanas,
+            'clientes' => $clientes
         ]);
 
     }
@@ -185,18 +192,6 @@ class OutdoorController extends Controller
         
     }
 
-    public function viewDisponiveis()
-    {
-
-        $user = auth()->user()->name;
-        $paineis = Outdoor::paginate(1);
-
-
-       return view('outdoors.Outdoor_disponivel',[
-        'paineis' => $paineis,
-        'user' => $user]); 
-    }
-
     public function viewforFilters(Request $request)
     {
 
@@ -245,6 +240,40 @@ class OutdoorController extends Controller
        return view('outdoors.Outdoor_filtrado',[
         'paineis' => $paineis->paginate(5),
         'user' => $user]); 
+    }
+
+    public function viewDisponiveis()
+    {
+
+        $user = auth()->user()->name;
+        $paineis = Outdoor::paginate(8);
+        $bisemanas = Bisemana::all();
+
+
+       return view('outdoors.Outdoor_disponivel',[
+        'paineis' => $paineis,
+        'user' => $user,
+        'bisemanas' => $bisemanas,
+
+
+        ]); 
+    }
+
+    public function reservaPainel(Request $request)
+    {
+        //dd($request->all());
+
+       $reserva = new Reserva();
+
+       $reserva->cliente_id = $request->cliente;
+       $reserva->outdoor_id = $request->outdoor;
+       $reserva->bisemana_id = $request->bisemana;
+       $reserva->observacao = $request->observacoes;
+
+       $reserva->save();
+
+       return back()->with('success', 'Outdoor reservado com sucesso!');
+
     }
 
 }
