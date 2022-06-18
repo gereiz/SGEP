@@ -1,13 +1,13 @@
 <table class="text-center" style="page-break-after:always;">
 <?php
-$i = 0;
+$i = 1;
 foreach ($paineis as $p) {
 ?>
-    <?php if ($i / 2 == 0) { ?>
+    <?php if ($i % 2 != 0) { ?>
         <tr>
         <?php } ?>
-        <td style="padding:5px; width:350px;">
-            <div class="col-md-12">
+        <td style="max-width:350px; max-height:200px;">
+            <div class="col-md-12" style="max-width:350px">
                         <div class="card" style="margin-bottom:3px;">
                             <div class="text-center" style="background-color:#E0E0E0;">
                                 <h6 class="card-title">Identificação: {{$p->identificacao}}</h6>
@@ -16,15 +16,15 @@ foreach ($paineis as $p) {
                                 <div class="card-body">
                                     <div class="row">
                                     <div class="text-center">
-                                            <img src="{{ asset('storage/'.$p->image_url)}}" alt="" style="width:200px; height:128px;">
+                                            <img src="{{ asset('storage/'.$p->image_url)}}" alt="" style="width:230px; height:130px;">
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="row">
+                                    <div class="row text-center">
                                         <div>
-                                            <p><b>Endereço:</b>  {{$p->logradouro}} nº{{$p->numero}}
-                                            <p><b>Bairro:</b>  {{$p->logradouro}} nº{{$p->numero}} </p>
-                                            <p><b>Coordenadas:</b> <a href="https://maps.google.com/?q={{$p->latitude}},{{$p->longitude}}" target="_blank">Ver localização no mapa</a> </p>
+                                            <p class="no-space"><b>Endereço:</b>  {{$p->logradouro}} nº{{$p->numero}}</p>
+                                            <p class="no-space"><b>Bairro:</b>  {{$p->bairro->nome}} - {{$p->bairro->regiao->cidade->nome}} </p>
+                                            <p class="no-space"><b>Coordenadas:</b> <a href="https://maps.google.com/?q={{$p->latitude}},{{$p->longitude}}" target="_blank">Ver localização no mapa</a> </p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -36,13 +36,19 @@ foreach ($paineis as $p) {
                     </div>
         </td>
         <p>{{$i}}</p>
-        <?php if ($i / 2 != 0) { ?>
-        </tr>
-        </br>
+
+    <?php if ($i % 2 == 0) { ?>
+    </tr>
+    <?php } ?>
+
+    <?php if ($i == 6) { ?>
+        <div class="pagebreak"> </div>
     <?php } ?>
 <?php $i++;
 } ?>
 </table>
+
+<div class="pagebreak"> </div>
 
 <div class="col-md-12">
             <div>
@@ -55,5 +61,12 @@ foreach ($paineis as $p) {
 <style>
     td {
         text-align: center;
+    }
+
+    .no-space{
+        margin-top: 0px;
+        margin-bottom:0px;
+        padding-top:0px;
+        padding-bottom:0px;
     }
 </style>        

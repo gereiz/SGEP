@@ -35,8 +35,10 @@ class SendReservaEmail implements ShouldQueue
     public function handle()
     {
         $email = new ReservasMail($this->details);
+        $email->attach('invoice.pdf');
+        if(isset($this->details->attachment)) {
+            $email->attach('invoice.pdf');
+        }
         Mail::to($this->details->email)->send($email);
-
-        
     }
 }

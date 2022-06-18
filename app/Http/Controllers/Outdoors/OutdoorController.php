@@ -12,6 +12,7 @@ use App\Models\Cliente;
 use DB;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Jobs\SendReservaEmail;
 
 class OutdoorController extends Controller
 {
@@ -233,8 +234,27 @@ class OutdoorController extends Controller
         
         if($tipo === "pdf")
         {
-            $pdf = PDF::loadView('outdoors.Outdoor_relatorio2',$data)->save('myfile.pdf');
-            return $pdf->stream();
+            $pdf = PDF::loadView('outdoors.Outdoor_relatorio',$data);
+            $pdf->render();
+            $output = $pdf->output();
+
+            //$data = $request->all();
+            $details = new \stdClass();
+            $details->nome = 'bryan';
+            $details->email = 'bryanfranca2@hotmail.com';
+            $details->attachment = $output;
+
+            try 
+            {
+                SendReservaEmail::dispatchNow($details);
+            }
+            catch (Exception $e) {
+                return response()->json(['success' => false, 'message' => $e->getMessage()]);
+    
+            }
+            return back()->with('success', 'Email Enviado com sucesso!');
+
+            file_put_contents('Invoice.pdf', $output);
         }
 
        return view('outdoors.Outdoor_filtrado',[
