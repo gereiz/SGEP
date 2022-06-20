@@ -22,9 +22,10 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label class="form-label">Status</label>
-                    <select name="status" id="status" class="form-control">
-                        <option value="0">Disponível</option>
-                        <option value="1">Reservado</option>
+                    <select name="status" id="status" class="form-control">,
+                        <option value="0">Todos</option>
+                        <option value="1">Disponível</option>
+                        <option value="2">Reservado</option>
                     </select>
                 </div>
                 <div class="form-group col-md-1">
@@ -32,6 +33,9 @@
                 </div>
                 <div class="form-group col-md-1">
                     <button name="pdf" id="pdf" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Relatório</button> 
+                </div>
+                <div class="form-group col-md-1">
+                    <button name="enviar" id="enviar" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Enviar</button> 
                 </div>
                 <div id="outdoors"></div>
                 <div>
@@ -44,10 +48,12 @@
 
 
 
+
+
+
 <script>
     $(document).ready(function () 
     {
-        
         $('.request').on('click',function(e)
         {
             tipo = e.target.id;

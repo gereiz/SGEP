@@ -228,14 +228,16 @@ class OutdoorController extends Controller
         $bisemana = $request->bisemana;
         $tipo = $request->tipo;
         $periodo = Bisemana::find($bisemana);
+        $bisemanas = Bisemana::all();
+        $clientes = Cliente::all();
 
         if($reservado == 1){
             $status = 'Reservados';
-            $paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdor_id'));
+            $paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'));
         }    
         else{
             $status = 'Disponíveis';
-            $paineis = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdor_id'));
+            $paineis = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'));
         }            
 
         $data = [
@@ -273,7 +275,9 @@ class OutdoorController extends Controller
 
        return view('outdoors.Outdoor_filtrado',[
         'paineis' => $paineis->paginate(5),
-        'user' => $user]); 
+        'user' => $user,
+        'bisemanas' => $bisemanas,
+        'clientes' => $clientes]); 
     }
 
     public function viewDisponiveis()
