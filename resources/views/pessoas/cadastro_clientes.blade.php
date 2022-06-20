@@ -19,45 +19,45 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="form-label">Razão Social</label>
-                                <input type="text" name="razao" id="razao" class="form-control" placeholder="Razão Social" required>
+                                <input type="text" value="{{ old('razao') }}" name="razao" id="razao" class="form-control" placeholder="Razão Social" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="form-label">Nome Fantasia</label>
-                                <input type="text" name="n_fantasia" id="n_fantasia" class="form-control" placeholder="Nome Fantasia">
+                                <input type="text" value="{{ old('n_fantasia') }}" name="n_fantasia" id="n_fantasia" class="form-control" placeholder="Nome Fantasia">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="form-label">CNPJ / CPF</label>
-                                <input type="text" name="cpf_cnpj" id="cpf_cnpj" class="form-control" placeholder="CNPJ / CPF" required>
+                                <input type="text" value="{{ old('cpf_cnpj') }}" name="cpf_cnpj" id="cpf_cnpj" class="form-control" placeholder="CNPJ / CPF" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="form-label">Inscrição Estadual</label>
-                                <input type="text" name="nro_insc" id="nro_insc" class="form-control" placeholder="Nº da Inscrição Estadual">
+                                <input type="text" value="{{ old('nro_insc') }}" name="nro_insc" id="nro_insc" class="form-control" placeholder="Nº da Inscrição Estadual">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="form-label">Contato/Responsável</label>
-                                <input type="text" name="responsavel" id="responsavel" class="form-control" placeholder="Nome do Contato">
+                                <input type="text" value="{{ old('responsavel') }}" name="responsavel" id="responsavel" class="form-control" placeholder="Nome do Contato">
                             </div>
                             <div class="form-group col-2">
                                 <label class="form-label">Telefone do Responsável</label>
-                                <input type="text" name="tel_responsavel" id="tel_responsavel" class="form-control" placeholder="(XX) XXXX-XXXX">
+                                <input type="text" value="{{ old('tel_responsavel') }}" name="tel_responsavel" id="tel_responsavel" class="form-control" placeholder="(XX) XXXX-XXXX">
                             </div>
                             <div class="form-group col-md-2">
                                 <label class="form-label">E-mail do Responsável</label>
-                                <input type="text" name="email_responsavel" id="email_responsavel" class="form-control">
+                                <input type="email" value="{{ old('email_responsavel') }}" name="email_responsavel" id="email_responsavel" class="form-control">
                             </div>
                         </div> 
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label class="form-label">Endereço</label>
-                                <input type="text" name="endereco" id="endereco" class="form-control" placeholder="Rua ABCD... ">
+                                <input type="text" value="{{ old('endereco') }}" name="endereco" id="endereco" class="form-control" placeholder="Rua ABCD... ">
                             </div>
                             <div class="form-group col-2">
                                 <label class="form-label">Número</label>
-                                <input type="text" name="numero" id="numero" class="form-control" placeholder="0000">
+                                <input type="text" value="{{ old('numero') }}" name="numero" id="numero" class="form-control" placeholder="0000">
                             </div>
                         </div>    
 
@@ -65,6 +65,7 @@
                             <div class="form-group col-md-4">
                                 <label class="form-label">Bairro</label> 
                                 <select name="bairro_id" id="bairro_id" class="form-control">
+                                    <option value="">Selecione o Bairro</option>
                                     @foreach($bairros as $b)
                                         <option value="{{$b->id}}"> {{$b->nome}} </option>
                                     @endforeach
@@ -73,6 +74,7 @@
                             <div class="form-group col-md-4">
                                 <label class="form-label">Cidade</label>
                                 <select name="cidade_id" id="cidade_id" class="form-control">
+                                    <option value="">Selecione a Cidade</option>
                                     @foreach($cidade as $c)
                                         <option value="{{$c->id}}"> {{$c->nome}} </option>
                                     @endforeach
@@ -92,21 +94,21 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label class="form-label">CEP</label>
-                                <input type="text" name="cep" id="cep" class="form-control">
+                                <input type="text" value="{{ old('cep') }}" name="cep" id="cep" class="form-control">
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="form-label">E-mail</label>
-                                <input type="text" name="email" id="email" class="form-control">
+                                <input type="text" value="{{ old('email') }}" name="email" id="email" class="form-control">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-2">
                                 <label class="form-label">Telefone</label>
-                                <input type="text" name="telefone" id="telefone" class="form-control"placeholder="(XX) XXXX-XXXX">
+                                <input type="text" value="{{ old('telefone') }}" name="telefone" id="telefone" class="form-control"placeholder="(XX) XXXX-XXXX">
                             </div>
                             <div class="form-group col-md-2">
                                 <label class="form-label">Celular / Whatsapp</label>
-                                <input type="text" name="celular" id="celular" class="form-control" placeholder="(XX) 9XXXX-XXXX">
+                                <input type="text" value="{{ old('celular') }}" name="celular" id="celular" class="form-control" placeholder="(XX) 9XXXX-XXXX">
                             </div>
                             <div class="form-group col-md-2">
                                 <label class="form-label">Tipo</label>

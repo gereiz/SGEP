@@ -76,6 +76,20 @@ class OutdoorController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'identificacao' => 'min:1|max:10',
+            'bairro_id' => 'required',
+            'logradouro' => 'min:5|max:40',
+            'numero' => 'min:2|max:10',
+            'posicao' => 'min:3|max:10',
+            'cadan' => 'min:6|max:6',
+            'dimensao' => 'min:5|max:10',
+            'dimensao_lona' => 'min:5|max:10',
+            'referencia' => 'min:5|max:40',
+            'lat' => 'min:10|max:40',
+            'long' => 'min:10|max:40'
+            ]);
+
         //dd($request->all());
         $this->validaForm($request);
         
@@ -282,6 +296,7 @@ class OutdoorController extends Controller
     public function reservaPainel(Request $request)
     {
         //dd($request->all());
+
 
        $reserva = new Reserva();
 

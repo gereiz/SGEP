@@ -18,65 +18,66 @@
                 
                 <div class="card-body col-md-2">
                     <label class="form-label">Identificação</label>
-                    <input type="text" class="form-control" id="identificacao" name="identificacao">
+                    <input type="text" value="{{ old('identificacao') }}" class="form-control" id="identificacao" name="identificacao">
                 </div>
 
-                <div class="card-body col-md-3">
+                <div class="card-body col-md-4">
                     <label class="form-label">Bairro</label> 
                     <select name="bairro_id" id="bairro_id" class="form-control">
+                        <option value="">Selecione o Bairro</option>
                         @foreach($bairros as $b)
                             <option value="{{$b->id}}"> {{$b->nome}} - {{$b->regiao->cidade->nome}} </option>
                         @endforeach
                     </select>
                 </div>
 
-                <div class="card-body col-md-5">
+                <div class="card-body col-md-3">
                     <label class="form-label">Logradouro</label>
-                    <input type="text" class="form-control" id="logradouro" name="logradouro">
+                    <input type="text" value="{{ old('logradouro') }}" class="form-control" id="logradouro" name="logradouro">
                 </div>
 
-                <div class="card-body col-md-1">
+                <div class="card-body col-md-2">
                     <label class="form-label">Número</label>
-                    <input type="text" class="form-control" id="numero" name="numero"> 
+                    <input type="text" value="{{ old('numero') }}" class="form-control" id="numero" name="numero"> 
                 </div>
             </div>
 
             <div class="row">
                 <div class="card-body col-md-2">
                     <label class="form-label">CADAN</label>
-                    <input type="text" class="form-control" id="cadan" name="cadan">
+                    <input type="text" value="{{ old('cadan') }}" class="form-control" id="cadan" name="cadan">
                 </div>
 
                 <div class="card-body col-md-2">
                     <label class="form-label">Posição</label>
-                    <input type="text" class="form-control" id="posicao" name="posicao">
+                    <input type="text" value="{{ old('posicao') }}" class="form-control" id="posicao" name="posicao">
                 </div>
 
                 <div class="card-body col-md-4">
                     <label class="form-label">Dimensão</label>
-                    <input type="text" class="form-control" id="dimensao" name="dimensao">
+                    <input type="text" value="{{ old('dimensao') }}" class="form-control" id="dimensao" name="dimensao">
                 </div>
 
                 <div class="card-body col-md-4">
                     <label class="form-label">Dimensão da Lona</label>
-                    <input type="text" class="form-control" id="dimensao_lona" name="dimensao_lona">
+                    <input type="text" value="{{ old('dimensao_lona') }}" class="form-control" id="dimensao_lona" name="dimensao_lona">
                 </div>
             </div>
 
             <div class="row">
                 <div class="card-body col-md-4">
                     <label class="form-label">Ponto de Referência</label>
-                    <input type="text" class="form-control" id="referencia" name="referencia">
+                    <input type="text" value="{{ old('referencia') }}" class="form-control" id="referencia" name="referencia">
                 </div>
 
                 <div class="card-body col-md-4">
                     <label class="form-label">Latitude</label>
-                    <input type="text" class="form-control" id="lat" name="lat">
+                    <input type="text" value="{{ old('lat') }}" class="form-control" id="lat" name="lat">
                 </div>
 
                 <div class="card-body col-md-4">
                     <label class="form-label">Longitude</label>
-                    <input type="text" class="form-control" id="long" name="long">
+                    <input type="text" value="{{ old('long') }}" class="form-control" id="long" name="long">
                 </div>
             </div>
             <div class="row">
@@ -85,7 +86,7 @@
                 </div>
                 <div class="card-body col-md-4">
                     <label class="form-label">Imagem</label>
-                    <input type="file" id="imageDialog" name="image" class="form-control">
+                    <input type="file" id="imageDialog" name="image" class="form-control" required>
                 </div>
             </div>
             <div class="card-body col-md-7">
