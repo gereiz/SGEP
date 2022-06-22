@@ -192,7 +192,7 @@ class OutdoorController extends Controller
 
 
         $this->validate($request, [
-            'identificacao' => 'required|integer',
+            'identificacao' => 'required|string',
             'bairro_id' => 'required|integer',
             'logradouro' => 'required|string',
            // 'numero' => 'required|integer',

@@ -11,7 +11,7 @@
         @csrf
         <div class="card">
             <div class="row">
-                <div class="card-body col-md-1">
+                <div class="card-body col-md-1"> 
                     <label class="form-label">Cod.</label>
                     <input type="text" class="form-control" id="id" name="id" readonly>
                 </div>
