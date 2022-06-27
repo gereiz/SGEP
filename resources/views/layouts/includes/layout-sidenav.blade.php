@@ -24,7 +24,7 @@
     <ul class="sidenav-inner{{ empty($layout_sidenav_horizontal) ? ' py-1' : '' }}">
 
         <!-- Pessoas -->
-        <li class="sidenav-item{{ strpos($routeName, 'home') === 0 ? ' active open' : '' }}">
+        <li class="sidenav-item{{ strpos($routeName, 'dashboards') === 0 ? ' active open' : '' }}">
             <a href="{{route('home')}}" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-person-add"></i><div>Pessoas</div></a>
             
             <ul class="sidenav-menu">
