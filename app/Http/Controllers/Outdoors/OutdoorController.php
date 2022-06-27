@@ -235,10 +235,15 @@ class OutdoorController extends Controller
             $status = 'Reservados';
             $paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'));
         }    
-        else{
+        elseif($reservado == 2) {
             $status = 'Disponíveis';
             $paineis = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'));
+        } else {
+            $status = 'Todos';
+            $paineis = Outdoor::paginate(8)->get();
         }            
+
+        //dd($paineis);
 
         $data = [
             'paineis' => $paineis->get(),

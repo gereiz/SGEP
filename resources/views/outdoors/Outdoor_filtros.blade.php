@@ -24,7 +24,7 @@
                     <label class="form-label">Status</label>
                     <select name="status" id="status" class="form-control">,
                         <option value="0">Todos</option>
-                        <option value="1">Disponível</option>
+                        <option value="1">Disponível</option> 
                         <option value="2">Reservado</option>
                     </select>
                 </div>

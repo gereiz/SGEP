@@ -32,20 +32,15 @@ class ClienteController extends Controller
 
         $request->validate([
         'razao' => 'min:5|max:40',
-        'n_fantasia' => 'min:5|max:40',
         'cpf_cnpj' => 'min:11|max:15',
-        'nro_insc' => 'min:9|max:9',
         'responsavel' => 'min:5|max:40',
         'tel_responsavel' => 'min:10|max:12',
-        'email_responsavel' => 'min:5|max:40',
         'endereco' => 'min:5|max:40',
         'numero' => 'min:2|max:10',
         'bairro_id' => 'required',
         'cidade_id' => 'required',
         'uf' => 'required',
         'cep' => 'min:5|max:10',
-        'email' => 'min:5|max:40',
-        'telefone' => 'min:10|max:12',
         'celular' => 'min:10|max:12',
         'tipo' => 'required'
         ]);

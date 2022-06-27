@@ -24,7 +24,7 @@
     <ul class="sidenav-inner{{ empty($layout_sidenav_horizontal) ? ' py-1' : '' }}">
 
         <!-- Pessoas -->
-        <li class="sidenav-item{{ strpos($routeName, 'dashboards.') === 0 ? ' active open' : '' }}">
+        <li class="sidenav-item{{ strpos($routeName, 'home') === 0 ? ' active open' : '' }}">
             <a href="{{route('home')}}" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-person-add"></i><div>Pessoas</div></a>
             
             <ul class="sidenav-menu">
@@ -48,18 +48,18 @@
                 <li class="sidenav-item{{ $routeName == 'add_form_outdoor' ? ' active' : '' }}">
                     <a href="{{route('add_form_outdoor')}}" class="sidenav-link"><div>Cadastro de Painéis</div></a>
                 </li>
-                <li class="sidenav-item{{ $routeName == 'outdoor_grid' ? ' active' : '' }}">
+                <!--<li class="sidenav-item{{ $routeName == 'outdoor_grid' ? ' active' : '' }}">
                     <a href="{{route('outdoor_grid')}}" class="sidenav-link"><div>Relação de Painéis</div></a>
-                </li>
-                <li class="sidenav-item{{ $routeName == 'view_outdoor_disp' ? ' active' : '' }}">
+                </li>-->
+                <!--<li class="sidenav-item{{ $routeName == 'view_outdoor_disp' ? ' active' : '' }}">
                     <a href="{{ route('view_outdoor_disp')}}" class="sidenav-link"><div>Relação de Painéis disponíveis</div></a>
-                </li>
+                </li>-->
                 <li class="sidenav-item{{ $routeName == 'view_outdoor_disp_filter' ? ' active' : '' }}">
-                    <a href="{{ route('view_outdoor_disp_filter')}}" class="sidenav-link"><div>Relação de Painéis Filtro</div></a>
+                    <a href="{{ route('view_outdoor_disp_filter')}}" class="sidenav-link"><div>Lista de Painéis</div></a>
                 </li>
-                <li class="sidenav-item{{ $routeName == 'layout-examples.layout-1-flex' ? ' active' : '' }}">
+                <!--<li class="sidenav-item{{ $routeName == 'layout-examples.layout-1-flex' ? ' active' : '' }}">
                     <a href="#" class="sidenav-link"><div>Relação de Painéis Reservados</div></a>
-                </li>
+                </li>-->
             </ul>
         </li>
 
