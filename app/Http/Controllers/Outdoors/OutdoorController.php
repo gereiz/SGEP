@@ -240,7 +240,7 @@ class OutdoorController extends Controller
             $paineis = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'));
         } else {
             $status = 'Todos';
-            $paineis = Outdoor::paginate(8)->get();
+            $paineis = Outdoor::all();
         }            
 
         //dd($paineis);
@@ -264,7 +264,8 @@ class OutdoorController extends Controller
             $details->nome = 'bryan';
             $details->email = 'bryanfranca2@hotmail.com';
             $details->attachment = $output;
-
+            
+            /*
             try 
             {
                 SendReservaEmail::dispatchNow($details);
@@ -274,7 +275,7 @@ class OutdoorController extends Controller
     
             }
             return back()->with('success', 'Email Enviado com sucesso!');
-
+            */
             file_put_contents('Invoice.pdf', $output);
         }
 

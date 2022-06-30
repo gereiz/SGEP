@@ -76,7 +76,7 @@ class ClienteController extends Controller
     public function listaClientes() {
 
         $user = auth()->user()->name;
-        $clientes = Cliente::where('ativo', 1)->get();
+        $clientes = Cliente::all();
 
         return view('pessoas.lista_clientes', ['user' => $user,
                                                'clientes' => $clientes  

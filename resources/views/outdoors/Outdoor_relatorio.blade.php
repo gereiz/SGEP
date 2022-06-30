@@ -46,6 +46,7 @@ foreach ($paineis as $p) {
     <?php } ?>
 <?php $i++;
 } ?>
+
 </table>
 
 <div class="pagebreak"> </div>
