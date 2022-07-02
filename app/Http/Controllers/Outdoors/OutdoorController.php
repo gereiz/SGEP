@@ -13,6 +13,7 @@ use DB;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Jobs\SendReservaEmail;
+use Illuminate\Support\Facades\File;
 
 class OutdoorController extends Controller
 {
@@ -211,8 +212,7 @@ class OutdoorController extends Controller
     {
 
         $user = auth()->user()->name;
-        $bisemanas = Bisemana::all();
-        
+        $bisemanas = Bisemana::where('fim', '>', date("Y-m-d"))->get();
 
 
        return view('outdoors.Outdoor_filtros',[
@@ -233,23 +233,29 @@ class OutdoorController extends Controller
 
         if($reservado == 2){
             $status = 'Reservados';
-            $paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'))->paginate(6);
+            $paineisReport = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'));
+            $paineis = $paineisReport->paginate(6);
         }    
         elseif($reservado == 1) {
             $status = 'Disponíveis';
-            $paineis = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'))->paginate(6);
+            $paineisReport = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'));
+            $paineis = $paineisReport->paginate(6);
         } else {
             $status = 'Todos';
+            $paineisReport = Outdoor::all();
             $paineis = Outdoor::paginate(6);
         }            
 
-        //dd($paineis);
+        if(count($paineis) == 0)
+        {
+            return response()->json(['success' => false, 'message' => 'Não há dados para os filtros selecionados']);
+        }
         
         if($tipo === "pdf")
         {
 
             $data = [
-                'paineis' => $paineis->get(),
+                'paineis' => $paineisReport->get(),
                 'user' => $user,
                 'status' => $status,
                 'data' => $periodo->inicio.' a '.$periodo->fim,
@@ -276,7 +282,17 @@ class OutdoorController extends Controller
             }
             return back()->with('success', 'Email Enviado com sucesso!');
             */
-            file_put_contents('Invoice.pdf', $output);
+
+            File::ensureDirectoryExists(public_path('pdf/'));
+
+            $path = public_path('pdf/'); 
+    
+            $fileName =  'outdoor.pdf' ; 
+
+            $pdf->save($path . '/' . $fileName); 
+            $pdf = public_path('pdf/'.$fileName);
+            return response()->download($pdf); 
+            
         }
 
        return view('outdoors.Outdoor_filtrado',[

@@ -32,7 +32,7 @@
                     <button name="filtrar" id="filtrar" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Filtrar</button>
                 </div>
                 <div class="form-group col-md-1">
-                    <button name="pdf" id="pdf" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Relatório</button> 
+                    <button name="pdf" id="pdf" class="btn btn-primary" style="margin-top:25px; margin-bottom:18px;">Relatório</button> 
                 </div>
                 <div class="form-group col-md-1">
                     <button name="enviar" id="enviar" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Enviar</button> 
@@ -45,16 +45,10 @@
 </div>
 <br>
 
-
-
-
-
-
-
 <script>
     $(document).ready(function () 
     {
-        $('.request').on('click',function(e)
+        $('#filtrar').on('click',function(e)
         {
             tipo = e.target.id;
             bisemana = $('#bisemana_id').val();
@@ -76,17 +70,45 @@
                     tipo: tipo
                 },
                 success: function(resposta){
-                    if(tipo === "filtrar") {
-                        $('#outdoors').html(resposta);  
-                    }
-                    else {
-                        var blob = new Blob([resposta]);
-                        console.log(resposta);
-                        var link = document.createElement('a');
-                        link.href = window.URL.createObjectURL(blob);
-                        link.download = "Sample.pdf";
-                        //link.click();
-                    }
+                    $('#outdoors').html(resposta);  
+                }
+            });
+
+        });
+
+        $('#pdf').on('click',function(e)
+        {
+            tipo = e.target.id;
+            bisemana = $('#bisemana_id').val();
+            status = $('#status').val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            url =  "{{ route('view_outdoor_filter') }}"
+
+            $.ajax({
+                method: "POST",
+                url: url, 
+                data:{
+                    bisemana: bisemana,
+                    status: status,
+                    tipo: tipo
+                },
+                xhrFields: { 
+                responseType: 'blob' 
+                }, 
+                success: function(resposta){
+                    var blob = new Blob([resposta]); 
+                    var link = document.createElement('a'); 
+                    link.href = window.URL.createObjectURL(blob); 
+                    link.download = "Outdoors.pdf"; 
+                    link.click();
+                },
+                error: function(error){
+                    alert('Não há dados para os filtros informados');
                 }
             });
 
