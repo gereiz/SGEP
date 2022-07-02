@@ -233,13 +233,13 @@ class OutdoorController extends Controller
 
         if($reservado == 2){
             $status = 'Reservados';
-            $paineisReport = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'));
-            $paineis = $paineisReport->paginate(6);
+            $paineisReport = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'))->get();
+            $paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'))->paginate(6);
         }    
         elseif($reservado == 1) {
             $status = 'Disponíveis';
-            $paineisReport = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'));
-            $paineis = $paineisReport->paginate(6);
+            $paineisReport = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'))->get();
+            $paineis = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'))->paginate(6);
         } else {
             $status = 'Todos';
             $paineisReport = Outdoor::all();
@@ -255,7 +255,7 @@ class OutdoorController extends Controller
         {
 
             $data = [
-                'paineis' => $paineisReport->get(),
+                'paineis' => $paineisReport,
                 'user' => $user,
                 'status' => $status,
                 'data' => $periodo->inicio.' a '.$periodo->fim,
