@@ -231,30 +231,30 @@ class OutdoorController extends Controller
         $bisemanas = Bisemana::all();
         $clientes = Cliente::all();
 
-        if($reservado == 1){
+        if($reservado == 2){
             $status = 'Reservados';
-            $paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'));
+            $paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'))->paginate(6);
         }    
-        elseif($reservado == 2) {
+        elseif($reservado == 1) {
             $status = 'Disponíveis';
-            $paineis = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'));
+            $paineis = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'))->paginate(6);
         } else {
             $status = 'Todos';
-            $paineis = Outdoor::all();
+            $paineis = Outdoor::paginate(6);
         }            
 
         //dd($paineis);
-
-        $data = [
-            'paineis' => $paineis->get(),
-            'user' => $user,
-            'status' => $status,
-            'data' => $periodo->inicio.' a '.$periodo->fim,
-        ];
-
         
         if($tipo === "pdf")
         {
+
+            $data = [
+                'paineis' => $paineis->get(),
+                'user' => $user,
+                'status' => $status,
+                'data' => $periodo->inicio.' a '.$periodo->fim,
+            ];
+
             $pdf = PDF::loadView('outdoors.Outdoor_relatorio',$data);
             $pdf->render();
             $output = $pdf->output();
@@ -280,7 +280,7 @@ class OutdoorController extends Controller
         }
 
        return view('outdoors.Outdoor_filtrado',[
-        'paineis' => $paineis->paginate(5),
+        'paineis' => $paineis,
         'user' => $user,
         'bisemanas' => $bisemanas,
         'clientes' => $clientes]); 
