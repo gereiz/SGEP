@@ -31,7 +31,7 @@ class ClienteController extends Controller
        //$dados = $request->all();
 
         $request->validate([
-        'razao' => 'min:5|max:40',
+        'razao' => 'min:5|max:100',
         'cpf_cnpj' => 'min:11|max:15',
         'responsavel' => 'min:5|max:40',
         'tel_responsavel' => 'min:10|max:12',
