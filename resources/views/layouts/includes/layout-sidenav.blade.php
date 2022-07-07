@@ -48,9 +48,9 @@
                 <li class="sidenav-item{{ $routeName == 'add_form_outdoor' ? ' active' : '' }}">
                     <a href="{{route('add_form_outdoor')}}" class="sidenav-link"><div>Cadastro de Painéis</div></a>
                 </li>
-                <li class="sidenav-item{{ $routeName == 'outdoor_grid' ? ' active' : '' }}">
+                <!--<li class="sidenav-item{{ $routeName == 'outdoor_grid' ? ' active' : '' }}">
                     <a href="{{route('outdoor_grid')}}" class="sidenav-link"><div>Relação de Painéis</div></a>
-                </li>
+                </li>-->
                 <!--<li class="sidenav-item{{ $routeName == 'view_outdoor_disp' ? ' active' : '' }}">
                     <a href="{{ route('view_outdoor_disp')}}" class="sidenav-link"><div>Relação de Painéis disponíveis</div></a>
                 </li>-->
