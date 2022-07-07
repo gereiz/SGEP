@@ -13,7 +13,7 @@
         <div class="row no-gutters">
             <div class="col-md-12 col-lg-12 col-xl-12">
                 <div class="card-body" id="dados_empresa">
-                    <form action="{{url('/editCliente')}}/{{$cliente->id}}" method="POST">
+                    <form action="{{route('editar_cliente', ['id' =>$cliente->id])}}" method="POST"> 
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-4">

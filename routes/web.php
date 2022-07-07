@@ -34,7 +34,7 @@ route::post('/cadCliente', ['as' => 'cadastra.cliente', 'uses' => 'pessoas\Clien
 
 route::get('/listaClientes', ['as' => 'lista.clientes', 'uses' => 'pessoas\ClienteController@listaClientes']);
 route::get('/editCliente/{id}', ['as' => 'edit_cliente', 'uses' => 'pessoas\ClienteController@editCliente']);
-route::post('/editCliente/{id}', ['as' => 'editar_cliente', 'uses' => 'pessoas\ClienteController@editAction']);
+route::post('/editaCliente/{id}', ['as' => 'editar_cliente', 'uses' => 'pessoas\ClienteController@editAction']);
 route::get('/viewCliente/{id}', ['as' => 'view_clientes', 'uses' => 'pessoas\ClienteController@viewClientes']);
 route::post('/deleteCliente/{id}', ['as' => 'delete_cliente', 'uses' => 'pessoas\ClienteController@delete']);
 
