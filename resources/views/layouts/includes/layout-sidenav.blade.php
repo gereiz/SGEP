@@ -10,7 +10,7 @@
         <span class="app-brand-logo demo">
         </span>
             <div class="menu_navbar">
-            <a href="#" class="demo-brand-name sidenav-text font-weight-normal ml-2 texto_sidenav">SGEP</a>
+            <a href="{{route('home')}}" class="demo-brand-name sidenav-text font-weight-normal ml-2 texto_sidenav">SGEP</a>
             <a href="javascript:void(0)" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
                 <i class="ion ion-md-menu align-middle btn_menu"></i>
             </a>
@@ -23,14 +23,28 @@
     <!-- Links -->
     <ul class="sidenav-inner{{ empty($layout_sidenav_horizontal) ? ' py-1' : '' }}">
 
+        <!--Endereços-->
+        <li class="sidenav-item{{ strpos($routeName, 'layout-examples.') === 0 ? ' active open' : '' }}">
+            <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-map"></i><div>Endereços</div></a>
+
+            <ul class="sidenav-menu">
+                <li class="sidenav-item{{ $routeName == 'cad.bairros' ? ' active' : '' }}">
+                    <a href="{{ route('cad.bairros') }}" class="sidenav-link"><div>Cadastro de Bairros</div></a>
+                    </li>
+                <li class="sidenav-item{{ $routeName == 'cad.cidades' ? ' active' : '' }}">
+                    <a href="{{ route('cad.cidades') }}" class="sidenav-link"><div>Cadastro de Cidades</div></a>
+                </li>
+                <li class="sidenav-item{{ $routeName == 'cad.regioes' ? ' active' : '' }}">
+                    <a href="{{ route('cad.regioes') }}" class="sidenav-link"><div>Cadastro de Regiões</div></a>
+                </li>
+            </ul>
+        </li>
+
         <!-- Pessoas -->
         <li class="sidenav-item{{ strpos($routeName, 'dashboards') === 0 ? ' active open' : '' }}">
-            <a href="{{route('home')}}" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-person-add"></i><div>Pessoas</div></a>
+            <a href="{{route('home')}}" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-person-add"></i><div>Clientes</div></a>
             
             <ul class="sidenav-menu">
-                <li class="sidenav-item{{ $routeName == 'dashboards.dashboard-1' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Cadastro de Usuários</div></a>
-                </li>
                 <li class="sidenav-item{{ $routeName == 'cadastra.cliente' ? ' active' : '' }}">
                     <a href="{{ route('cadastra.cliente') }}" class="sidenav-link"><div>Cadastro de Clientes</div></a>
                 </li>
@@ -48,79 +62,14 @@
                 <li class="sidenav-item{{ $routeName == 'add_form_outdoor' ? ' active' : '' }}">
                     <a href="{{route('add_form_outdoor')}}" class="sidenav-link"><div>Cadastro de Painéis</div></a>
                 </li>
-                <!--<li class="sidenav-item{{ $routeName == 'outdoor_grid' ? ' active' : '' }}">
-                    <a href="{{route('outdoor_grid')}}" class="sidenav-link"><div>Relação de Painéis</div></a>
-                </li>-->
-                <!--<li class="sidenav-item{{ $routeName == 'view_outdoor_disp' ? ' active' : '' }}">
-                    <a href="{{ route('view_outdoor_disp')}}" class="sidenav-link"><div>Relação de Painéis disponíveis</div></a>
-                </li>-->
                 <li class="sidenav-item{{ $routeName == 'view_outdoor_disp_filter' ? ' active' : '' }}">
                     <a href="{{ route('view_outdoor_disp_filter')}}" class="sidenav-link"><div>Lista de Painéis</div></a>
                 </li>
-                <!--<li class="sidenav-item{{ $routeName == 'layout-examples.layout-1-flex' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Relação de Painéis Reservados</div></a>
-                </li>-->
             </ul>
         </li>
-
-        <li class="sidenav-item{{ strpos($routeName, 'layout-examples.') === 0 ? ' active open' : '' }}">
-            <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-photos"></i><div>Endereços</div></a>
-
-            <ul class="sidenav-menu">
-                <li class="sidenav-item{{ $routeName == 'layout-examples.options' ? ' active' : '' }}">
-                    <a href="{{ route('cad.cidades') }}" class="sidenav-link"><div>Cadastro de Cidades</div></a>
-                </li>
-                <li class="sidenav-item{{ $routeName == 'layout-examples.helpers' ? ' active' : '' }}">
-                    <a href="{{ route('cad.regioes') }}" class="sidenav-link"><div>Cadastro de Regiões</div></a>
-                </li>
-                <li class="sidenav-item{{ $routeName == 'layout-examples.layout-1' ? ' active' : '' }}">
-                <a href="{{ route('cad.bairros') }}" class="sidenav-link"><div>Cadastro de Bairros</div></a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="sidenav-item{{ strpos($routeName, 'layout-examples.') === 0 ? ' active open' : '' }}">
-            <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-photos"></i><div>Email</div></a>
-
-            <ul class="sidenav-menu">
-                <li class="sidenav-item{{ $routeName == 'layout-examples.layout-1' ? ' active' : '' }}">
-                <a href="{{ route('envio.email') }}" class="sidenav-link"><div>Envio</div></a>
-                </li>
-            </ul>
-        </li>
-
-        <!--<li class="sidenav-divider mb-1"></li>
-        <li class="sidenav-header small font-weight-semibold">ELEMENTS</li>
-
-        <li class="sidenav-item{{ $routeName == 'typography.typography' ? ' active' : '' }}">
-            <a href="#" class="sidenav-link"><i class="sidenav-icon ion ion-md-quote"></i><div>Typography</div></a>
-        </li>-->
-
-        <!-- UI elements -->
-        <!--<li class="sidenav-item{{ strpos($routeName, 'ui.') === 0 ? ' active open' : '' }}">
-            <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-cube"></i><div>User inteface</div></a>
-
-            <ul class="sidenav-menu">
-                <li class="sidenav-item{{ $routeName == 'ui.buttons' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Buttons</div></a>
-                </li>
-                <li class="sidenav-item{{ $routeName == 'ui.badges' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Badges</div></a>
-                </li>
-                <li class="sidenav-item{{ $routeName == 'ui.button-groups' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Button groups</div></a>
-                </li>
-                <li class="sidenav-item{{ $routeName == 'ui.dropdowns' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Dropdowns</div></a>
-                </li>
-                <li class="sidenav-item{{ $routeName == 'ui.navs' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Navs</div></a>
-                </li>
-            </ul>
-        </li>-->
 
         <!-- Relatórios -->
-       <li class="sidenav-item{{ strpos($routeName, 'forms.') === 0 ? ' active open' : '' }}">
+        <li class="sidenav-item{{ strpos($routeName, 'forms.') === 0 ? ' active open' : '' }}">
             <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-document"></i><div>Relatórios</div></a>
 
             <ul class="sidenav-menu">
@@ -128,14 +77,30 @@
                     <a href="#" class="sidenav-link"><div>Relatório de Clientes</div></a>
                 </li>
                 <li class="sidenav-item{{ $routeName == 'forms.controls' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Relatório de Todos Painéis</div></a>
+                    <a href="#" class="sidenav-link"><div>Relatório de Colagem</div></a>
                 </li>
-                <li class="sidenav-item{{ $routeName == 'forms.custom-controls' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Relatório de Painéis Disponíveis</div></a>
+            </ul>
+        </li>
+
+        <!-- Configurações -->
+        <li class="sidenav-item{{ strpos($routeName, 'ui.') === 0 ? ' active open' : '' }}">
+            <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-cube"></i><div>Conigurações</div></a>
+
+            <ul class="sidenav-menu">
+                <li class="sidenav-item{{ $routeName == 'dashboards.dashboard-1' ? ' active' : '' }}">
+                    <a href="#" class="sidenav-link"><div>Cadastro de Usuários</div></a>
                 </li>
-                <li class="sidenav-item{{ $routeName == 'forms.input-groups' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Relatório de Painéis Reservados</div></a>
-                </li>
+
+                    <!--Email-->
+                    <li class="sidenav-item{{ strpos($routeName, 'layout-examples.') === 0 ? ' active open' : '' }}">
+                        <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-mail"></i><div>Email</div></a>
+
+                        <ul class="sidenav-menu">
+                            <li class="sidenav-item{{ $routeName == 'layout-examples.layout-1' ? ' active' : '' }}">
+                            <a href="{{ route('envio.email') }}" class="sidenav-link"><div>Envio</div></a>
+                            </li>
+                        </ul>
+                    </li>
             </ul>
         </li>
 

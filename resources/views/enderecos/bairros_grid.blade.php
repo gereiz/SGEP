@@ -16,29 +16,35 @@
                     Novo Registro
             </button>
         </a>
-    </div>
+    </div> 
 </div>
 
-@foreach($bairros as $b)
+
     <header>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </header>
-    <div class="col-md-12">
-        <div class="card mt-2">
-            <div class="card-body">
-                <div class="row">
-                    <h5 class="card-title">{{$b->nome}} - Cidade: {{$b->regiao->cidade->nome}}</h5>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 text-right">
-                        <a role="button" href="{{url('enderecos/editBairroForm')}}/{{$b->id}}" type="button" class="btn btn-primary edit">Editar</a>
-                        <button type="button" value="{{$b->id}}" class="btn btn-danger delete">Excluir</button>
+    <div class="col-md-12" style="display: flex;">
+        @foreach($bairros as $b)
+        <div class="col-md-5">
+            <div class="card mt-2"> 
+                <div class="card-body">
+                    <div class="row">
+                        <h5 class="card-title">{{$b->nome}} - Cidade: {{$b->regiao->cidade->nome}}</h5>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <a role="button" href="{{url('enderecos/editBairroForm')}}/{{$b->id}}" type="button" class="btn btn-primary edit">Editar</a>
+                            <button type="button" value="{{$b->id}}" class="btn btn-danger delete">Excluir</button>
+                        </div>
+                    </div>
+                </div>    
             </div>
         </div>
+        
+        @endforeach
     </div>
-@endforeach
+    
+
 <br>
 
 <div class="col-md-12">

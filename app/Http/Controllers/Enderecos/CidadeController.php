@@ -16,7 +16,7 @@ class CidadeController extends Controller
     public function index() {
 
        $user = auth()->user()->name;
-        $cidades = Cidade::paginate(7);
+        $cidades = Cidade::orderBy('nome')->paginate(8);
         return view('enderecos.cidades_grid', ['user' => $user,'cidades' => $cidades]);
     }
 
