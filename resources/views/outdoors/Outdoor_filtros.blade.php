@@ -48,7 +48,7 @@
 <script>
     $(document).ready(function () 
     {
-        $('#filtrar').on('click',function(e)
+        $('#filtrar, #enviar').on('click',function(e)
         {
             tipo = e.target.id;
             bisemana = $('#bisemana_id').val();
