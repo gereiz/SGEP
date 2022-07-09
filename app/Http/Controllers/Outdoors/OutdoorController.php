@@ -27,7 +27,7 @@ class OutdoorController extends Controller
         $user = auth()->user()->name;
         $paineis = Outdoor::orderBy('identificacao', 'asc')->paginate(8);
         $bairro = Bairro::all();
-        $bisemanas = Bisemana::all();
+        $bisemanas = Bisemana::where('fim', '>', date("Y-m-d"))->get();
         $clientes = Cliente::all();
 
 
@@ -228,7 +228,7 @@ class OutdoorController extends Controller
         $bisemana = $request->bisemana;
         $tipo = $request->tipo;
         $periodo = Bisemana::find($bisemana);
-        $bisemanas = Bisemana::all();
+        $bisemanas = Bisemana::where('fim', '>', date("Y-m-d"))->get();
         $clientes = Cliente::all();
 
         if($reservado == 2){
@@ -250,56 +250,59 @@ class OutdoorController extends Controller
         {
             return response()->json(['success' => false, 'message' => 'Não há dados para os filtros selecionados']);
         }
+
+        if($tipo === "filtrar"){
+        return view('outdoors.Outdoor_filtrado',[
+            'paineis' => $paineis,
+            'user' => $user,
+            'bisemanas' => $bisemanas,
+            'clientes' => $clientes]); 
+        }
         
-        if($tipo === "pdf")
-        {
 
-            $data = [
-                'paineis' => $paineisReport,
-                'user' => $user,
-                'status' => $status,
-                'data' => $periodo->inicio.' a '.$periodo->fim,
-            ];
+        $data = [
+            'paineis' => $paineisReport,
+            'user' => $user,
+            'status' => $status,
+            'data' => $periodo->inicio.' a '.$periodo->fim,
+        ];
 
-            $pdf = PDF::loadView('outdoors.Outdoor_relatorio',$data);
-            $pdf->render();
-            $output = $pdf->output();
+        $pdf = PDF::loadView('outdoors.Outdoor_relatorio',$data);
+        $pdf->render();
+        $output = $pdf->output();
 
-            //$data = $request->all();
-            $details = new \stdClass();
-            $details->nome = 'bryan';
-            $details->email = 'bryanfranca2@hotmail.com';
-            $details->attachment = $output;
-            
-            /*
-            try 
+
+        File::ensureDirectoryExists(public_path('pdf/'));
+
+        $path = public_path('pdf/'); 
+
+        $fileName =  'outdoor'.date("His").'.pdf'; 
+
+        $pdf->save($path . '/' . $fileName); 
+        $pdf = public_path('pdf/'.$fileName);
+
+        if($tipo === "enviar"){
+        if(!env('MAIL_USERNAME') || !env('MAIL_PASSWORD'))
+        return response()->json(['success' => false, 'message' => 'Verifique as configurações de SMTP']);
+        try 
             {
+                $details = new \stdClass();
+                $details->nome = 'bryan';
+                $details->email = 'bryanfranca2@hotmail.com';
+                $details->attachment = 'pdf/'.$fileName;
                 SendReservaEmail::dispatchNow($details);
             }
             catch (Exception $e) {
                 return response()->json(['success' => false, 'message' => $e->getMessage()]);
     
             }
+            unlink('pdf/'.$fileName);
             return back()->with('success', 'Email Enviado com sucesso!');
-            */
-
-            File::ensureDirectoryExists(public_path('pdf/'));
-
-            $path = public_path('pdf/'); 
     
-            $fileName =  'outdoor.pdf' ; 
-
-            $pdf->save($path . '/' . $fileName); 
-            $pdf = public_path('pdf/'.$fileName);
-            return response()->download($pdf); 
-            
         }
 
-       return view('outdoors.Outdoor_filtrado',[
-        'paineis' => $paineis,
-        'user' => $user,
-        'bisemanas' => $bisemanas,
-        'clientes' => $clientes]); 
+        return response()->download('pdf/'.$fileName)->deleteFileAfterSend(true);
+            
     }
 
     public function viewDisponiveis()
