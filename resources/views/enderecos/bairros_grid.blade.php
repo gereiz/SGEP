@@ -23,9 +23,9 @@
     <header>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </header>
-    <div class="col-md-12" style="display: flex;">
+    <div class="col-md-12" style="display: flex;flex-wrap: wrap;">
         @foreach($bairros as $b)
-        <div class="col-md-5">
+        <div class="col-md-6">
             <div class="card mt-2"> 
                 <div class="card-body">
                     <div class="row">
