@@ -48,6 +48,7 @@
     <!-- Core scripts -->
     <script src="{{asset('assets/vendor/js/pace.js')}}"></script>
     <script src="{{asset('assets/vendor/js/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/js/jquery.mask.min.js')}}"></script>
     <script src="{{asset('assets/vendor/js/layout-helpers.js')}}"></script>
     
 

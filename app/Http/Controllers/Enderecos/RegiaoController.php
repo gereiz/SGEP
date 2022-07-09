@@ -15,7 +15,7 @@ class RegiaoController extends Controller
     public function index() {
 
        $user = auth()->user()->name;
-        $regioes = Regiao::orderBy('nome')->paginate(8);
+        $regioes = Regiao::orderBy('nome')->paginate(10);
         
         return view('enderecos.regioes_grid', ['user' => $user, 'regioes' => $regioes]);
 

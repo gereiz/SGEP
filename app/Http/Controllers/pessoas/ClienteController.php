@@ -11,6 +11,11 @@ use App\Models\Bairro;
 
 class ClienteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index() {
 
         $user = auth()->user()->name;
@@ -31,11 +36,11 @@ class ClienteController extends Controller
        //$dados = $request->all();
 
         $request->validate([
-        'razao' => 'min:5|max:100',
-        'cpf_cnpj' => 'min:11|max:15',
-        'responsavel' => 'min:5|max:40',
+        'razao' => 'min:5|max:100', 
+        'cpf_cnpj' => 'min:11|max:18',
+        'responsavel' => 'min:5|max:100',
         'tel_responsavel' => 'min:10|max:12',
-        'endereco' => 'min:5|max:40',
+        'endereco' => 'min:5|max:100',
         'numero' => 'min:2|max:10',
         'bairro_id' => 'required',
         'cidade_id' => 'required',

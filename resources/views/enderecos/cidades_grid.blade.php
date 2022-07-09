@@ -5,7 +5,7 @@
 <div class="col-md-12 row">
     <div class="col-md-9">
         <h4 class="font-weight-bold py-3 mb-4">
-            Lista de Cidades
+            Lista de Cidades 
         </h4>
     </div>
 
@@ -19,29 +19,34 @@
     </div>
 </div>
 
-@foreach($cidades as $c)
+
     <header>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </header>
-    <div class="col-md-12">
-        <div class="card mt-2">
-            <div class="card-body">
-                <div class="row">
-                    <h5 class="card-title">{{$c->nome}}</h5>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 text-right">
-                        <a role="button" href="{{url('enderecos/editCidadeForm')}}/{{$c->id}}" type="button" class="btn btn-primary edit">Editar</a>
-                        <button type="button" value="{{$c->id}}" class="btn btn-danger delete">Excluir</button>
+    <div class="col-md-12" style="display: flex;flex-wrap: wrap;">
+        @foreach($cidades as $c)
+        <div class="col-md-6">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="row">
+                        <h5 class="card-title">{{$c->nome}}</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <a role="button" href="{{url('enderecos/editCidadeForm')}}/{{$c->id}}" type="button" class="btn btn-primary edit">Editar</a>
+                            <button type="button" value="{{$c->id}}" class="btn btn-danger delete">Excluir</button>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <p class="card-text">{{$c->uf->sigla}}</p>
                     </div>
                 </div>
-                <div class="row"> 
-                    <p class="card-text">{{$c->uf->sigla}}</p>
-                </div>
-            </div>
+            </div>   
         </div>
+        
+        @endforeach
     </div>
-@endforeach
+
 <br>
 
 <div class="col-md-12">

@@ -15,7 +15,7 @@ class BairroController extends Controller
     public function index() {
 
        $user = auth()->user()->name;
-        $bairros = Bairro::orderBy('nome')->paginate(8);
+        $bairros = Bairro::orderBy('nome')->paginate(10);
         
         return view('enderecos.bairros_grid', ['user' => $user, 'bairros' => $bairros]);
 

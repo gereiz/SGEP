@@ -7,7 +7,7 @@
         <h4 class="font-weight-bold py-3 mb-4">
             Lista de Regiões
         </h4>
-    </div>
+    </div> 
 
     <div class="col-md-3">
         <a href="{{url('enderecos/regiaoForm')}}" style="text-decoration: none"> 
@@ -19,26 +19,30 @@
     </div>
 </div>
 
-@foreach($regioes as $r)
+
     <header>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </header>
-    <div class="col-md-12">
-        <div class="card mt-2">
-            <div class="card-body">
-                <div class="row">
-                    <h5 class="card-title">{{$r->nome}} - Cidade: {{$r->cidade->nome}}</h5>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 text-right">
-                        <a role="button" href="{{url('enderecos/editRegiaoForm')}}/{{$r->id}}" type="button" class="btn btn-primary edit">Editar</a>
-                        <button type="button" value="{{$r->id}}" class="btn btn-danger delete">Excluir</button>
+    <div class="col-md-12" style="display: flex;flex-wrap: wrap;">
+       @foreach($regioes as $r) 
+        <div class="col-md-6">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="row">
+                        <h5 class="card-title">{{$r->nome}} - Cidade: {{$r->cidade->nome}}</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <a role="button" href="{{url('enderecos/editRegiaoForm')}}/{{$r->id}}" type="button" class="btn btn-primary edit">Editar</a>
+                            <button type="button" value="{{$r->id}}" class="btn btn-danger delete">Excluir</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+       @endforeach 
     </div>
-@endforeach
+
 <br>
 
 <div class="col-md-12">

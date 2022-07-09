@@ -12,7 +12,7 @@
             <div class="card-header-title">Dados da empresa</div>
         </h6>
         <div class="row no-gutters">
-            <div class="col-md-12 col-lg-12 col-xl-12">
+            <div class="col-md-12 col-lg-12 col-xl-12 p-3">
                 <div class="card-body" id="dados_empresa">
                     <form action="{{route('cadastra.cliente')}}" method="POST">
                         @csrf
@@ -41,9 +41,9 @@
                                 <label class="form-label">Contato/Responsável</label>
                                 <input type="text" value="{{ old('responsavel') }}" name="responsavel" id="responsavel" class="form-control" placeholder="Nome do Contato">
                             </div>
-                            <div class="form-group col-2">
-                                <label class="form-label">Telefone do Responsável</label>
-                                <input type="text" value="{{ old('tel_responsavel') }}" name="tel_responsavel" id="tel_responsavel" class="form-control" placeholder="(XX) XXXX-XXXX">
+                            <div class="form-group col-md-2">
+                                <label class="form-label">Celular do Responsável</label>
+                                <input type="text" value="{{ old('tel_responsavel') }}" name="tel_responsavel" id="tel_responsavel" class="form-control cel" placeholder="(XX) XXXX-XXXX">
                             </div>
                             <div class="form-group col-md-2">
                                 <label class="form-label">E-mail do Responsável</label>
@@ -55,7 +55,7 @@
                                 <label class="form-label">Endereço</label>
                                 <input type="text" value="{{ old('endereco') }}" name="endereco" id="endereco" class="form-control" placeholder="Rua ABCD... ">
                             </div>
-                            <div class="form-group col-2">
+                            <div class="form-group col-md-2">
                                 <label class="form-label">Número</label>
                                 <input type="text" value="{{ old('numero') }}" name="numero" id="numero" class="form-control" placeholder="0000">
                             </div>
@@ -82,7 +82,7 @@
                             </div>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="form-row px-4">
                             <div class="form-group col-md-2">
                                 <label class="form-label">UF</label>
                                 <select class="custom-select" name="uf" id="uf">
@@ -101,14 +101,14 @@
                                 <input type="text" value="{{ old('email') }}" name="email" id="email" class="form-control">
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="form-row px-4">
                             <div class="form-group col-md-2">
                                 <label class="form-label">Telefone</label>
                                 <input type="text" value="{{ old('telefone') }}" name="telefone" id="telefone" class="form-control"placeholder="(XX) XXXX-XXXX">
                             </div>
                             <div class="form-group col-md-2">
                                 <label class="form-label">Celular / Whatsapp</label>
-                                <input type="text" value="{{ old('celular') }}" name="celular" id="celular" class="form-control" placeholder="(XX) 9XXXX-XXXX">
+                                <input type="text" value="{{ old('celular') }}" name="celular" id="celular" class="form-control cel" placeholder="(XX) 9XXXX-XXXX">
                             </div>
                             <div class="form-group col-md-2">
                                 <label class="form-label">Tipo</label>
@@ -118,7 +118,7 @@
                                     <option value="2">B</option>
                                 </select>
                             </div>
-                            <div class="form-group col-4" style="margin: 2% 0% 0% 5%;">
+                            <div class="form-group col-md-4 ml-4 mt-4">
                                 <label class="custom-control custom-checkbox m-0">
                                     <input type="checkbox" name="ativo" id="ativo" class="custom-control-input">
                                     <span class="custom-control-label">Ativo</span>
@@ -136,9 +136,36 @@
 
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
+    $('#telefone').mask('(00) 0000-0000');
+    $('.cel').mask('(00) 00000-0000');
+    $('#cep').mask('00000-000');
 
-  
+    $("#cpf_cnpj").keydown(function(){
+        try {
+            $("#cpf_cnpj").unmask();
+        } catch (e) {}
+
+        var tamanho = $("#cpf_cnpj").val().length;
+
+        if(tamanho < 11){
+            $("#cpf_cnpj").mask("999.999.999-99");
+        } else {
+            $("#cpf_cnpj").mask("99.999.999/9999-99");
+        }
+
+        // ajustando foco
+        var elem = this;
+        setTimeout(function(){
+            // mudo a posição do seletor
+            elem.selectionStart = elem.selectionEnd = 10000;
+        }, 0);
+        // reaplico o valor para mudar o foco
+        var currentValue = $(this).val();
+        $(this).val('');
+        $(this).val(currentValue);
+    });
+
 });
 </script>
 
