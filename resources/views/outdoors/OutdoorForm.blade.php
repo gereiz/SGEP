@@ -81,16 +81,16 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 ml-3">
                     <img src="{{ isset($painel) ? asset('storage/'.$painel->image_url) : '' }}" alt="" style="width:50%;">
                 </div>
                 <div class="card-body col-md-4">
                     <label class="form-label">Imagem</label>
-                    <input type="file" id="imageDialog" name="image" class="form-control" required>
+                    <input type="file" id="imageDialog" name="image" class="form-control" {{isset($painel) ? '' : 'required'}}>
                 </div>
             </div>
             <div class="card-body col-md-7">
-                <button id="btn-add-edit"  type="submit" class="btn btn-primary float-left" style="margin-top: 40px;">
+                <button id="btn-add-edit"  type="submit" class="btn btn-primary" style="margin: 5% 0% -1% -1% ">
                     <i class="fa fa-btn fa-envelope"></i>
                     Salvar
                 </button>

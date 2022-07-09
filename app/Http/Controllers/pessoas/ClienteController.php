@@ -81,7 +81,7 @@ class ClienteController extends Controller
     public function listaClientes() {
 
         $user = auth()->user()->name;
-        $clientes = Cliente::all();
+        $clientes = Cliente::orderBy('razao_social')->paginate(10);
 
         return view('pessoas.lista_clientes', ['user' => $user,
                                                'clientes' => $clientes  

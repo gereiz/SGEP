@@ -84,7 +84,7 @@
 
         <!-- Configurações -->
         <li class="sidenav-item{{ strpos($routeName, 'ui.') === 0 ? ' active open' : '' }}">
-            <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-cube"></i><div>Conigurações</div></a>
+            <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-settings"></i><div>Conigurações</div></a>
 
             <ul class="sidenav-menu">
                 <li class="sidenav-item{{ $routeName == 'dashboards.dashboard-1' ? ' active' : '' }}">

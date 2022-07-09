@@ -86,7 +86,7 @@ class OutdoorController extends Controller
             'cadan' => 'min:6|max:6',
             'dimensao' => 'min:5|max:10',
             'dimensao_lona' => 'min:5|max:10',
-            'referencia' => 'min:5|max:40',
+            'referencia' => 'max:40',
             'lat' => 'min:10|max:40',
             'long' => 'min:10|max:40'
             ]);
