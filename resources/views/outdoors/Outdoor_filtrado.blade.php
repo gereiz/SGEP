@@ -9,7 +9,7 @@
                     <meta name="csrf-token" content="{{ csrf_token() }}" />
                 </header>
                 <div class="col-md-6 card_painel">
-                    <div class="card mt-6" style="width: 575; height:320; margin: 0% 2% 0% -2%;">
+                    <div class="card mt-6" style="width: 575; height:320;">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -21,12 +21,16 @@
                                     <p><b>Coordenadas:</b> <a href="https://maps.google.com/?q={{$p->latitude}},{{$p->longitude}}" target="_blank">Ver localização no mapa</a> </p>
                                 </div>
                                 <div class="col-md-6">
-                                    <img class="rounded float-left grid_painel_img" src="{{ asset('storage/'.$p->image_url)}}" alt="" style="padding-right: 5%;">
+                                    <img class="rounded float-left grid_painel_img mb-3" src="{{ asset('storage/'.$p->image_url)}}" alt="" style="padding-right: 5%;">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-right">
-                                    <button role="button" type="button" class="btn btn-success" data-toggle="modal" data-target="#modals-slide{{$p->id}}">Reservar</button>
+                                    @if($reservado == 1)
+                                    <button role="button" type="button" class="btn btn-success" data-toggle="modal" data-target="#modals-reserva{{$p->id}}">Reservar</button>
+                                    @elseif ($reservado == 2)
+                                    <button role="button" type="button" class="btn btn-danger text-white" data-toggle="modal" data-target="#modals-canc_reserva{{$p->id}}">Canc. Reserva</button>
+                                    @endif
                                     <a role="button" href="{{url('Outdoors/viewFormOutdoor')}}/{{$p->id}}" type="button" class="btn btn-info">Visualizar</a>
                                     <a role="button" href="{{url('Outdoors/editFormOutdoor')}}/{{$p->id}}"  type="button" class="btn btn-warning">Editar</a>
                                     <a role="button" onclick=" return confirm('Tem certeza que deseja excluir este registro?')" href="{{url('Outdoors/deleteOutdoor')}}/{{$p->id}}" type="button" class="btn btn-danger">Excluir</a>
@@ -39,8 +43,8 @@
                     </div>
                 </div>
 
-                <!-- Modal template -->
-                <div class="modal modal-slide fade" id="modals-slide{{$p->id}}">
+                <!-- Modal Reserva -->
+                <div class="modal modal-slide fade" id="modals-reserva{{$p->id}}">
                     <div class="modal-dialog">
                         <form class="modal-content" action="{{route('res.outdoor')}}" method="POST">
                             @csrf
@@ -85,6 +89,32 @@
                                 <button type="submit" class="btn btn-success btn-block">Reservar</button>
                             </div>
                         </form>
+                    </div>
+                </div>
+
+                <!-- Modal Cancela Reserva -->
+                <div class="modal fade show" id="modals-canc_reserva{{$p->id}}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">×</button>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h1>Tem certeza que deseja excluir esse agendamento?</h1>
+                                    </div>   
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <a class="btn btn-danger text-white btn-block">Cancelar Reserva</a>   
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal" aria-label="Close">Sair</button>
+                                    </div>    
+                                </div>
+
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
 

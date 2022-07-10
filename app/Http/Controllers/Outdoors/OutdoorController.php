@@ -225,11 +225,12 @@ class OutdoorController extends Controller
 
         $user = auth()->user()->name;
         $reservado = $request->status;
+        $clientes = Cliente::all();
         $bisemana = $request->bisemana;
         $tipo = $request->tipo;
         $periodo = Bisemana::find($bisemana);
         $bisemanas = Bisemana::where('fim', '>', date("Y-m-d"))->get();
-        $clientes = Cliente::all();
+        $reserva= Reserva::all();
 
         if($reservado == 2){
             $status = 'Reservados';
@@ -256,6 +257,8 @@ class OutdoorController extends Controller
             'paineis' => $paineis,
             'user' => $user,
             'bisemanas' => $bisemanas,
+            'reservado' => $reservado,
+            'reserva' => $reserva,
             'clientes' => $clientes]); 
         }
         
@@ -266,6 +269,7 @@ class OutdoorController extends Controller
             'status' => $status,
             'data' => $periodo->inicio.' a '.$periodo->fim,
         ];
+
 
         $pdf = PDF::loadView('outdoors.Outdoor_relatorio',$data);
         $pdf->render();
@@ -310,7 +314,7 @@ class OutdoorController extends Controller
 
         $user = auth()->user()->name;
         $paineis = Outdoor::paginate(8);
-        $bisemanas = Bisemana::all();
+        $bisemanas = Bisemana::where('fim', '>', date("Y-m-d"))->get();
 
 
        return view('outdoors.Outdoor_disponivel',[
@@ -338,6 +342,23 @@ class OutdoorController extends Controller
 
        return back()->with('success', 'Outdoor reservado com sucesso!');
 
+    }
+
+    public function cancelaReserva($id)
+    {
+        //dd($id);
+        try  
+        {
+            DB::beginTransaction();
+            Reserva::find($id)->delete();
+        }
+        catch (Exception $e) {
+            DB::rollBack();
+            return back()->with('error', $e->getMessage());
+
+        }
+        DB::commit();
+        return back()->with('success', 'Reserva cancelada com sucesso!');
     }
 
 }

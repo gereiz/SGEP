@@ -16,7 +16,7 @@ foreach ($paineis as $p) {
                                 <div class="card-body">
                                     <div class="row">
                                     <div class="text-center">
-                                            <img src="{{ asset('storage/'.$p->image_url)}}" alt="" style="width:230px; height:130px;">
+                                            {{--<img src="{{ asset('storage/'.$p->image_url)}}" alt="" style="width:230px; height:130px;">--}}
                                         </div>
                                     </div>
                                     <br>

@@ -64,7 +64,7 @@ route::get('/editBairroForm/{id}', ['as' => 'editForm.bairro', 'uses' => 'Endere
 route::post('/delBairro/{id}', ['as' => 'deleta.bairro', 'uses' => 'Enderecos\BairroController@delete']);
     
 });
-
+ 
 
 /*OUTDOORS*/
 
@@ -85,6 +85,8 @@ route::any('/OutdoorsFilter', ['as' =>'view_outdoor_filter', 'uses' => 'Outdoors
 
 route::get('/reservaOutdoor', ['as' => 'reserva.outdoor', 'uses' => 'Outdoors\OutdoorController@reservaPainel']);
 route::post('/reservaOutdoor', ['as' => 'res.outdoor', 'uses' => 'Outdoors\OutdoorController@reservaPainel']);
+
+route::get('/cancelReservaOutdoor/{id}', ['as' => 'cancel.reserva', 'uses' => 'Outdoors\OutdoorController@cancelaReserva']);
 
 });
 
