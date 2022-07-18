@@ -81,20 +81,31 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 ml-3">
+                <div class="col-md-3">
                     <img src="{{ isset($painel) ? asset('storage/'.$painel->image_url) : '' }}" alt="" style="width:50%;">
                 </div>
-                <div class="card-body col-md-4">
+                <div class="card-body col-md-5">
                     <label class="form-label">Imagem</label>
                     <input type="file" id="imageDialog" name="image" class="form-control" {{isset($painel) ? '' : 'required'}}>
                 </div>
+                <div class="card-body col-md-2 mt-1">
+                    <label class="form-label">Tipo de Painel</label>
+                    <select class="custom-select" id="tipoPainel" name="tipoPainel">
+                        <option value="0" disabled selected>Selecione o Tipo</option>
+                        <option value="1">A</option>
+                        <option value="2">B</option>
+                    </select>
+                </div>
             </div>
-            <div class="card-body col-md-7">
-                <button id="btn-add-edit"  type="submit" class="btn btn-primary" style="margin: 5% 0% -1% -1% ">
-                    <i class="fa fa-btn fa-envelope"></i>
-                    Salvar
-                </button>
+            <div class="row">
+                <div class="card-body col-md-7">
+                    <button id="btn-add-edit"  type="submit" class="btn btn-primary" style="margin: 5% 0% -1% 1% ">
+                        <i class="fa fa-btn fa-envelope"></i>
+                        Salvar
+                    </button>
+                </div>  
             </div>
+            
         </div>
     </form>
 

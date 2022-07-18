@@ -15,7 +15,7 @@ foreach ($paineis as $p) {
                             <div class="col-md-12">
                                 <div class="card-body">
                                     <div class="row">
-                                    <div class="text-center">
+                                        <div class="text-center">
                                             {{--<img src="{{ asset('storage/'.$p->image_url)}}" alt="" style="width:230px; height:130px;">--}}
                                         </div>
                                     </div>
@@ -35,7 +35,7 @@ foreach ($paineis as $p) {
                         </div>
                     </div>
         </td>
-        <p>{{$i}}</p>
+        {{--<p>{{$i}}</p>--}}
 
     <?php if ($i % 2 == 0) { ?>
     </tr>

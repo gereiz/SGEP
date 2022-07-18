@@ -61,7 +61,7 @@
                                     <div class="form-group col-md-12">
                                         <label class="form-label">Cliente</label>
                                         <select class="custom-select" id="cliente" name="cliente">
-                                            <option>Selecione o Cliente</option>
+                                            <option value="0" disabled selected>Selecione o Cliente</option>
                                             @foreach ($clientes as $cliente)
                                             <option value="{{$cliente->id}}">{{$cliente->nome_fantasia}}</option>
                                             @endforeach
@@ -72,21 +72,28 @@
                                     <div class="form-group col-md-12">
                                         <label class="form-label">Bi-Semana</label>
                                         <select class="custom-select" id="bisemana" name="bisemana">
-                                            <option>Selecione o Período da Reserva</option>
+                                            <option value="0" disabled selected>Selecione o Período da Reserva</option>
                                             @foreach ($bisemanas as $bisemana)
                                             <option value="{{$bisemana->id}}">{{date('d/m/Y', strtotime($bisemana->inicio))}} - {{date('d/m/Y', strtotime($bisemana->fim))}}</option>
                                             @endforeach
-                
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-row">
+                                    <div class="form-check ml-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                        <label class="form-label" for="invalidCheck" style="margin-top: 3px;">
+                                            Já Existe uma P.I para esta reserva
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-row mt-3">
                                     <div class="form-group col-md-12">
                                         <label class="form-label">Observações</label>
                                         <textarea class="form-control" placeholder="Observações" id="observacoes" name="observacoes"></textarea>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-success btn-block">Reservar</button>
+                                <button id="modReservar" type="submit" class="btn btn-success btn-block">Reservar</button>
                             </div>
                         </form>
                     </div>
@@ -105,7 +112,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <a class="btn btn-danger text-white btn-block">Cancelar Reserva</a>   
+                                        @foreach ($reserva as $r)
+                                            
+                                        @endforeach
+                                        <a href="{{route('cancel.reserva', ['id' => $r->id])}}" class="btn btn-danger text-white btn-block">Cancelar Reserva</a>   
                                     </div>
                                     <div class="col-sm-6">
                                         <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal" aria-label="Close">Sair</button>
@@ -129,3 +139,10 @@
     </div>
 
 </html>
+
+<script>
+$(document).ready(function() {
+
+
+});
+</script>
