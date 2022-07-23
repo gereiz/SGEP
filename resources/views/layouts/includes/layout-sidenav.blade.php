@@ -87,20 +87,38 @@
             <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-settings"></i><div>Conigurações</div></a>
 
             <ul class="sidenav-menu">
-                <li class="sidenav-item{{ $routeName == 'cadastro.usuario' ? ' active' : '' }}">
-                    <a href="{{route('cadastro.usuario')}}" class="sidenav-link"><div>Cadastro de Usuários</div></a>
+                <!--Usuários-->
+                <li class="sidenav-item{{ strpos($routeName, 'layout-examples.') === 0 ? ' active open' : '' }}">
+                    <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-person-add"></i><div>Usuários</div></a>
+
+                    <ul class="sidenav-menu">
+                        <li class="sidenav-item{{ $routeName == 'cadastro.usuario' ? ' active' : '' }}">
+                        <a href="{{ route('cadastro.usuario') }}" class="sidenav-link"><div>Cadastro de usuários</div></a>
+                        </li>
+                    </ul>
                 </li>
 
-                    <!--Email-->
-                    <li class="sidenav-item{{ strpos($routeName, 'layout-examples.') === 0 ? ' active open' : '' }}">
-                        <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-mail"></i><div>Email</div></a>
+                <!--Painéis-->
+                <li class="sidenav-item{{ strpos($routeName, 'layout-examples.') === 0 ? ' active open' : '' }}">
+                    <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-photos"></i><div>Painéis</div></a>
 
-                        <ul class="sidenav-menu">
-                            <li class="sidenav-item{{ $routeName == 'layout-examples.layout-1' ? ' active' : '' }}">
-                            <a href="{{ route('envio.email') }}" class="sidenav-link"><div>Envio</div></a>
-                            </li>
-                        </ul>
-                    </li>
+                    <ul class="sidenav-menu">
+                        <li class="sidenav-item{{ $routeName == 'tipo.outdoor' ? ' active' : '' }}">
+                        <a href="{{ route('tipo.outdoor') }}" class="sidenav-link"><div>Tipos de Painel</div></a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--Email-->
+                <li class="sidenav-item{{ strpos($routeName, 'layout-examples.') === 0 ? ' active open' : '' }}">
+                    <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-mail"></i><div>Email</div></a>
+
+                    <ul class="sidenav-menu">
+                        <li class="sidenav-item{{ $routeName == 'envio.email' ? ' active' : '' }}">
+                        <a href="{{ route('envio.email') }}" class="sidenav-link"><div>Envio</div></a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </li>
 

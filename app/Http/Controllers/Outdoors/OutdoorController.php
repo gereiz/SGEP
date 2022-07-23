@@ -13,6 +13,7 @@ use DB;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Jobs\SendReservaEmail;
+use App\Models\OutdoorTipo;
 use Illuminate\Support\Facades\File;
 
 class OutdoorController extends Controller
@@ -29,37 +30,42 @@ class OutdoorController extends Controller
         $bairro = Bairro::all();
         $bisemanas = Bisemana::where('fim', '>', date("Y-m-d"))->get();
         $clientes = Cliente::all();
-
+        
 
         return view('outdoors.OutdoorGrid',[
             'paineis' => $paineis,
             'user' => $user,
             'baiiro' => $bairro,
             'bisemanas' => $bisemanas,
-            'clientes' => $clientes
+            'clientes' => $clientes,
+            
         ]);
 
     }
 
     public function addForm()
     {
+        $painelTipo = OutdoorTipo::all();
         $user = auth()->user()->name;
         $bairros = Bairro::all();
         return view('outdoors.OutdoorForm', [
             'bairros' => $bairros,
-            'user' => $user
+            'user' => $user,
+            'painelTipo' => $painelTipo
         ]);
     }
 
     public function editForm($id)
     {
+        $painelTipo = OutdoorTipo::all();
         $user = auth()->user()->name;
         $bairros = Bairro::all();
         $painel = Outdoor::find($id);
         return view('outdoors.OutdoorForm',[
             'painel' => $painel,
             'bairros' => $bairros,
-            'user' => $user
+            'user' => $user,
+            'painelTipo' => $painelTipo
         ]);
     }
 
@@ -102,6 +108,8 @@ class OutdoorController extends Controller
             $painel = new Outdoor();
             if(Outdoor::find($request->id))
                 $painel = Outdoor::find($request->id);
+            
+            
 
             $painel->identificacao = $request->identificacao; 
             $painel->bairro_id = $request->bairro_id;

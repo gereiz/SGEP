@@ -91,6 +91,10 @@ route::post('/reservaOutdoor', ['as' => 'res.outdoor', 'uses' => 'Outdoors\Outdo
 
 route::get('/cancelReservaOutdoor/{id}', ['as' => 'cancel.reserva', 'uses' => 'Outdoors\OutdoorController@cancelaReserva']);
 
+route::get('/tipoOutdoor', ['as' => 'tipo.outdoor', 'uses' => 'Outdoors\OutdoorTIpoController@index']);
+route::post('/tipoOutdoor', ['as' => 'tipo.outdoor.add', 'uses' => 'Outdoors\OutdoorTIpoController@store']);
+route::get('/delTipoOutdoor/{id}', ['as' => 'tipo.outdoor.del', 'uses' => 'Outdoors\OutdoorTIpoController@delete']);
+
 });
 
 

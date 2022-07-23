@@ -92,8 +92,9 @@
                     <label class="form-label">Tipo de Painel</label>
                     <select class="custom-select" id="tipoPainel" name="tipoPainel">
                         <option value="0" disabled selected>Selecione o Tipo</option>
-                        <option value="1">A</option>
-                        <option value="2">B</option>
+                        @foreach ($painelTipo as $tipo)
+                            <option value="{{$tipo->id}}">{{$tipo->tipo}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
