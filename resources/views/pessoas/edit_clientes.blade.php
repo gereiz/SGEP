@@ -69,7 +69,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-4"> 
                                 <label class="form-label">Cidade</label>
                                 <select name="cidade_id" id="cidade_id" class="form-control" value="{{$cliente->cidade_id}}"  >
                                     @foreach($cidade as $c)

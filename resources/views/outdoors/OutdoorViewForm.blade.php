@@ -48,10 +48,18 @@
                 <input type="text" class="form-control" id="referencia" disabled>
             </div>
 
-            <div class="card-body col-md-8" style="margin-top:30px;">
+            <div class="card-body col-md-4" style="margin-top:30px;">
                 <a href="" id="mapsLink" target="_blank">Ver localização no mapa</a>
             </div>
-        </div>
+            <div class="card-body col-md-2 mt-1">
+                <label class="form-label">Tipo de Painel</label>
+                <select class="custom-select" id="tipoPainel" name="tipoPainel" disabled>
+                    <option value="0" disabled selected>Selecione o Tipo</option>
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                </select>
+            </div>
+        </div>    
     </div>
 
 
@@ -69,6 +77,7 @@
             $('#referencia').val('{{$painel->ponto_referencia}}');
             $("#mapsLink").attr("href", "https://maps.google.com/?q=" + '{{$painel->latitude}}' + ',' + '{{$painel->longitude}}');
            // $("#imageShow").attr("src", "/storage/{{$painel->image_url}}");
+            $('#tipoPainel').val('{{$painel->tipo}}');
         @endif
     });
     </script>

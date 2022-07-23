@@ -88,7 +88,8 @@ class OutdoorController extends Controller
             'dimensao_lona' => 'min:5|max:10',
             'referencia' => 'max:40',
             'lat' => 'min:10|max:40',
-            'long' => 'min:10|max:40'
+            'long' => 'min:10|max:40',
+            'tipoPainel' => 'required'
             ]);
 
         //dd($request->all());
@@ -113,6 +114,7 @@ class OutdoorController extends Controller
             $painel->ponto_referencia = $request->referencia;
             $painel->latitude = $request->lat;
             $painel->longitude = $request->long;
+            $painel->tipo = $request->tipoPainel;
 
             //dd($request->cadan);
 

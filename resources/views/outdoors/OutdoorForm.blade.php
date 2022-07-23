@@ -97,7 +97,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <div class="row"> 
                 <div class="card-body col-md-7">
                     <button id="btn-add-edit"  type="submit" class="btn btn-primary" style="margin: 5% 0% -1% 1% ">
                         <i class="fa fa-btn fa-envelope"></i>
