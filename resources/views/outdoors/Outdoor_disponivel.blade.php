@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 </header>
 
-<div class="col-md-12 grid_paineis">
+<div class="col-md-12 grid_paineis"> 
 @foreach($paineis as $p)
     <div class="col-md-6 card_painel">
         <div class="card mt-12">

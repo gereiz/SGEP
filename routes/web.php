@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
+/* 
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });    
+
+route::get('/newUser',  ['as' => 'cadastro.usuario', 'uses' => 'Auth\NewUserController@registerNewUser']);
+route::post('/newUser',  ['as' => 'cadastro.usuario.action', 'uses' => 'Auth\NewUserController@store']);
 
 Auth::routes();
 

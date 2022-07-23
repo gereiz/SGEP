@@ -87,8 +87,8 @@
             <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-settings"></i><div>Conigurações</div></a>
 
             <ul class="sidenav-menu">
-                <li class="sidenav-item{{ $routeName == 'dashboards.dashboard-1' ? ' active' : '' }}">
-                    <a href="#" class="sidenav-link"><div>Cadastro de Usuários</div></a>
+                <li class="sidenav-item{{ $routeName == 'cadastro.usuario' ? ' active' : '' }}">
+                    <a href="{{route('cadastro.usuario')}}" class="sidenav-link"><div>Cadastro de Usuários</div></a>
                 </li>
 
                     <!--Email-->

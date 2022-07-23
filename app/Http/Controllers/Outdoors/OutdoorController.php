@@ -335,7 +335,7 @@ class OutdoorController extends Controller
 
        $reserva->cliente_id = $request->cliente;
        $reserva->outdoor_id = $request->outdoor;
-       $reserva->bisemana_id = $request->bisemana;
+       $reserva->bisemana_id = $request->bisemana; 
        $reserva->observacao = $request->observacoes;
 
        $reserva->save();
