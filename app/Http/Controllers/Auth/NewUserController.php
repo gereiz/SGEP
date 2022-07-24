@@ -20,8 +20,9 @@ class NewUserController extends Controller
     public function registerNewUser()
     {
         $user = auth()->user()->name;
+        $usuarios = User::all();
 
-        return view('auth.new_user', ['user' => $user]);
+        return view('auth.new_user', ['user' => $user, 'usuarios' => $usuarios]);
     }
 
     public function store(Request $request)

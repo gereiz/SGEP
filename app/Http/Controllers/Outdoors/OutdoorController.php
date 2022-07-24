@@ -26,11 +26,13 @@ class OutdoorController extends Controller
     public function index()
     {
         $user = auth()->user()->name;
+        $userId = auth()->user()->id;
         $paineis = Outdoor::orderBy('identificacao', 'asc')->paginate(8);
         $bairro = Bairro::all();
         $bisemanas = Bisemana::where('fim', '>', date("Y-m-d"))->get();
         $clientes = Cliente::all();
         
+        dd($userId);
 
         return view('outdoors.OutdoorGrid',[
             'paineis' => $paineis,
@@ -234,6 +236,7 @@ class OutdoorController extends Controller
     {
 
         $user = auth()->user()->name;
+        $userId = auth()->user()->id;
         $reservado = $request->status;
         $clientes = Cliente::all();
         $bisemana = $request->bisemana;
@@ -244,8 +247,8 @@ class OutdoorController extends Controller
 
         if($reservado == 2){
             $status = 'Reservados';
-            $paineisReport = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'))->get();
-            $paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'))->paginate(6);
+            $paineisReport = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->where('user_id', $userId)->pluck('outdoor_id'))->get();
+            $paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->where('user_id', $userId)->pluck('outdoor_id'))->paginate(6);
         }    
         elseif($reservado == 1) {
             $status = 'Disponíveis';
@@ -339,16 +342,20 @@ class OutdoorController extends Controller
     public function reservaPainel(Request $request)
     {
         //dd($request->all());
+        $userId = auth()->user()->id;
 
 
-       $reserva = new Reserva();
+        $reserva = new Reserva();
 
-       $reserva->cliente_id = $request->cliente;
-       $reserva->outdoor_id = $request->outdoor;
-       $reserva->bisemana_id = $request->bisemana; 
-       $reserva->observacao = $request->observacoes;
+        $reserva->cliente_id = $request->cliente;
+        $reserva->outdoor_id = $request->outdoor;
+        $reserva->bisemana_id = $request->bisemana; 
+        $reserva->observacao = $request->observacoes;
+        $reserva->user_id = $userId;
 
-       $reserva->save();
+        // dd($userId);
+
+        $reserva->save();
 
        return back()->with('success', 'Outdoor reservado com sucesso!');
 

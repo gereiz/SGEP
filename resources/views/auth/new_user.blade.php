@@ -7,10 +7,7 @@
 
     <!-- Dados do novo Usuário -->
     <div class="row">
-        <div class="col-md-4 mb-4">
-            <!-- Espaço Vazio -->
-        </div>
-        <div class="card col-md-4 mb-4">
+        <div class="card col-md-4 mb-4 mr-4">
             <h6 class="card-header with-elements collapsed" data-toggle="collapse" href="#dados_empresa" aria-expanded="true" aria-controls="dados_empresa">
                 <div class="card-header-title">Dados do usuário</div>
             </h6>
@@ -54,8 +51,46 @@
                 </div>
             </div>
         </div>
+        <!-- Lista de Tipos de Painel -->
+        <div class="card col-md-7 mb-4" style="max-height: 500px;">
+            <h6 class="card-header with-elements collapsed" data-toggle="collapse" href="#dados_empresa" aria-expanded="true" aria-controls="dados_empresa">
+                <div class="card-header-title">Usuários Cadastrados</div>
+            </h6>
+            <div class="row no-gutters overflow-auto">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th class="text-center" scope="col">ID</th>
+                            <th class="text-center" scope="col">Nome</th>
+                            <th class="text-center" scope="col">E-mail</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($usuarios as $usu)
+                            <tr>
+                                <td class="text-center">{{$usu->id}}</td>
+                                <td class="text-center">{{$usu->name}}</td>
+                                <td class="text-center">{{$usu->email}}</td>
+                            </tr>      
+                                {{-- <td class="text-center">
+                                    <a href="{{route('tipo.outdoor.del', ['id' => $tipo->id])}}" onclick="return confirm('Tem certeza que deseja excluir este arquivo?')" title="Excluir" alt="Excluir">
+                                        <i class="sidenav-icon ion ion-md-backspace" style="color: #DC3545; font-size: 30px;"></i>
+                                    </a>
+                                </td>
+                            </tr>       --}}
+                            @endforeach
+                                              
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+        
     </div>    
-    <!-- / Dados do novo Usuário -->
+    <!-- Lista de Tipos de Painel -->
+    </div>    
+    
     
 @endsection
 
