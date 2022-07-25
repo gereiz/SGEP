@@ -39,7 +39,7 @@
                     <button name="enviar" id="enviar" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Enviar</button> 
                 </div>
                 <div class="form-group col-md-1">
-                    <button name="wpp" id="wpp" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">ZapZap</button> 
+                    <button name="wpp" id="wpp" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Whatsapp</button> 
                 </div>
                 <div class="col-md-12 grid_paineis" id="outdoors">
                 @isset($paineis)
