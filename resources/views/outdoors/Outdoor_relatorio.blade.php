@@ -23,7 +23,7 @@ foreach ($paineis as $p) {
                                                 $reportImage = $originalImage;
                                             }
                                             else if(!file_exists(public_path('storage/outdoorImages/'.$p->id."/jpgImage.jpg"))){
-                                                $image = imagecreatefrompng($filePath);
+                                                $image = @imagecreatefrompng($filePath);
                                                 $newImage = imagejpeg($image, 'storage/outdoorImages/'.$p->id."/jpgImage.jpg", 70);
                                                 $reportImage = asset('storage/outdoorImages/'.$p->id."/jpgImage.jpg");
                                             }
