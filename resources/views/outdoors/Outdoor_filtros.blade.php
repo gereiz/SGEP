@@ -28,11 +28,22 @@
                         <option value="2">Reservado</option>
                     </select>
                 </div>
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-1 mr-2">
                     <a href="/Outdoors/OutdoorsDisponiveisFilter?status=3&bisemana=1" style="margin-top:25px; margin-bottom:18px" class="btn btn-primary request" id="btn_filter">Filtrar</a>
                     <!--<button name="filtrar" id="filtrar" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Filtrar</button>-->
                 </div>
-                <div class="form-group col-md-1">
+
+                <div class="form-group col-md-1 ml-4">
+                    <button class="btn btn-primary dropdown-toggle" style="margin-left: -35%; margin-top:25px; margin-bottom:18px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Enviar Lista
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a name="pdf" id="pdf" class="dropdown-item">Download do Relatório</a>
+                        <a name="enviar" id="enviar" class="dropdown-item">Enviar por Email</a> 
+                        <a name="wpp" id="wpp" class="dropdown-item">Enviar por Whatsapp</a> 
+                    </div>
+                  </div>
+                {{-- <div class="form-group col-md-1">
                     <button name="pdf" id="pdf" class="btn btn-primary" style="margin-top:25px; margin-bottom:18px;">Relatório</button> 
                 </div>
                 <div class="form-group col-md-1">
@@ -40,15 +51,15 @@
                 </div>
                 <div class="form-group col-md-1">
                     <button name="wpp" id="wpp" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Whatsapp</button> 
-                </div>
-                <div class="col-md-12 grid_paineis" id="outdoors">
+                </div> --}}
+                <div class="col-md-12 grid_paineis" id="outdoors" style="margin-left: -0.6%">
                 @isset($paineis)
-                    @foreach($paineis as $p)
+                    @foreach($paineis as $p) 
                         <header>
-                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+                        {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
                             <meta name="csrf-token" content="{{ csrf_token() }}" />
                         </header>
-                        <div class="col-md-6 card_painel">
+                        <div class="col-md-6 card_painel" style="max-width: 46.7%;">
                             <div class="card mt-6" style="width: 575; height:320;">
                                 <div class="card-body">
                                     <div class="row">

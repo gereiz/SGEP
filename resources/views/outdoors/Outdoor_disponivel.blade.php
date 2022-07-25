@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="{{asset('assets/css/paineis.css')}}">  
 
-@section('content')
+@section('content') 
 <header>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 </header>

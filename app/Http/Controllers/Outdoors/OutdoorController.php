@@ -290,7 +290,7 @@ class OutdoorController extends Controller
         $reserva= Reserva::all();
 
         if($reservado == 2){
-            $status = 'Reservados';
+            $status = 'Reservados'; 
             $paineisReport = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->where('user_id', $userId)->pluck('outdoor_id'))->get();
             $paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->where('user_id', $userId)->pluck('outdoor_id'))->paginate(6);
         }    
