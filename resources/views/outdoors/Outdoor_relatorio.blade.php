@@ -19,7 +19,7 @@ foreach ($paineis as $p) {
                                             <?php 
                                             $filePath = 'storage/'.$p->image_url;
                                             $originalImage = asset($filePath);
-                                            if(pathinfo('storage/'.$p->image_url, PATHINFO_EXTENSION) != "png") {
+                                            if(pathinfo('storage/'.$p->image_url, PATHINFO_EXTENSION) != "png" || mime_content_type($filePath) != "image/png"){
                                                 $reportImage = $originalImage;
                                             }
                                             else if(!file_exists(public_path('storage/outdoorImages/'.$p->id."/jpgImage.jpg"))){
