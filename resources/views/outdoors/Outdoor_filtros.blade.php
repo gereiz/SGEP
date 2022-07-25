@@ -251,7 +251,8 @@
                     tipo: tipo
                 },
                 success: function(resposta){
-                    console.log('sgepequipe.com'+ resposta.message); 
+                    url = resposta.message
+                    console.log(url); 
                 }
             });
 

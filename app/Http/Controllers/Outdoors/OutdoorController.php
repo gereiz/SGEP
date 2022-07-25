@@ -358,7 +358,7 @@ class OutdoorController extends Controller
 
         if($tipo == "wpp")
         {
-            $url = Storage::url('storage/pdf/'.$fileName);
+            $url = 'sgepequipe.com'.Storage::url('pdf/'.$fileName);
             return response()->json(['success' => true, 'message' => $url]);
         }
             
