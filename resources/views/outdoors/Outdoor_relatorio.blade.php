@@ -32,7 +32,7 @@ foreach ($paineis as $p) {
                                                 elseif ($info['mime'] == 'image/png') 
                                                     $image = @imagecreatefrompng($filePath);
                                             
-                                                imagejpeg($image, 'storage/outdoorImages/'.$p->id."/CompressedJpgImage.jpg", 75);
+                                                imagejpeg($image, 'storage/outdoorImages/'.$p->id."/CompressedJpgImage.jpg", 30);
                                                 $reportImage = asset('storage/outdoorImages/'.$p->id."/CompressedJpgImage.jpg");
                                             }
                                             //}
