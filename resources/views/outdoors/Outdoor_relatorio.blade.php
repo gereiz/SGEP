@@ -19,17 +19,31 @@ foreach ($paineis as $p) {
                                             <?php 
                                             $filePath = 'storage/'.$p->image_url;
                                             $originalImage = asset($filePath);
-                                            if(pathinfo('storage/'.$p->image_url, PATHINFO_EXTENSION) != "png" || mime_content_type($filePath) != "image/png"){
-                                                $reportImage = $originalImage;
+                                            //if(pathinfo('storage/'.$p->image_url, PATHINFO_EXTENSION) != "png" || mime_content_type($filePath) != "image/png"){
+                                            if(filesize($filePath) > 200000){
+                                                $info = getimagesize($filePath);
+
+                                                if ($info['mime'] == 'image/jpeg') 
+                                                    $image = @imagecreatefromjpeg($filePath);
+                                            
+                                                elseif ($info['mime'] == 'image/gif') 
+                                                    $image = @imagecreatefromgif($filePath);
+                                            
+                                                elseif ($info['mime'] == 'image/png') 
+                                                    $image = @imagecreatefrompng($filePath);
+                                            
+                                                imagejpeg($image, 'storage/outdoorImages/'.$p->id."/CompressedJpgImage.jpg", 75);
+                                                $reportImage = asset('storage/outdoorImages/'.$p->id."/CompressedJpgImage.jpg");
                                             }
-                                            else if(!file_exists(public_path('storage/outdoorImages/'.$p->id."/jpgImage.jpg"))){
+                                            //}
+                                            /*else if(!file_exists(public_path('storage/outdoorImages/'.$p->id."/jpgImage.jpg"))){
                                                 $image = @imagecreatefrompng($filePath);
                                                 $newImage = imagejpeg($image, 'storage/outdoorImages/'.$p->id."/jpgImage.jpg", 70);
                                                 $reportImage = asset('storage/outdoorImages/'.$p->id."/jpgImage.jpg");
                                             }
                                             else{
                                                 $reportImage = asset('storage/outdoorImages/'.$p->id."/jpgImage.jpg");
-                                            }
+                                            }*/
                                             ?>
                                             <img src="{{$reportImage}}" alt="" style="width:230px; height:130px;">
                                         </div>
