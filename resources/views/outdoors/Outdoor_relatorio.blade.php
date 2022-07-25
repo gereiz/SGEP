@@ -16,7 +16,22 @@ foreach ($paineis as $p) {
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="text-center">
-                                            {{--<img src="{{ asset('storage/'.$p->image_url)}}" alt="" style="width:230px; height:130px;">--}}
+                                            <?php 
+                                            $filePath = 'storage/'.$p->image_url;
+                                            $originalImage = asset($filePath);
+                                            if(pathinfo('storage/'.$p->image_url, PATHINFO_EXTENSION) != "png") {
+                                                $reportImage = $originalImage;
+                                            }
+                                            else if(!file_exists(public_path('storage/outdoorImages/'.$p->id."/jpgImage.jpg"))){
+                                                $image = @imagecreatefrompng($filePath);
+                                                $newImage = imagejpeg($image, 'storage/outdoorImages/'.$p->id."/jpgImage.jpg", 70);
+                                                $reportImage = asset('storage/outdoorImages/'.$p->id."/jpgImage.jpg");
+                                            }
+                                            else{
+                                                $reportImage = asset('storage/outdoorImages/'.$p->id."/jpgImage.jpg");
+                                            }
+                                            ?>
+                                            <img src="{{$reportImage}}" alt="" style="width:230px; height:130px;">
                                         </div>
                                     </div>
                                     <br>
