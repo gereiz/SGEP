@@ -20,7 +20,7 @@ foreach ($paineis as $p) {
                                             $filePath = 'storage/'.$p->image_url;
                                             $originalImage = asset($filePath);
                                             //if(pathinfo('storage/'.$p->image_url, PATHINFO_EXTENSION) != "png" || mime_content_type($filePath) != "image/png"){
-                                            if(filesize($filePath) > 200000){
+                                            if(filesize($filePath) > 80000){
                                                 $info = getimagesize($filePath);
 
                                                 if ($info['mime'] == 'image/jpeg') 
@@ -32,7 +32,7 @@ foreach ($paineis as $p) {
                                                 elseif ($info['mime'] == 'image/png') 
                                                     $image = @imagecreatefrompng($filePath);
                                             
-                                                imagejpeg($image, 'storage/outdoorImages/'.$p->id."/CompressedJpgImage.jpg", 30);
+                                                imagejpeg($image, 'storage/outdoorImages/'.$p->id."/CompressedJpgImage.jpg", 5);
                                                 $reportImage = asset('storage/outdoorImages/'.$p->id."/CompressedJpgImage.jpg");
                                             }
                                             //}
