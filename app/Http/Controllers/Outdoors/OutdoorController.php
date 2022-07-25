@@ -309,7 +309,7 @@ class OutdoorController extends Controller
             return response()->json(['success' => false, 'message' => 'Não há dados para os filtros selecionados']);
         }
 
-        if(in_array($tipo,["pdf","enviar"]))
+        if(in_array($tipo,["pdf","enviar","wpp"]))
         {
             $data = [
                 'paineis' => $paineisReport,
@@ -323,14 +323,14 @@ class OutdoorController extends Controller
             $output = $pdf->output();
     
     
-            File::ensureDirectoryExists(public_path('pdf/'));
+            File::ensureDirectoryExists(public_path('storage/pdf/'));
     
-            $path = public_path('pdf/'); 
+            $path = public_path('storage/pdf/'); 
     
             $fileName =  'outdoor'.date("His").'.pdf'; 
     
             $pdf->save($path . '/' . $fileName); 
-            $pdf = public_path('pdf/'.$fileName);
+            $pdf = public_path('storage/pdf/'.$fileName);
         }
 
         if($tipo === "enviar"){
@@ -341,7 +341,7 @@ class OutdoorController extends Controller
                 $details = new \stdClass();
                 $details->nome = 'bryan';
                 $details->email = 'bryanfranca2@hotmail.com';
-                $details->attachment = 'pdf/'.$fileName;
+                $details->attachment = 'storage/pdf/'.$fileName;
                 SendReservaEmail::dispatchNow($details);
             }
             catch (Exception $e) {
@@ -354,7 +354,14 @@ class OutdoorController extends Controller
         }
 
         if($tipo == "pdf")
-            return response()->download('pdf/'.$fileName)->deleteFileAfterSend(true);
+            return response()->download('storage/pdf/'.$fileName)->deleteFileAfterSend(true);
+
+        if($tipo == "wpp")
+        {
+            $url = Storage::url('storage/pdf/'.$fileName);
+            return response()->json(['success' => true, 'message' => $url]);
+        }
+            
             
     }
 

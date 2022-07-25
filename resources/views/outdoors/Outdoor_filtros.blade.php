@@ -38,6 +38,9 @@
                 <div class="form-group col-md-1">
                     <button name="enviar" id="enviar" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Enviar</button> 
                 </div>
+                <div class="form-group col-md-1">
+                    <button name="wpp" id="wpp" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">ZapZap</button> 
+                </div>
                 <div class="col-md-12 grid_paineis" id="outdoors">
                 @isset($paineis)
                     @foreach($paineis as $p)
@@ -221,6 +224,34 @@
                 },
                 success: function(resposta){
                     //$('#outdoors').html(resposta);  
+                }
+            });
+
+        });
+
+        $('#wpp').on('click',function(e)
+        {
+            tipo = e.target.id;
+            bisemana = $('#bisemana_id').val();
+            status = $('#status').val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            url =  "{{ route('view_outdoor_filter') }}"
+
+            $.ajax({
+                method: "POST",
+                url: url, 
+                data:{
+                    bisemana: bisemana,
+                    status: status,
+                    tipo: tipo
+                },
+                success: function(resposta){
+                    console.log('sgepequipe.com'+ resposta.message); 
                 }
             });
 
