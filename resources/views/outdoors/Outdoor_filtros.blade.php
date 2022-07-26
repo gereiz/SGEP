@@ -32,20 +32,21 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-4">
-                        <label class="form-label">Identificação</label>
-                        <select class="js-example-basic-multiple form-control opt" name="ids[]" multiple="multiple" id="ids">
-                            @foreach($paineisFiltro as $pf)
-                                <option value="{{$pf->id}}"> {{$pf->identificacao}}</option>
-                            @endforeach
-                        </select>
-                    </div>
 
                     <div class="form-group col-md-4">
                         <label class="form-label">Cidade</label>
                         <select class="js-example-basic-multiple form-control opt" name="cidades[]" multiple="multiple" id="cidades">
                             @foreach($cidades as $c)
                                 <option value="{{$c->id}}"> {{$c->nome}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                        <label class="form-label">Identificação</label>
+                        <select class="js-example-basic-multiple form-control opt" name="ids[]" multiple="multiple" id="ids">
+                            @foreach($paineisFiltro as $pf)
+                                <option value="{{$pf->id}}"> {{$pf->identificacao}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -253,6 +254,37 @@
             newUrl = "/Outdoors/OutdoorsDisponiveisFilter?status=" + $("#status").val() + "&bisemana=" + $("#bisemana_id").val() + cidades + ids;
             $("#btn_filter").attr("href", newUrl);
         })
+
+        $('#cidades').on('change',function(e)
+        {
+            cidade_ids = $("#cidades").val()
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            url =  "{{ route('get_identificacoes') }}"
+
+            $.ajax({
+                method: "POST",
+                url: url, 
+                data:{
+                    cidade_ids: cidade_ids,
+                },
+                success: function(resposta){
+                    var $ids = $('#ids');
+                    $ids.empty();
+                    $ids.select2('destroy');
+                    for (var i = 0; i < resposta.length; i++) {
+                        $ids.append(new Option(resposta[i].identificacao, resposta[i].id, false, false));
+                    }
+
+                    $ids.select2();
+                }
+            });
+
+        });
 
         $('#enviar').on('click',function(e)
         {

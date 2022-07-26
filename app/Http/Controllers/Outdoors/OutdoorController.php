@@ -474,4 +474,16 @@ class OutdoorController extends Controller
         return back()->with('success', 'Reserva cancelada com sucesso!');
     }
 
+    public function getIdentificacoes(Request $request)
+    {
+        $id_cidades = $request->cidade_ids == null ? [0] : $request->cidade_ids;
+        $id_cidades = implode(",",$id_cidades);
+
+        $ids = Outdoor::select('outdoors.*')->whereRaw("cidades.id in (".$id_cidades.") or '".$id_cidades."' = 0")
+        ->join('bairros', 'bairros.id', '=', 'outdoors.bairro_id')
+        ->join('regioes', 'regioes.id', '=', 'bairros.regiao_id')
+        ->join('cidades', 'cidades.id', '=', 'regioes.cidade_id')->get();
+        return $ids;
+    }
+
 }

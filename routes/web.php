@@ -86,6 +86,8 @@ route::get('/OutdoorsDisponiveis', ['as' =>'view_outdoor_disp', 'uses' => 'Outdo
 route::get('/OutdoorsDisponiveisFilter', ['as' =>'view_outdoor_disp_filter', 'uses' => 'Outdoors\OutdoorController@viewforFilters']);
 route::any('/OutdoorsFilter', ['as' =>'view_outdoor_filter', 'uses' => 'Outdoors\OutdoorController@viewWithFilters']);
 
+route::any('/getIdentificacoes', ['as' =>'get_identificacoes', 'uses' => 'Outdoors\OutdoorController@getIdentificacoes']);
+
 route::get('/reservaOutdoor', ['as' => 'reserva.outdoor', 'uses' => 'Outdoors\OutdoorController@reservaPainel']);
 route::post('/reservaOutdoor', ['as' => 'res.outdoor', 'uses' => 'Outdoors\OutdoorController@reservaPainel']);
 
