@@ -6,43 +6,66 @@
 
 <header>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </header>
 <div class="card">
     <div class="row">
         <div class="col-md-12 col-lg-12 col-xl-12">
             <div class="card-body" id="dados_empresa">
                 <div class="row">
-                <div class="form-group col-md-4">
-                    <label class="form-label">Bisemana</label>
-                    <select name="bisemana_id" id="bisemana_id" class="form-control opt">
-                        @foreach($bisemanas as $b)
-                            <option value="{{$b->id}}"> {{date('d/m/Y', strtotime($b->inicio))}} até {{date('d/m/Y', strtotime($b->fim))}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label class="form-label">Status</label>
-                    <select name="status" id="status" class="form-control opt">,
-                        <option value="0">Todos</option>
-                        <option value="1">Disponível</option> 
-                        <option value="2">Reservado</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-1 mr-2">
-                    <a href="/Outdoors/OutdoorsDisponiveisFilter?status=3&bisemana=1" style="margin-top:25px; margin-bottom:18px" class="btn btn-primary request" id="btn_filter">Filtrar</a>
-                    <!--<button name="filtrar" id="filtrar" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Filtrar</button>-->
-                </div>
-
-                <div class="form-group col-md-1 ml-4">
-                    <button class="btn btn-primary dropdown-toggle" style="margin-left: -35%; margin-top:25px; margin-bottom:18px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Enviar Lista
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a name="pdf" id="pdf" class="dropdown-item">Download do Relatório</a>
-                        <a name="enviar" id="enviar" class="dropdown-item">Enviar por Email</a> 
-                        <a name="wpp" id="wpp" class="dropdown-item">Enviar por Whatsapp</a> 
+                    <div class="form-group col-md-4">
+                        <label class="form-label">Bisemana</label>
+                        <select name="bisemana_id" id="bisemana_id" class="form-control opt">
+                            @foreach($bisemanas as $b)
+                                <option value="{{$b->id}}"> {{date('d/m/Y', strtotime($b->inicio))}} até {{date('d/m/Y', strtotime($b->fim))}}</option>
+                            @endforeach
+                        </select>
                     </div>
-                  </div>
+                    <div class="form-group col-md-4">
+                        <label class="form-label">Status</label>
+                        <select name="status" id="status" class="form-control opt">,
+                            <option value="0">Todos</option>
+                            <option value="1">Disponível</option> 
+                            <option value="2">Reservado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label class="form-label">Identificação</label>
+                        <select class="js-example-basic-multiple form-control opt" name="ids[]" multiple="multiple" id="ids">
+                            @foreach($paineisFiltro as $pf)
+                                <option value="{{$pf->id}}"> {{$pf->identificacao}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label class="form-label">Cidade</label>
+                        <select class="js-example-basic-multiple form-control opt" name="cidades[]" multiple="multiple" id="cidades">
+                            @foreach($cidades as $c)
+                                <option value="{{$c->id}}"> {{$c->nome}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-1 mr-2">
+                        <a href="/Outdoors/OutdoorsDisponiveisFilter?status=3&bisemana=1" style="margin-top:25px; margin-bottom:18px" class="btn btn-primary request" id="btn_filter">Filtrar</a>
+                        <!--<button name="filtrar" id="filtrar" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Filtrar</button>-->
+                    </div>
+
+                    <div class="form-group col-md-1 ml-4">
+                        <button class="btn btn-primary dropdown-toggle" style="margin-left: -35%; margin-top:25px; margin-bottom:18px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Enviar Lista
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a name="pdf" id="pdf" class="dropdown-item">Download do Relatório</a>
+                            <a name="enviar" id="enviar" class="dropdown-item">Enviar por Email</a> 
+                            <a name="wpp" id="wpp" class="dropdown-item">Enviar por Whatsapp</a> 
+                        </div>
+                    </div>
+                </div>
                 {{-- <div class="form-group col-md-1">
                     <button name="pdf" id="pdf" class="btn btn-primary" style="margin-top:25px; margin-bottom:18px;">Relatório</button> 
                 </div>
@@ -68,6 +91,7 @@
                                             <br>
                                             <p><b>Endereço:</b>  {{$p->logradouro}} nº{{$p->numero}},</p> 
                                             <p><b>Bairro:</b>  {{$p->bairro->nome}}</p> 
+                                            <p><b>ID:</b>  {{$p->id}}</p> 
                                             <br>
                                             <p><b>Coordenadas:</b> <a href="https://maps.google.com/?q={{$p->latitude}},{{$p->longitude}}" target="_blank">Ver localização no mapa</a> </p>
                                         </div>
@@ -196,6 +220,8 @@
 <script>
     $(document).ready(function () 
     {
+        $('.js-example-basic-multiple').select2();
+
         @if(isset($reservado))
             $("#status").val('{{$reservado}}');
         @endif
@@ -204,11 +230,27 @@
             $("#bisemana_id").val('{{$bisemana_id}}');
         @endif
 
-        btn_url = "/Outdoors/OutdoorsDisponiveisFilter?status=" + $("#status").val() + "&bisemana=" + $("#bisemana_id").val();
+        @if(isset($ids))
+            idsArray = '{{$ids}}'.split(",");
+            $("#ids").val(idsArray);
+            $("#ids").select2();
+        @endif
+
+        @if(isset($id_cidades))
+            cidadesArray = '{{$id_cidades}}'.split(",");
+            $("#cidades").val(cidadesArray);
+            $("#cidades").select2();
+        @endif
+
+        cidades = $("#cidades").val().length > 0 ? "&id_cidades=" + $("#cidades").val() : "&id_cidades=0"
+        ids = $("#ids").val().length > 0 ? "&ids=" + $("#ids").val() : "&ids=0"
+        btn_url = "/Outdoors/OutdoorsDisponiveisFilter?status=" + $("#status").val() + "&bisemana=" + $("#bisemana_id").val() + cidades + ids;
         $("#btn_filter").attr("href", btn_url);
 
         $(".opt").on("change", function(){
-            newUrl = "/Outdoors/OutdoorsDisponiveisFilter?status=" + $("#status").val() + "&bisemana=" + $("#bisemana_id").val();
+            cidades = $("#cidades").val().length > 0 ? "&id_cidades=" + $("#cidades").val() : "&id_cidades=0"
+            ids = $("#ids").val().length > 0 ? "&ids=" + $("#ids").val() : "&ids=0"
+            newUrl = "/Outdoors/OutdoorsDisponiveisFilter?status=" + $("#status").val() + "&bisemana=" + $("#bisemana_id").val() + cidades + ids;
             $("#btn_filter").attr("href", newUrl);
         })
 
