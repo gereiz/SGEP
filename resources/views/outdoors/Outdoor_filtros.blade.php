@@ -259,6 +259,8 @@
             tipo = e.target.id;
             bisemana = $('#bisemana_id').val();
             status = $('#status').val();
+            out_ids = $("#ids").val();
+            cidade_ids = $("#cidades").val()
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -273,7 +275,9 @@
                 data:{
                     bisemana: bisemana,
                     status: status,
-                    tipo: tipo
+                    tipo: tipo,
+                    cidade_ids: cidade_ids,
+                    out_ids: out_ids,
                 },
                 success: function(resposta){
                     //$('#outdoors').html(resposta);  
@@ -287,6 +291,8 @@
             tipo = e.target.id;
             bisemana = $('#bisemana_id').val();
             status = $('#status').val();
+            out_ids = $("#ids").val();
+            cidade_ids = $("#cidades").val()
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -301,7 +307,9 @@
                 data:{
                     bisemana: bisemana,
                     status: status,
-                    tipo: tipo
+                    tipo: tipo,
+                    cidade_ids: cidade_ids,
+                    out_ids: out_ids,
                 },
                 success: function(resposta){
                     url = resposta.message
@@ -316,6 +324,8 @@
             tipo = e.target.id;
             bisemana = $('#bisemana_id').val();
             status = $('#status').val();
+            out_ids = $("#ids").val();
+            cidade_ids = $("#cidades").val()
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -330,7 +340,9 @@
                 data:{
                     bisemana: bisemana,
                     status: status,
-                    tipo: tipo
+                    tipo: tipo,
+                    cidade_ids: cidade_ids,
+                    out_ids: out_ids,
                 },
                 xhrFields: { 
                 responseType: 'blob' 
