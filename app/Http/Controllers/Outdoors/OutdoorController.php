@@ -228,7 +228,7 @@ class OutdoorController extends Controller
         $userId = auth()->user()->id;
         $reservado = $request->status == null ? "0" : $request->status;
         $clientes = Cliente::all();
-        $bisemana = $request->bisemana;
+        $bisemana = $request->bisemana == null ? "0" : $request->bisemana;
         $tipo = $request->tipo;
         $periodo = Bisemana::find($bisemana);
         $bisemanas = Bisemana::where('fim', '>', date("Y-m-d"))->get();
@@ -239,7 +239,7 @@ class OutdoorController extends Controller
         $ids = $request->ids == null ? "0" : $request->ids;
         $id_cidades = $request->id_cidades == null ? "0" : $request->id_cidades;
 
-        $reservadosQuery = DB::select(DB::raw("select outdoor_id from reservas where bisemana_id = ". $bisemana. " and user_id = ". $userId));
+        $reservadosQuery = DB::select(DB::raw("select outdoor_id from reservas where (bisemana_id = ". $bisemana. " or '". $bisemana. "' = '0')". "and user_id = ". $userId));
         $reservados = [];
 
         foreach($reservadosQuery as $rq)
@@ -312,7 +312,7 @@ class OutdoorController extends Controller
         $userId = auth()->user()->id;
         $reservado = $request->status;
         $clientes = Cliente::all();
-        $bisemana = $request->bisemana;
+        $bisemana = $request->bisemana == null ? "0" : $request->bisemana;
         $ids = $request->out_ids == null ? [0] : $request->out_ids;
         $ids = implode(",",$ids);
         $id_cidades = $request->cidade_ids == null ? [0] : $request->cidade_ids;
@@ -322,7 +322,7 @@ class OutdoorController extends Controller
         $bisemanas = Bisemana::where('fim', '>', date("Y-m-d"))->get();
         $reserva= Reserva::all();
 
-        $reservadosQuery = DB::select(DB::raw("select outdoor_id from reservas where bisemana_id = ". $bisemana. " and user_id = ". $userId));
+        $reservadosQuery = DB::select(DB::raw("select outdoor_id from reservas where (bisemana_id = ". $bisemana. " or '". $bisemana. "' = '0')". "and user_id = ". $userId));
         $reservados = [];
 
         foreach($reservadosQuery as $rq)
