@@ -59,9 +59,6 @@
             <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-photos"></i><div>Painéis</div></a>
 
             <ul class="sidenav-menu">
-                <li class="sidenav-item{{ $routeName == 'add_form_outdoor' ? ' active' : '' }}">
-                    <a href="{{route('add_form_outdoor')}}" class="sidenav-link"><div>Cadastro de Painéis</div></a>
-                </li>
                 <li class="sidenav-item{{ $routeName == 'view_outdoor_disp_filter' ? ' active' : '' }}">
                     <a href="{{ route('view_outdoor_disp_filter')}}" class="sidenav-link"><div>Lista de Painéis</div></a>
                 </li>
@@ -82,6 +79,8 @@
             </ul>
         </li>
 
+        
+        @if (session('nivel_acesso') == 9)
         <!-- Configurações -->
         <li class="sidenav-item{{ strpos($routeName, 'ui.') === 0 ? ' active open' : '' }}">
             <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-settings"></i><div>Conigurações</div></a>
@@ -103,6 +102,9 @@
                     <a href="javascript:void(0)" class="sidenav-link sidenav-toggle"><i class="sidenav-icon ion ion-md-photos"></i><div>Painéis</div></a>
 
                     <ul class="sidenav-menu">
+                        <li class="sidenav-item{{ $routeName == 'add_form_outdoor' ? ' active' : '' }}">
+                            <a href="{{route('add_form_outdoor')}}" class="sidenav-link"><div>Cadastro de Painéis</div></a>
+                        </li>
                         <li class="sidenav-item{{ $routeName == 'tipo.outdoor' ? ' active' : '' }}">
                         <a href="{{ route('tipo.outdoor') }}" class="sidenav-link"><div>Tipos de Painel</div></a>
                         </li>
@@ -120,7 +122,9 @@
                     </ul>
                 </li>
             </ul>
-        </li>
+        </li>   
+        @endif
+
 
         <!--  Tables -->
         <!--<li class="sidenav-item{{ strpos($routeName, 'tables.') === 0 ? ' active open' : '' }}">
