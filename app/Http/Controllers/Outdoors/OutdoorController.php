@@ -290,6 +290,8 @@ class OutdoorController extends Controller
             ->appends('id_cidades', request('id_cidades'))->appends('ids', request('ids'));
         }            
 
+        $bisemana = $request->bisemana == null ? $bisemanas[0]->id : $request->bisemana;
+
 
        return view('outdoors.Outdoor_filtros',[
         'paineis' => $paineis,
