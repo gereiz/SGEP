@@ -239,19 +239,24 @@ class OutdoorController extends Controller
         $ids = $request->ids == null ? "0" : $request->ids;
         $id_cidades = $request->id_cidades == null ? "0" : $request->id_cidades;
 
+        $reservadosQuery = DB::select(DB::raw("select outdoor_id from reservas where bisemana_id = ". $bisemana. " and user_id = ". $userId));
+        $reservados = [];
+
+        foreach($reservadosQuery as $rq)
+        {
+            $reservados[] = $rq->outdoor_id;
+        }
+
+
         if($reservado == 2){
             $status = 'Reservados';
 
-            $paineis = Outdoor::whereIn('id', DB::table('reservas')
-            ->where('bisemana_id',$bisemana)
-            ->where('user_id', $userId)
-            ->whereRaw("cidades.id in (".$id_cidades.") or '".$id_cidades."' = 0")
-            ->join('outdoors', 'outdoors.id', '=', 'reservas.outdoor_id')
-            ->join('bairros', 'bairros.id', '=', 'outdoors.bairro_id')
+            $paineis = Outdoor::join('bairros', 'bairros.id', '=', 'outdoors.bairro_id')
             ->join('regioes', 'regioes.id', '=', 'bairros.regiao_id')
             ->join('cidades', 'cidades.id', '=', 'regioes.cidade_id')
-            ->pluck('outdoor_id'))
-            ->whereRaw("outdoors.id in (".$ids.") or '".$ids."' = 0")
+            ->whereRaw("(outdoors.id in (".$ids.") or '".$ids."' = 0)")
+            ->whereIn("outdoors.id", $reservados)
+            ->whereRaw("(cidades.id in (".$id_cidades.") or '".$id_cidades."' = 0)")
             ->paginate(6)
             ->appends('bisemana', request('bisemana'))
             ->appends('status', request('status'))
@@ -261,15 +266,12 @@ class OutdoorController extends Controller
         elseif($reservado == 1) {
             $status = 'Disponíveis';
 
-            $paineis = Outdoor::whereNotIn('id', DB::table('reservas')
-            ->where('bisemana_id',$bisemana)
-            ->whereRaw("cidades.id in (".$id_cidades.") or '".$id_cidades."' = 0")
-            ->join('outdoors', 'outdoors.id', '=', 'reservas.outdoor_id')
-            ->join('bairros', 'bairros.id', '=', 'outdoors.bairro_id')
+            $paineis = Outdoor::join('bairros', 'bairros.id', '=', 'outdoors.bairro_id')
             ->join('regioes', 'regioes.id', '=', 'bairros.regiao_id')
             ->join('cidades', 'cidades.id', '=', 'regioes.cidade_id')
-            ->pluck('outdoor_id'))
-            ->whereRaw("outdoors.id in (".$ids.") or '".$ids."' = 0")
+            ->whereRaw("(outdoors.id in (".$ids.") or '".$ids."' = 0)")
+            ->whereNotIn("outdoors.id", $reservados)
+            ->whereRaw("(cidades.id in (".$id_cidades.") or '".$id_cidades."' = 0)")
             ->paginate(6)
             ->appends('bisemana', request('bisemana'))
             ->appends('status', request('status'))
@@ -320,33 +322,34 @@ class OutdoorController extends Controller
         $bisemanas = Bisemana::where('fim', '>', date("Y-m-d"))->get();
         $reserva= Reserva::all();
 
+        $reservadosQuery = DB::select(DB::raw("select outdoor_id from reservas where bisemana_id = ". $bisemana. " and user_id = ". $userId));
+        $reservados = [];
+
+        foreach($reservadosQuery as $rq)
+        {
+            $reservados[] = $rq->outdoor_id;
+        }
+
 
         if($reservado == 2){
             $status = 'Reservados'; 
-            $paineisReport = Outdoor::whereIn('id', DB::table('reservas')
-            ->where('bisemana_id',$bisemana)
-            ->where('user_id', $userId)
-            ->whereRaw("cidades.id in (".$id_cidades.") or '".$id_cidades."' = 0")
-            ->join('outdoors', 'outdoors.id', '=', 'reservas.outdoor_id')
-            ->join('bairros', 'bairros.id', '=', 'outdoors.bairro_id')
+            $paineisReport = Outdoor::select("outdoors.*")->join('bairros', 'bairros.id', '=', 'outdoors.bairro_id')
             ->join('regioes', 'regioes.id', '=', 'bairros.regiao_id')
             ->join('cidades', 'cidades.id', '=', 'regioes.cidade_id')
-            ->pluck('outdoor_id'))
-            ->whereRaw("id in (".$ids.") or '".$ids."' = 0")->get();
-            //$paineis = Outdoor::whereIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->where('user_id', $userId)->pluck('outdoor_id'))->paginate(6);
+            ->whereRaw("(outdoors.id in (".$ids.") or '".$ids."' = 0)")
+            ->whereIn("outdoors.id", $reservados)
+            ->whereRaw("(cidades.id in (".$id_cidades.") or '".$id_cidades."' = 0)")
+            ->get();
         }    
         elseif($reservado == 1) {
             $status = 'Disponíveis';
-            $paineisReport = Outdoor::whereNotIn('id', DB::table('reservas')
-            ->whereRaw("cidades.id in (".$id_cidades.") or '".$id_cidades."' = 0")
-            ->join('outdoors', 'outdoors.id', '=', 'reservas.outdoor_id')
-            ->join('bairros', 'bairros.id', '=', 'outdoors.bairro_id')
+            $paineisReport = Outdoor::select("outdoors.*")->join('bairros', 'bairros.id', '=', 'outdoors.bairro_id')
             ->join('regioes', 'regioes.id', '=', 'bairros.regiao_id')
             ->join('cidades', 'cidades.id', '=', 'regioes.cidade_id')
-            ->where('bisemana_id',$bisemana)
-            ->whereRaw("outdoors.id in (".$ids.") or '".$ids."' = 0")
-            ->pluck('outdoor_id'))->get();
-            //$paineis = Outdoor::whereNotIn('id', DB::table('reservas')->where('bisemana_id',$bisemana)->pluck('outdoor_id'))->paginate(6);
+            ->whereRaw("(outdoors.id in (".$ids.") or '".$ids."' = 0)")
+            ->whereNotIn("outdoors.id", $reservados)
+            ->whereRaw("(cidades.id in (".$id_cidades.") or '".$id_cidades."' = 0)")
+            ->get();
         } else {
             $status = 'Todos';
             $paineisReport = Outdoor::select("outdoors.*")->whereRaw("(cidades.id in (".$id_cidades.") or ('".$id_cidades."' = 0))")
@@ -354,7 +357,6 @@ class OutdoorController extends Controller
             ->join('bairros', 'bairros.id', '=', 'outdoors.bairro_id')
             ->join('regioes', 'regioes.id', '=', 'bairros.regiao_id')
             ->join('cidades', 'cidades.id', '=', 'regioes.cidade_id')->get();
-            //$paineis = Outdoor::paginate(6);
         }            
 
         if(count($paineisReport) == 0)
