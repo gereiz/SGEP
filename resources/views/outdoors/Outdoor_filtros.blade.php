@@ -108,7 +108,9 @@
                                             <button role="button" type="button" class="btn btn-danger text-white" data-toggle="modal" data-target="#modals-canc_reserva{{$p->id}}">Canc. Reserva</button>
                                         @endif
                                             <a role="button" href="{{url('Outdoors/viewFormOutdoor')}}/{{$p->id}}" type="button" class="btn btn-info">Visualizar</a>
+                                            @if (session('nivel_acesso') == 9)
                                             <a role="button" href="{{url('Outdoors/editFormOutdoor')}}/{{$p->id}}"  type="button" class="btn btn-warning">Editar</a>
+                                            @endif
                                             <a role="button" onclick=" return confirm('Tem certeza que deseja excluir este registro?')" href="{{url('Outdoors/deleteOutdoor')}}/{{$p->id}}" type="button" class="btn btn-danger">Excluir</a>
                                         </div>
                                     </div>

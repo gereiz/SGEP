@@ -8,7 +8,7 @@ use DB;
 
 class Bairro extends Model
 {
-    public $timestamps = false;
+    public $timestamps = false; 
     protected $table = 'bairros';
 
     public static function exists($regiao, $uf, $cidade, $bairro)

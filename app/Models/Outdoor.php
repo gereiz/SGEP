@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Outdoor extends Model
 {
-    use HasFactory;
+    use HasFactory; 
 
     protected $table = 'outdoors';
 

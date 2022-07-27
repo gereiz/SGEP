@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});    
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);  
 
 route::get('/newUser',  ['as' => 'cadastro.usuario', 'uses' => 'Auth\NewUserController@registerNewUser']);
 route::post('/newUser',  ['as' => 'cadastro.usuario.action', 'uses' => 'Auth\NewUserController@store']);
