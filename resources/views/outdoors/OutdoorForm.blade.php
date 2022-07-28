@@ -261,6 +261,7 @@
             $('#referencia').val('{{$painel->ponto_referencia}}');
             $('#lat').val('{{$painel->latitude}}');
             $('#long').val('{{$painel->longitude}}');
+            $('#tipoPainel').val('{{$painel->tipo}}');
         @endif
     });
     </script>

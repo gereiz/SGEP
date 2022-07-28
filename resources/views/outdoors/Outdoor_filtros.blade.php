@@ -32,7 +32,6 @@
                     </div>
                 </div>
                 <div class="row">
-
                     <div class="form-group col-md-4">
                         <label class="form-label">Cidade</label>
                         <select class="js-example-basic-multiple form-control opt" name="cidades[]" multiple="multiple" id="cidades">
@@ -51,13 +50,13 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-md-1 mr-2">
-                        <a href="/Outdoors/OutdoorsDisponiveisFilter?status=3&bisemana=1" style="margin-top:25px; margin-bottom:18px" class="btn btn-primary request" id="btn_filter">Filtrar</a>
+                    <div class="form-group col-md-2">
+                        <a href="/Outdoors/OutdoorsDisponiveisFilter?status=3&bisemana=1" style="margin-top:20px; margin-bottom:18px" class="btn btn-primary request" id="btn_filter">Filtrar</a>
                         <!--<button name="filtrar" id="filtrar" class="btn btn-primary request" style="margin-top:25px; margin-bottom:18px;">Filtrar</button>-->
                     </div>
 
-                    <div class="form-group col-md-1 ml-4">
-                        <button class="btn btn-primary dropdown-toggle" style="margin-left: -35%; margin-top:25px; margin-bottom:18px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="form-group col-md-2">
+                        <button class="btn btn-primary dropdown-toggle" style="margin-left: -45%; margin-top:20px; margin-bottom:18px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Enviar Lista
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -84,7 +83,7 @@
                             <meta name="csrf-token" content="{{ csrf_token() }}" />
                         </header>
                         <div class="col-md-6 card_painel">
-                            <div class="card mt-6" style="width: 575; height:320;">
+                            <div class="card mt-6" style="max-width: 575; max-height:320;">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -97,7 +96,7 @@
                                             <p><b>Coordenadas:</b> <a href="https://maps.google.com/?q={{$p->latitude}},{{$p->longitude}}" target="_blank">Ver localização no mapa</a> </p>
                                         </div>
                                         <div class="col-md-6">
-                                            <img class="rounded float-left grid_painel_img mb-3" src="{{ asset('storage/'.$p->image_url)}}" alt="" style="padding-right: 5%;">
+                                            <img class="rounded float-left grid_painel_img mb-3 pr-4" src="{{ asset('storage/'.$p->image_url)}}" alt="">
                                         </div>
                                     </div>
                                     <div class="row">
